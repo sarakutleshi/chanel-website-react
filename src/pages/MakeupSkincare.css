@@ -1,0 +1,320 @@
+/* ── Hero Split ── */
+.makeup-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 5rem var(--pad);
+  gap: 5rem;
+  align-items: center;
+}
+.makeup-show-case h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.makeup-show-case h2 {
+  font-family: var(--sans);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+.makeup-show-case a {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 2.2rem;
+  border: 1px solid var(--ink);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: transparent;
+  transition: background 0.25s, color 0.25s;
+}
+.makeup-show-case a:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+.makeup-image img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+/* ── Philosophy Band ── */
+.philosophy-band {
+  display: flex;
+  align-items: flex-start;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) 4rem;
+}
+.philosophy-item {
+  flex: 1;
+  padding: 0 2.5rem;
+  text-align: center;
+}
+.philosophy-item:first-child { padding-left: 0; }
+.philosophy-item:last-child  { padding-right: 0; }
+.philosophy-icon {
+  display: block;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+}
+.philosophy-item h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+.philosophy-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
+.philosophy-divider { width: 1px; background: var(--rule); align-self: stretch; flex-shrink: 0; }
+
+/* ── Carousel ── */
+.cards-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--pad) 4rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+.home-cards {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  flex: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.home-cards::-webkit-scrollbar { display: none; }
+.carousel-card {
+  flex: 0 0 calc(25% - 1.125rem);
+  height: 420px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+.carousel-card:hover { transform: scale(1.02); cursor: pointer; }
+.carousel-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+  z-index: 1;
+}
+.card-overlay {
+  padding: 0 1.25rem 1.5rem;
+  z-index: 2;
+  position: relative;
+}
+.card-overlay h3 {
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+.card-overlay .card-sub {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.card-overlay a {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border: 1px solid rgba(255,255,255,0.6);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.card-overlay a:hover { background: rgba(255,255,255,0.15); }
+.arrow-btn {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  font-size: 1rem;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.arrow-btn:hover { background: var(--off); }
+
+/* ── Makeup Grid ── */
+.makeup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) 5rem;
+}
+.makeup-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  transition: box-shadow 0.3s;
+}
+.makeup-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
+.makeup-img-wrap { overflow: hidden; background: var(--off); }
+.makeup-img-wrap img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.makeup-card:hover .makeup-img-wrap img { transform: scale(1.04); }
+.makeup-info {
+  padding: 1.25rem 1.1rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.makeup-category {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.makeup-info h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+.makeup-info p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; flex: 1; }
+.makeup-price {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-top: 1rem;
+}
+.makeup-info button {
+  margin-top: 0.75rem;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  padding: 0.65rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+.makeup-info button:hover { background: #333; }
+
+/* ── Skincare Hero ── */
+.skincare-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) 5rem;
+  gap: 5rem;
+  align-items: center;
+}
+.skincare-hero-img img {
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+}
+.skincare-hero-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+}
+.skincare-hero-text p { font-size: 0.93rem; color: var(--muted); line-height: 1.85; }
+.text-link {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.1rem;
+  transition: opacity 0.2s;
+}
+.text-link:hover { opacity: 0.55; }
+
+/* ── Ritual Banner ── */
+.ritual-banner {
+  background: var(--ink);
+  padding: 5rem var(--pad);
+  text-align: center;
+  margin-top: 2rem;
+}
+.ritual-banner-inner { max-width: 700px; margin: 0 auto; }
+.ritual-banner h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.8vw, 2rem);
+  color: var(--white);
+  font-weight: 400;
+  line-height: 1.55;
+}
+.ritual-banner p {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .makeup-grid { grid-template-columns: repeat(2, 1fr); }
+  .philosophy-band { flex-wrap: wrap; }
+  .philosophy-item { flex: 0 0 50%; padding: 1.5rem; }
+  .philosophy-divider { display: none; }
+}
+@media (max-width: 900px) {
+  .makeup-content-container { grid-template-columns: 1fr; padding: 3rem var(--pad); }
+  .makeup-image img { height: 380px; }
+  .skincare-hero { grid-template-columns: 1fr; }
+  .skincare-hero-img img { height: 380px; }
+  .carousel-card { flex: 0 0 calc(50% - 0.75rem); }
+}
+@media (max-width: 640px) {
+  .makeup-grid { grid-template-columns: 1fr; }
+  .carousel-card { flex: 0 0 100%; }
+  .philosophy-item { flex: 0 0 100%; }
+}
