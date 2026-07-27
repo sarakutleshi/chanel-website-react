@@ -147,7 +147,6 @@ a {
   background: var(--ink);
   color: var(--white);
   padding: 4rem var(--pad) 2.5rem;
-  margin-top: 2rem;
 }
 
 .footer-inner {
@@ -234,4 +233,38 @@ a {
     gap: 0.5rem;
     text-align: center;
   }
+}
+
+/* ── Cart Icon ── */
+.navbar-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 2px;
+}
+.navbar-cart:hover,
+.navbar-cart.active {
+  color: var(--ink);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
 }
