@@ -17,6 +17,9 @@ export default function Navbar() {
           <NavLink className="navbar-brand" to="/jewelry-watches">
             Jewelry &amp; Watches
           </NavLink>
+          <NavLink className="navbar-brand" to="/galerie">
+            Galerie
+          </NavLink>
         </div>
 
         <NavLink to="/" style={{ textDecoration: "none" }}>

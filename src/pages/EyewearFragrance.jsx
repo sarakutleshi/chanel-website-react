@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
 import "./EyewearFragrance.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -10,34 +11,33 @@ import shieldImg from "../assets/eyewear/ShieldSunglasses.jpg";
 import squareImg from "../assets/eyewear/SquareSunglasses.jpg";
 import bleuImg from "../assets/fragrance/BLEUDECHANEL.jpg";
 import chanceImg from "../assets/fragrance/CHANCEEAUTENDRE.jpg";
-import cocoImg from "../assets/fragrance/COCO.jpg";
 import cocoMademoiselleImg from "../assets/fragrance/COCOMADEMOISELLE.jpg";
 import gabrielleImg from "../assets/fragrance/GABRIELLECHANELESSENCE.jpg";
 
 const eyewearProducts = [
   {
-    img: pinkImg,
+    img: "https://www.chanel.com/images/as///c_crop,w_1.0,h_0.53,y_0.188,t_fashioncommercial_trim,f_auto,q_auto:good,dpr_1.1/w_1600/-81226956.jpg",
     category: "Sunglasses",
     name: "Rectangle Sunglasses",
     desc: "Lightweight acetate frames with rose-tinted lenses and interlocking CC logo at the temples.",
     price: "$870",
   },
   {
-    img: squareImg,
+    img: "https://www.chanel.com/images/as///c_crop,w_1.0,h_0.53,y_0.188,t_fashioncommercial_trim,f_auto,q_auto:good,dpr_1.1/w_1600/-79086741.jpg",
     category: "Sunglasses",
     name: "Square Sunglasses",
     desc: "Bold square frames in polished black acetate — a modern take on a classic silhouette.",
     price: "$700",
   },
   {
-    img: shieldImg,
+    img: "https://www.chanel.com/images///c_crop,w_1.0,h_0.53,y_0.188,t_fashioncommercial_trim,f_auto,q_auto:good,dpr_1.1/w_1600/-9569737146398.jpg",
     category: "Sunglasses",
     name: "Shield Sunglasses",
     desc: "Wraparound shield design with gradient lenses and a fine metal bridge detail.",
     price: "$890",
   },
   {
-    img: rectangularImg,
+    img: "https://www.chanel.com/images///c_crop,w_1.0,h_0.53,y_0.188,t_fashioncommercial_trim,f_auto,q_auto:good,dpr_1.1/w_1600/-9540997021726.jpg",
     category: "Sunglasses",
     name: "Shield Sunglasses II",
     desc: "An oversized shield frame in burnished tortoiseshell acetate with UV400 protection.",
@@ -47,28 +47,28 @@ const eyewearProducts = [
 
 const fragranceProducts = [
   {
-    img: bleuImg,
+    img: "https://www.chanel.com/images/w_0.51,h_0.51,c_crop/c_limit,w_1920,h_1920/f_auto/paris-biarritz-les-eaux-de-chanel-eau-de-toilette-spray-4-2fl-oz--packshot-default-102410-9564851535902.jpg",
     category: "Fragrance · Men",
     name: "Bleu de Chanel",
     desc: "A woody aromatic fragrance that exudes freedom — fresh citrus top notes over a warm, woody base.",
     price: "$80",
   },
   {
-    img: chanceImg,
+    img: "https://www.chanel.com/images/w_0.51,h_0.51,c_crop/c_limit,w_1920,h_1920/f_auto/paris-edimbourg-les-eaux-de-chanel-eau-de-toilette-spray-4-2fl-oz--packshot-default-102747-9589583872030.jpg",
     category: "Fragrance · Women",
     name: "Chance Eau Tendre",
     desc: "A fresh, floral fragrance — a round and light harmony of grapefruit, jasmine and white musk.",
     price: "$95",
   },
   {
-    img: cocoMademoiselleImg,
+    img: "https://www.chanel.com/images/w_0.51,h_0.51,c_crop/c_limit,w_1920,h_1920/f_auto/chance-eau-splendide-hair-and-body-oil-5fl-oz--packshot-default-136270-9575317241886.jpg",
     category: "Fragrance · Women",
     name: "Coco Mademoiselle",
     desc: "An Oriental floral fragrance — bright orange top notes over a deep, sensual base of patchouli.",
     price: "$69.99",
   },
   {
-    img: gabrielleImg,
+    img: "https://www.chanel.com/images/w_0.51,h_0.51,c_crop/c_limit,w_1920,h_1920/f_auto/chance-eau-tendre-eau-de-toilette-twist-and-spray-3x0-7fl-oz--packshot-default-126300-9565095952414.jpg",
     category: "Fragrance · Women",
     name: "Gabrielle Chanel Essence",
     desc: "A radiant floral with ylang-ylang, jasmine, orange blossom and tuberose at its heart.",
@@ -99,6 +99,154 @@ const notes = [
     examples: "Patchouli · Sandalwood · Vetiver · Musk",
   },
 ];
+
+function ProductCarousel({
+  products,
+  title,
+  titleClass = "",
+  sectionId,
+  backPath,
+  backLabel,
+}) {
+  const navigate = useNavigate();
+  const trackRef = useRef(null);
+  const [wished, setWished] = useState({});
+
+  function scroll(dir) {
+    if (!trackRef.current) return;
+    const card = trackRef.current.querySelector(".ew-card");
+    const gap = 24;
+    const step = card ? card.offsetWidth + gap : 340;
+    trackRef.current.scrollBy({ left: dir * step, behavior: "smooth" });
+  }
+
+  function toggleWish(e, id) {
+    e.stopPropagation();
+    setWished((prev) => ({ ...prev, [id]: !prev[id] }));
+  }
+
+  return (
+    <section className="ew-carousel-section" id={sectionId}>
+      <h2
+        className={`ew-carousel-title ${titleClass}`}
+        style={{ fontSize: "1.5rem" }}
+      >
+        {title}
+      </h2>
+
+      <div className="ew-carousel-wrapper">
+        <div className="ew-track" ref={trackRef}>
+          {products.map((item, i) => {
+            const id = item.name.toLowerCase().replace(/\s+/g, "-");
+            return (
+              <article
+                key={i}
+                className="ew-card"
+                onClick={() =>
+                  navigate("/product", {
+                    state: { product: item, backPath, backLabel },
+                  })
+                }
+              >
+                <div className="ew-card-img">
+                  <img src={item.img} alt={item.name} />
+                  <button
+                    className={`ew-wish-btn ${wished[id] ? "ew-wish-btn--active" : ""}`}
+                    onClick={(e) => toggleWish(e, id)}
+                    aria-label={
+                      wished[id] ? "Remove from wishlist" : "Add to wishlist"
+                    }
+                  >
+                    {wished[id] ? "★" : "☆"}
+                  </button>
+                </div>
+
+                <div className="ew-card-info">
+                  <p className="ew-card-name">{item.name.toUpperCase()}</p>
+                  <button
+                    className="ew-view-details"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/product", {
+                        state: { product: item, backPath, backLabel },
+                      });
+                    }}
+                  >
+                    View Details
+                  </button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <button
+          className="ew-arrow"
+          onClick={() => scroll(1)}
+          aria-label="Next"
+        >
+          ›
+        </button>
+      </div>
+    </section>
+  );
+}
+
+const highlights = [
+  {
+    img: "https://i.pinimg.com/736x/54/ba/c5/54bac512d94e7bff98a8bf7cd04d6017.jpg",
+    label: "HIGHLIGHTS",
+    title: "MÉTIERS D'ART 2026 EYEWEAR COLLECTION",
+  },
+  {
+    img: "https://i.pinimg.com/736x/5c/d7/f3/5cd7f3088cd540a0ca1a587e296ecc10.jpg",
+    label: "HIGHLIGHTS",
+    title: "SPRING SUMMER 2026 COLLECTION",
+  },
+  {
+    img: "https://i.pinimg.com/1200x/6e/a7/e1/6ea7e1ce9babdef8a4f8956392489921.jpg",
+    fallback:
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&q=80",
+    label: "HIGHLIGHTS",
+    title: "A SUMMER FEEL",
+  },
+];
+
+function EyewearHighlights() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="hl-section">
+      <h2 className="hl-title" style={{ fontSize: "1.5rem", fontWeight : 550 }} >HIGHLIGHTS</h2>
+
+      <div className="hl-grid">
+        {highlights.map((item, i) => (
+          <div className="hl-card" key={i}>
+            <img
+              src={item.img}
+              alt={item.title}
+            />
+            <div className="hl-card-overlay">
+              <span className="hl-card-label">{item.label}</span>
+              <p className="hl-card-title" >{item.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hl-dots">
+        {[0, 1].map((i) => (
+          <button
+            key={i}
+            className={`hl-dot ${active === i ? "hl-dot--active" : ""}`}
+            onClick={() => setActive(i)}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function ProductCard({ item, backPath, backLabel }) {
   const navigate = useNavigate();
@@ -155,112 +303,94 @@ export default function EyewearFragrance() {
           <h1>Eyewear</h1>
           <h2>
             Adorned with heart charms, the frames of the CHANEL eyewear
-            <br />
             collection highlight a feminine and elegant look.
           </h2>
           <a href="#eyewear-products" className="hero-btn">
-            Explore Eyewear
+            Explore cOLLECTION
           </a>
         </div>
       </section>
 
-      {/* Eyewear */}
-      <div className="section-label" id="eyewear-products">
-        <h2>Sunglasses Selection</h2>
-      </div>
-      <div className="product-grid">
-        {eyewearProducts.map((item, i) => (
-          <ProductCard
-            item={item}
-            key={i}
-            backPath="/eyewear-fragrance"
-            backLabel="Eyewear & Fragrance"
-          />
-        ))}
-      </div>
+      {/* Highlights */}
+      <EyewearHighlights />
 
-      {/* The Design */}
-      <div className="section-label">
-        <h2>The Design</h2>
-      </div>
-      <div className="editorial-split">
-        <div className="editorial-img">
+      <ProductCarousel
+        products={eyewearProducts}
+        title="EyeWear Selection"
+        titleClass="ew-carousel-title--lg"
+        sectionId="eyewear-products"
+        backPath="/eyewear-fragrance"
+        backLabel="Eyewear & Fragrance"
+      />
+
+<section className="eyewear-showcase mb-28" aria-label="Eyewear hero">
+        <div className="fragrance-showcase-bg" />
+        <div className="eyewear-showcase-text">
+          <span className="hero-eyebrow">Collection 2024</span>
+          <h1>Fragrance</h1>
+        
+          <a href="#eyewear-products" className="hero-btn">
+            Explore cOLLECTION
+          </a>
+        </div>
+      </section>
+
+
+      {/* Fragrance editorial — Les Eaux */}
+      <div className="ef-editorial-row">
+        <div className="ef-editorial-img">
           <img
-            src="https://www.chanel.com/images/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/FSH-1703088359624-05blocdesktop.jpg"
-            alt="Chanel eyewear design"
+            src="https://www.chanel.com/puls-img/c_limit,w_1920/q_auto:good,dpr_auto,f_auto/1780588706283-vl-kem-summer-2026-les-eaux-3-dotcom-edito-push_2596x1948.jpg"
+            alt="Les Eaux de Chanel"
           />
         </div>
-        <div className="editorial-text">
-          <span className="eyebrow-label">Design Philosophy</span>
-          <h2>Where Vision Meets Elegance</h2>
+        <div className="ef-editorial-body">
+          <span className="eyebrow-label">Fragrance</span>
+          <h2>Les Eaux de Chanel</h2>
           <p>
-            Every CHANEL eyewear frame is designed in Paris, where the
-            House&apos;s artistic codes — the camellia, the quilted pattern, the
-            interlocked CC — are reinterpreted in acetate, metal and crystal.
+            Six scented getaways inspired by destinations that were close to
+            Gabrielle Chanel&apos;s heart.
           </p>
-          <p style={{ marginTop: "1.25rem" }}>
-            The result is eyewear that is unmistakably CHANEL: refined yet
-            playful, structured yet graceful — frames that frame not just the
-            eyes, but the entire face with intention.
-          </p>
-          <p style={{ marginTop: "1.25rem" }}>
-            Each pair is crafted from the finest materials, with lenses that
-            meet the most rigorous optical standards, ensuring that style and
-            protection are never a compromise.
-          </p>
-          <div className="feature-list">
-            <div className="feature-item">
-              <span>✓</span> UV400 protection on all sun lenses
-            </div>
-            <div className="feature-item">
-              <span>✓</span> Hand-finished acetate frames
-            </div>
-            <div className="feature-item">
-              <span>✓</span> Signature CC temple detail
-            </div>
-            <div className="feature-item">
-              <span>✓</span> Comes with CHANEL case and cloth
-            </div>
-          </div>
+          <a href="#fragrance-products" className="ef-discover-link">
+            Discover
+          </a>
         </div>
       </div>
 
-      {/* Fragrance */}
-      <div className="section-label">
-        <h2>Fragrance</h2>
-      </div>
-      <div className="fragrance-intro">
-        <p>
-          Discover a selection of unforgettable scents — each one a portrait of
-          a woman, each bottle a work of art crafted in Grasse, the perfume
-          capital of the world.
-        </p>
-      </div>
-      <div className="product-grid">
-        {fragranceProducts.map((item, i) => (
-          <ProductCard
-            item={item}
-            key={i}
-            backPath="/eyewear-fragrance"
-            backLabel="Eyewear & Fragrance"
+
+
+      {/* Fragrance editorial — Chance */}
+      <div className="ef-editorial-row ef-editorial-row--reverse">
+        <div className="ef-editorial-img">
+          <img
+            src="https://www.chanel.com/puls-img/1782741509479-vl-kem-summer-2026-chance-dotcom-edito-push.jpg"
+            alt="Chance Eau Splendide"
           />
-        ))}
+        </div>
+        <div className="ef-editorial-body">
+          <span className="eyebrow-label">Fragrance</span>
+          <h2>Chance Eau Splendide</h2>
+          <p>
+            A radiant and magnetic fruity-floral scent, blending a tart
+            raspberry accord with a floral heart of rose geranium and a
+            mysterious cedar-white musk accord.
+          </p>
+          <a href="#fragrance-products" className="ef-discover-link">
+            Discover
+          </a>
+        </div>
       </div>
 
-      {/* Olfactory World */}
-      <div className="section-label">
-        <h2>The Olfactory World</h2>
-      </div>
-      <div className="notes-grid">
-        {notes.map((n, i) => (
-          <div className={`note-card ${n.cls}`} key={i}>
-            <div className="note-top">{n.label}</div>
-            <h3>{n.title}</h3>
-            <p>{n.desc}</p>
-            <div className="note-examples">{n.examples}</div>
-          </div>
-        ))}
-      </div>
+      {/* Fragrance products — carousel */}
+      <ProductCarousel
+        products={fragranceProducts}
+        title="Fragrance Selection"
+        titleClass="ew-carousel-title--lg"
+        sectionId="fragrance-products"
+        backPath="/eyewear-fragrance"
+        backLabel="Eyewear & Fragrance"
+      />
+
 
       <Footer />
     </>
