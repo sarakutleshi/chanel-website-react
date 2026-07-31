@@ -1,0 +1,80 @@
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+
+export default function ProductCard({
+  item,
+  backPath,
+  backLabel,
+}) {
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+
+  const goToDetail = () => {
+    navigate("/product", {
+      state: {
+        product: item,
+        backPath,
+        backLabel,
+      },
+    });
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+
+    addToCart({
+      id: item.name.toLowerCase().replace(/\s+/g, "-"),
+      name: item.name,
+      img: item.img,
+      price: item.price,
+      category: item.category,
+      desc: item.desc,
+    });
+  };
+
+  return (
+    <article
+      onClick={goToDetail}
+      className="group flex cursor-pointer flex-col overflow-hidden border border-gray-200 bg-white transition duration-300 hover:shadow-lg"
+    >
+      {/* Image */}
+
+      <div className="overflow-hidden bg-gray-100">
+        <img
+          src={item.img}
+          alt={item.name}
+          className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      {/* Content */}
+
+      <div className="flex flex-1 flex-col p-5">
+        <span className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+          {item.category}
+        </span>
+
+        <h3 className="mb-3 text-xl font-light">
+          {item.name}
+        </h3>
+
+        <p className="flex-1 text-sm leading-7 text-gray-600">
+          {item.desc}
+        </p>
+
+        <div className="mt-5 flex items-center justify-between">
+          <span className="text-lg font-medium">
+            {item.price}
+          </span>
+
+          <button
+            onClick={handleAddToCart}
+            className="border border-black px-5 py-2 text-xs font-semibold uppercase tracking-[0.15em] transition hover:bg-black hover:text-white"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}

@@ -209,28 +209,12 @@ export default function MakeupSkincare() {
         </div>
         <div className="makeup-image">
           <img
-            src="https://i.pinimg.com/736x/73/da/34/73da343b96cee6c62068d43ac93ee0fa.jpg"
+            src="https://i.pinimg.com/736x/81/97/8b/81978b356608e9bd9cfa6ba125c6fa60.jpg"
             alt="Makeup promotional"
           />
         </div>
       </div>
 
-      {/* Philosophy */}
-      <div className="section-label">
-        <h2>The CHANEL Beauty Philosophy</h2>
-      </div>
-      <div className="philosophy-band">
-        {philosophyItems.map((item, i) => (
-          <>
-            {i > 0 && <div className="philosophy-divider" key={`div-${i}`} />}
-            <div className="philosophy-item" key={i}>
-              <span className="philosophy-icon">{item.icon}</span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-            </div>
-          </>
-        ))}
-      </div>
 
       {/* Carousel */}
       <div className="section-label" id="makeup-products">

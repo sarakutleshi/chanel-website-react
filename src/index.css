@@ -43,65 +43,6 @@ a {
   color: inherit;
 }
 
-/* ── Navbar ── */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--white);
-  border-bottom: 1px solid var(--rule);
-  padding: 0 var(--pad);
-  height: 64px;
-  display: flex;
-  align-items: center;
-}
-
-.header h1 {
-  font-family: var(--serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-}
-
-.container-fluid {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  flex: 1;
-}
-
-.nav-links:last-child {
-  justify-content: flex-end;
-}
-
-.nav-links a.navbar-brand {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--muted);
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-.nav-links a.navbar-brand:hover,
-.nav-links a.navbar-brand.active {
-  color: var(--ink);
-}
-
 /* ── Section Label ── */
 .section-label {
   display: flex;

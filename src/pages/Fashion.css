@@ -2,7 +2,7 @@
 .fashion-showcase {
   position: relative;
   width: 100%;
-  height: 92vh;
+  height: 70vh;
   min-height: 520px;
   overflow: hidden;
 }
@@ -15,7 +15,7 @@
 .fashion-showcase-bg {
   width: 100%;
   height: 100%;
-  background: url("https://www.chanel.com/images/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/FSH-1698766793807-03image.jpg")
+ background: url("https://i.pinimg.com/originals/16/fb/da/16fbdad03c89a9c7707c8637d8594769.gif")
     no-repeat center center / cover;
 }
 .fashion-showcase-text {
@@ -36,14 +36,14 @@
 }
 .fashion-showcase-text h1 {
   font-family: var(--serif);
-  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-size: 50px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.02em;
 }
 .fashion-showcase-text h2 {
   font-family: var(--sans);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size : 20px;;
   font-weight: 300;
   letter-spacing: 0.1em;
   margin-top: 0.5rem;

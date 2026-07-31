@@ -3,6 +3,7 @@ import "./Fashion.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
+import chanelBuilding from "../assets/eyewear/chanel-boutique.png";
 
 const looks1 = [
   {
@@ -196,20 +197,6 @@ export default function Fashion() {
         </div>
       </section>
 
-      {/* Looks */}
-      <div className="section-label" id="looks">
-        <h2>Looks</h2>
-      </div>
-      <div className="editorial-intro">
-        <p>
-          The CHANEL Fall-Winter 2024/25 Haute Couture collection by Virginie
-          Viard comes to life in graphic silhouettes nuanced with precious
-          tweeds and sophisticated embellishment.
-        </p>
-      </div>
-      <LookGrid items={looks1} />
-      <LookGrid items={looks2} noPaddingTop />
-
       {/* In Focus */}
       <div className="section-label">
         <h2>In Focus</h2>
@@ -217,7 +204,7 @@ export default function Fashion() {
       <div className="split-block">
         <div className="block-image">
           <img
-            src="https://www.chanel.com/images/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_604/FSH-1695807075141-p74332c67158nq401.jpg"
+            src="https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg"
             alt="Chanel in focus"
           />
         </div>
@@ -244,30 +231,19 @@ export default function Fashion() {
         </div>
       </div>
 
-      {/* Shop the Collection */}
-      <div className="section-label">
-        <h2>Shop the Collection</h2>
+      {/* Looks */}
+      <div className="section-label" id="looks">
+        <h2>Looks</h2>
       </div>
-      <div className="shop-grid">
-        {shopItems.map((item, i) => (
-          <ShopCard item={item} key={i} />
-        ))}
+      <div className="editorial-intro">
+        <p>
+          The CHANEL Fall-Winter 2024/25 Haute Couture collection by Virginie
+          Viard comes to life in graphic silhouettes nuanced with precious
+          tweeds and sophisticated embellishment.
+        </p>
       </div>
-
-      {/* Press Quotes */}
-      <div className="press-band">
-        <div className="press-inner">
-          {pressQuotes.map((q, i) => (
-            <>
-              {i > 0 && <div className="press-divider" key={`div-${i}`} />}
-              <div className="press-item" key={i}>
-                <blockquote>{q.quote}</blockquote>
-                <cite>{q.cite}</cite>
-              </div>
-            </>
-          ))}
-        </div>
-      </div>
+      <LookGrid items={looks1} />
+      <LookGrid items={looks2} noPaddingTop />
 
       {/* Details */}
       <div className="section-label">
@@ -283,6 +259,45 @@ export default function Fashion() {
           </div>
         ))}
       </div>
+
+      {/* Shop the Collection */}
+      <div className="section-label">
+        <h2>Shop the Collection</h2>
+      </div>
+      <div className="shop-grid">
+        {shopItems.map((item, i) => (
+          <ShopCard item={item} key={i} />
+        ))}
+      </div>
+
+      <section className="bg-[#F9F9F9]">
+        <div className="mx-auto flex min-h-[500px] max-w-7xl items-center justify-between px-10 lg:px-20">
+          {/* Left Side */}
+          <div className="max-w-xl">
+            <h2 className="mb-6 text-3xl font-semibold uppercase tracking-wide text-black">
+              Discover More in Chanel Boutiques
+            </h2>
+
+            <p className="mb-10 text-md leading-relaxed text-gray-700">
+              Our creations are thoughtfully curated by each of our boutiques.
+              To discover more, we invite you to find the boutique nearest you.
+            </p>
+
+            <button className="border-b border-black pb-1 text-xs font-semibold uppercase tracking-wide transition-all hover:opacity-60">
+              Find a Boutique
+            </button>
+          </div>
+
+          {/* Right Side */}
+          <div className="flex justify-center">
+            <img
+              src={chanelBuilding}
+              alt="Chanel Boutique Illustration"
+              className="w-[550px] max-w-full object-contain mb-4 mt-4"
+            />
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </>
