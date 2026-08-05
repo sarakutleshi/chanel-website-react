@@ -21,19 +21,16 @@ export default function HeroSection({
         <p className="mb-4 text-xs uppercase tracking-[0.25em] text-white/70">
           {uppertitle}
         </p>
-
         <h1 className="text-6xl font-light">{title}</h1>
-
-        <p className="mt-5 text-sm leading-7 text-white/90">
-          {description}
-        </p>
-
-        <a
-          href={href}
-          className="mt-8 inline-block border border-white px-10 py-3 text-xs uppercase tracking-[0.2em] transition hover:bg-white/10"
-        >
-          {buttonText}
-        </a>
+        <p className="mt-5 text-sm leading-7 text-white/90">{description}</p>
+        {href && (
+          <a
+            href={href}
+            className="mt-8 inline-block border border-white px-10 py-3 text-xs uppercase tracking-[0.2em] transition hover:bg-white/10"
+          >
+            {buttonText}
+          </a>
+        )}
       </div>
     </section>
   );

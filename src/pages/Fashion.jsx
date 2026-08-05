@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
 import chanelBuilding from "../assets/eyewear/chanel-boutique.png";
-
+import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights"
 const looks1 = [
   {
     src: "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
@@ -231,6 +231,8 @@ export default function Fashion() {
         </div>
       </div>
 
+      <EyewearHighlights />
+
       {/* Looks */}
       <div className="section-label" id="looks">
         <h2>Looks</h2>
@@ -244,6 +246,8 @@ export default function Fashion() {
       </div>
       <LookGrid items={looks1} />
       <LookGrid items={looks2} noPaddingTop />
+
+        
 
       {/* Details */}
       <div className="section-label">
@@ -269,6 +273,8 @@ export default function Fashion() {
           <ShopCard item={item} key={i} />
         ))}
       </div>
+
+    
 
       <section className="bg-[#F9F9F9]">
         <div className="mx-auto flex min-h-[500px] max-w-7xl items-center justify-between px-10 lg:px-20">

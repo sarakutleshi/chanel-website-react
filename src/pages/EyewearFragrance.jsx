@@ -4,12 +4,12 @@ import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
 import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights";
 import fragranceProducts from "../data/fragrance-product";
 import eyewearProducts from "../data/eyewear-product";
-import HeroSection from "../components/eyewear-fragrance/HeroSection";
+import HeroSection from "../components/HeroSection";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 
 const data = [
   {
-    src: "https://i.pinimg.com/vwebp/1200x/c9/ee/8f/c9ee8f2e6ab43c614f4eb02a4fc02812.webp",
+    src: "https://i.pinimg.com/736x/3a/ca/33/3aca335c3b3da3e01d3ba2591d0ed856.jpg",
     uppertitle: "Collection 2025/2026",
     title: "Eyewear",
     description:
@@ -18,7 +18,7 @@ const data = [
     href: "#eyewear-products",
   },
   {
-    src: "https://www.chanel.com/puls-img/c_limit,w_1920/q_auto:good,dpr_auto,f_autoplus/1773007539357-header-kem-summer-26_1260x2880.jpg",
+    src: "https://i.pinimg.com/736x/66/97/a1/6697a140fedbebb29969754f1e82f95f.jpg",
     uppertitle: " Collection 2026",
     title: " Explore Collection",
     buttonText: "Explore Collection",
@@ -29,7 +29,7 @@ const data = [
 
 const editorial = [
   {
-    src: "https://www.chanel.com/puls-img/c_limit,w_1920/q_auto:good,dpr_auto,f_auto/1780588706283-vl-kem-summer-2026-les-eaux-3-dotcom-edito-push_2596x1948.jpg",
+    src: "https://i.pinimg.com/736x/86/81/a8/8681a8244aaffbe534d40e0cb1370db2.jpg",
     type: "Fragrance",
     title: "Les Eaux de Chanel",
     description:
@@ -38,7 +38,7 @@ const editorial = [
     linkText: "Discover",
   },
   {
-    src: "https://www.chanel.com/puls-img/1782741509479-vl-kem-summer-2026-chance-dotcom-edito-push.jpg",
+    src: "https://i.pinimg.com/1200x/b2/32/06/b232066cdb134dd94f7557b570964d50.jpg",
     type: "Fragrance",
     title: "Chance Eau Splendide",
     description:
@@ -54,6 +54,7 @@ export default function EyewearFragrance() {
       <Navbar />
 
       <HeroSection {...data[0]} />
+     
       <EyewearHighlights />
 
       <ProductCarousel
@@ -63,7 +64,7 @@ export default function EyewearFragrance() {
         backPath="/eyewear-fragrance"
         backLabel="Eyewear & Fragrance"
       />
-
+      
       <HeroSection {...data[1]} />
 
       <EditorialCart {...editorial[0]} />

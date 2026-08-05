@@ -2,30 +2,47 @@ import { useState } from "react";
 
 const highlights = [
   {
-    img: "https://i.pinimg.com/736x/54/ba/c5/54bac512d94e7bff98a8bf7cd04d6017.jpg",
+    img: "https://i.pinimg.com/1200x/cb/0c/03/cb0c03d470708243623c08fced11e87c.jpg",
     label: "Highlights",
     title: "Métiers D'Art 2026 Eyewear Collection",
   },
   {
-    img: "https://i.pinimg.com/736x/5c/d7/f3/5cd7f3088cd540a0ca1a587e296ecc10.jpg",
+    img: "https://i.pinimg.com/1200x/68/d4/c0/68d4c07a8b9a1e41a49c7b1232a710ac.jpg",
     label: "Highlights",
     title: "Spring Summer 2026 Collection",
   },
   {
-    img: "https://i.pinimg.com/1200x/6e/a7/e1/6ea7e1ce9babdef8a4f8956392489921.jpg",
+    img: "https://i.pinimg.com/1200x/d2/b0/4f/d2b04f1fe59f1ce734d2f674f24fd1f8.jpg",
     label: "Highlights",
     title: "A Summer Feel",
   },
 ];
 
+// const highlights = [
+//   {
+//     img: "https://i.pinimg.com/736x/47/8b/de/478bde084b986d9863c9eba418a523f6.jpg",
+//     label: "Highlights",
+//     title: "Métiers D'Art 2026 Eyewear Collection",
+//   },
+//   {
+//     img: "https://i.pinimg.com/736x/2c/72/ff/2c72ff49c42fde8a60b16d65c24adbd8.jpg",
+//     label: "Highlights",
+//     title: "Spring Summer 2026 Collection",
+//   },
+//   {
+//     img: "https://i.pinimg.com/1200x/c3/9a/6f/c39a6f6cb41a93b15d1fa5ff6b6fe72c.jpg",
+//     label: "Highlights",
+//     title: "A Summer Feel",
+//   },
+// ];
+
 export default function EyewearHighlights() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="w-full pt-14 pb-10 max-[560px]:pt-10 max-[560px]:pb-8">
-      <h2 className="font-sans text-[1.3rem] font-bold uppercase tracking-[0.22em] text-center text-[var(--ink)] mb-10">
-        Highlights
-      </h2>
+    <section className="w-full pt-13 pb-10 max-[560px]:pt-10 max-[560px]:pb-8">
+     
+     <h2 className="text-2xl font-medium mb-6 text-center mb-10 tracking-[0.2em]">Highlights</h2>
 
       <div className="grid grid-cols-3 gap-0">
         {highlights.map((item, index) => (
