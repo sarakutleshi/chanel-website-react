@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import "./Fashion.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
-import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights";
+import EyewearHighlights from "../components/Highlights.jsx";
 import fashionShopItems from "../data/fashion-shop-items";
 import fashionLooks from "../data/fashion-looks";
 import fashionDetails from "../data/fashion-details";
@@ -14,14 +13,25 @@ import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
 const looks1 = fashionLooks.slice(0, 4);
 const looks2 = fashionLooks.slice(4);
 
+
+
 function LookGrid({ items, noPaddingTop = false }) {
   return (
-    <div className="look-grid" style={noPaddingTop ? { paddingTop: 0 } : {}}>
+    <div
+      className="grid grid-cols-4 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1 gap-[1.5rem] m-w-[var(--max)] mx-auto my-auto p-[0_var(--pad)_5rem]"
+      style={noPaddingTop ? { paddingTop: 0 } : {}}
+    >
       {items.map((item, i) => (
-        <div className="look-card" key={i}>
-          <img src={item.src} alt={item.label} />
-          <div className="look-caption">
-            <span>{item.label}</span>
+        <div className="realtive overflow-hidden bg-[var(--off)]" key={i}>
+          <img
+            className="w-full h-[420px] object-cover transition-transform duration-500 hover:scale-104"
+            src={item.src}
+            alt={item.label}
+          />
+          <div className="p-[0.75rem_0.5rem_1rem]">
+            <span className="font-[var(--sans)] text-[0.72rem] tracking-[0.12em] uppercase color-[var(--muted)]">
+              {item.label}
+            </span>
           </div>
         </div>
       ))}
@@ -57,16 +67,23 @@ function ShopCard({ item }) {
       onClick={goToDetail}
       style={{ cursor: "pointer" }}
     >
-      <div className="shop-img-wrap">
-        <img src={item.img} alt={item.name} />
-        {item.tag && <span className="shop-tag">{item.tag}</span>}
+      <div className="relative overflow-hidden bg-[var(--off)]">
+        <img className="w-full h-full object-cover transition-transform duration-500 hover:scale-104" src={item.img} alt={item.name} />
+        {item.tag && <span className="absolute top-[1rem] left-[1rem] bg-[var(--ink)] text-[var(--white)] text-[0.6rem] 
+        font-semibold tracking-[0.14em] uppercase p-[0.3rem_0.7rem]">{item.tag}</span>}
       </div>
-      <div className="shop-info">
-        <span className="shop-category">{item.category}</span>
-        <h3>{item.name}</h3>
+      <div className="p-[1.25rem_1.1rem_1.5rem]">
+        <span className="text-[0.62rem] font-semibold tracking-[0.16em] uppercase color-[var(--muted)]">
+          {item.category}
+        </span>
+        <h3 className="text-xl font-semibold uppercase">{item.name}</h3>
         <p>{item.desc}</p>
-        <span className="shop-price">{item.price}</span>
-        <button onClick={handleAddToCart}>{item.btn}</button>
+        <span className="block text-[0.9rem] text-semibold text-[var(--ink)] mt-[1rem]">
+          {item.price}
+        </span>
+        <button className="border-b border-black pb-1 text-xs font-semibold uppercase tracking-wide transition-all hover:opacity-100" onClick={handleAddToCart}>
+          {item.btn}
+        </button>
       </div>
     </article>
   );
@@ -110,8 +127,8 @@ export default function Fashion() {
       <div className="section-label" id="looks">
         <h2>Looks</h2>
       </div>
-      <div className="editorial-intro">
-        <p>
+      <div className="m-w-[720px] mx-0 my-auto p-[0_var(--pad)_4rem] text-center ">
+        <p className="font-serif italic text-[1.5rem] leading-[1.4] text-[var(--muted)] ">
           The CHANEL Fall-Winter 2024/25 Haute Couture collection by Virginie
           Viard comes to life in graphic silhouettes nuanced with precious
           tweeds and sophisticated embellishment.
@@ -125,10 +142,10 @@ export default function Fashion() {
       <div className="section-label">
         <h2>Details</h2>
       </div>
-      <div className="details-grid">
+      <div className="grid grid-cols-3 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1 gap-[1.5rem] h-full mx-0 my-auto p-[0_var(--pad)_5rem]">
         {fashionDetails.map((src, i) => (
           <div className="look-card" key={i}>
-            <img src={src} alt={`Detail ${i + 1}`} />
+            <img className="w-full" src={src} alt={`Detail ${i + 1}`} />
             <div className="look-caption">
               <span>Detail {i + 1}</span>
             </div>
@@ -140,7 +157,8 @@ export default function Fashion() {
       <div className="section-label">
         <h2>Shop the Collection</h2>
       </div>
-      <div className="shop-grid">
+      <div className="grid grid-cols-3 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1
+       gap-[2rem] h-full mx-0 my-auto p-[0_var(--pad)_5rem]">
         {fashionShopItems.map((item, i) => (
           <ShopCard item={item} key={i} />
         ))}

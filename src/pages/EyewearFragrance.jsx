@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
-import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights";
+import EyewearHighlights from "../components/Highlights";
 import fragranceProducts from "../data/fragrance-product";
 import eyewearProducts from "../data/eyewear-product";
 import HeroSection from "../components/HeroSection";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
+import ChanelBoutiques from "../components/ChanelBoutiques";
 
 const data = [
   {
@@ -48,13 +49,15 @@ const editorial = [
   },
 ];
 
+
+
 export default function EyewearFragrance() {
   return (
     <>
       <Navbar />
 
       <HeroSection {...data[0]} />
-     
+
       <EyewearHighlights />
 
       <ProductCarousel
@@ -64,7 +67,7 @@ export default function EyewearFragrance() {
         backPath="/eyewear-fragrance"
         backLabel="Eyewear & Fragrance"
       />
-      
+
       <HeroSection {...data[1]} />
 
       <EditorialCart {...editorial[0]} />
@@ -77,6 +80,8 @@ export default function EyewearFragrance() {
         backPath="/eyewear-fragrance"
         backLabel="Eyewear & Fragrance"
       />
+
+      <ChanelBoutiques />
 
       <Footer />
     </>

@@ -18,23 +18,6 @@ const highlights = [
   },
 ];
 
-// const highlights = [
-//   {
-//     img: "https://i.pinimg.com/736x/47/8b/de/478bde084b986d9863c9eba418a523f6.jpg",
-//     label: "Highlights",
-//     title: "Métiers D'Art 2026 Eyewear Collection",
-//   },
-//   {
-//     img: "https://i.pinimg.com/736x/2c/72/ff/2c72ff49c42fde8a60b16d65c24adbd8.jpg",
-//     label: "Highlights",
-//     title: "Spring Summer 2026 Collection",
-//   },
-//   {
-//     img: "https://i.pinimg.com/1200x/c3/9a/6f/c39a6f6cb41a93b15d1fa5ff6b6fe72c.jpg",
-//     label: "Highlights",
-//     title: "A Summer Feel",
-//   },
-// ];
 
 export default function EyewearHighlights() {
   const [active, setActive] = useState(0);
