@@ -3,123 +3,16 @@ import "./Fashion.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
-import chanelBuilding from "../assets/eyewear/chanel-boutique.png";
-import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights"
-const looks1 = [
-  {
-    src: "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 1",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b6d921b9eb00286c725/master/w_1920,c_limit/00002-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 2",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b74c0d4fbe60f143e80/master/w_1920,c_limit/00003-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 3",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b75921b9eb00286c727/master/w_1920,c_limit/00004-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 4",
-  },
-];
+import EyewearHighlights from "../components/eyewear-fragrance/EyewearHighlights";
+import fashionShopItems from "../data/fashion-shop-items";
+import fashionLooks from "../data/fashion-looks";
+import fashionDetails from "../data/fashion-details";
+import HeroSection from "../components/HeroSection";
+import EditorialCart from "../components/eyewear-fragrance/EditorialCart.jsx";
+import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
 
-const looks2 = [
-  {
-    src: "https://assets.vogue.com/photos/62274b7cf1c0bf717ac69a97/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 6",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b83921b9eb00286c729/master/w_1920,c_limit/00009-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 7",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b881c9add4585407320/master/w_1920,c_limit/00012-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 8",
-  },
-  {
-    src: "https://assets.vogue.com/photos/62274b982e6b31ae91659611/master/w_1920,c_limit/00018-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    label: "Look 9",
-  },
-];
-
-const shopItems = [
-  {
-    img: "https://www.chanel.com/images/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_756/FSH-1695807075141-p74332c67158nq401.jpg",
-    tag: "New",
-    category: "Ready-to-Wear",
-    name: "Tweed Jacket",
-    desc: "Iconic bouclé tweed jacket with gilt chain trim and interlocked CC buttons.",
-    price: "$8,200",
-    btn: "Add to Cart",
-  },
-  {
-    img: "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    category: "Outerwear",
-    name: "Long Wool Coat",
-    desc: "A structured silhouette in double-faced wool with signature Chanel chain lining.",
-    price: "$12,500",
-    btn: "Add to Cart",
-  },
-  {
-    img: "https://assets.vogue.com/photos/62274b75921b9eb00286c727/master/w_1920,c_limit/00004-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    category: "Ready-to-Wear",
-    name: "Pleated Midi Skirt",
-    desc: "Fluid pleated skirt in lightweight crepe — effortlessly elegant in motion.",
-    price: "$4,700",
-    btn: "Add to Cart",
-  },
-  {
-    img: "https://assets.vogue.com/photos/62274b7cf1c0bf717ac69a97/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    tag: "Exclusive",
-    category: "Haute Couture",
-    name: "Embellished Evening Gown",
-    desc: "Hand-embroidered silk gown with thousands of individually placed crystals.",
-    price: "On request",
-    btn: "Enquire",
-  },
-  {
-    img: "https://assets.vogue.com/photos/62274b83921b9eb00286c729/master/w_1920,c_limit/00009-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    category: "Ready-to-Wear",
-    name: "Ribbed Knit Dress",
-    desc: "A column silhouette in fine merino ribbed knit, minimalist and endlessly wearable.",
-    price: "$5,900",
-    btn: "Add to Cart",
-  },
-  {
-    img: "https://assets.vogue.com/photos/62274b881c9add4585407320/master/w_1920,c_limit/00012-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    category: "Ready-to-Wear",
-    name: "Tweed Suit Set",
-    desc: "Matching jacket and trousers in a graphic houndstooth tweed with contrast trim.",
-    price: "$9,800",
-    btn: "Add to Cart",
-  },
-];
-
-const pressQuotes = [
-  { quote: '"A masterclass in restraint and luxury."', cite: "— Vogue Paris" },
-  {
-    quote:
-      '"Virginie Viard continues to redefine what it means to be a Chanel woman."',
-    cite: "— Business of Fashion",
-  },
-  {
-    quote: '"Every look felt like an heirloom waiting to be passed down."',
-    cite: "— Harper\'s Bazaar",
-  },
-];
-
-const details = [
-  "https://assets.vogue.com/photos/622767220c75bb354d91848a/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/62276731052738f13421bd06/master/w_1920,c_limit/00003-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/622767238dbebe08dcd9c70e/master/w_1920,c_limit/00002-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/6227673f2e6b31ae9165965a/master/w_1920,c_limit/00007-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/6227673d2e6b31ae91659658/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/62274b74c0d4fbe60f143e80/master/w_1920,c_limit/00003-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/6227674b94d1f5a693c13e0e/master/w_1920,c_limit/00010-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/62274b782e6b31ae9165960f/master/w_1920,c_limit/00005-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-  "https://assets.vogue.com/photos/62276750cb9c17da3b08e44b/master/w_1920,c_limit/00011-chanel-fall-2022-ready-to-wear-details-paris-credit-gorunway.jpg",
-];
+const looks1 = fashionLooks.slice(0, 4);
+const looks2 = fashionLooks.slice(4);
 
 function LookGrid({ items, noPaddingTop = false }) {
   return (
@@ -184,52 +77,32 @@ export default function Fashion() {
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="fashion-showcase" aria-label="Fashion hero">
-        <div className="fashion-showcase-bg" />
-        <div className="fashion-showcase-text">
-          <span className="hero-eyebrow">Haute Couture</span>
-          <h1>Fall–Winter</h1>
-          <h2>2024 / 25</h2>
-          <a href="#looks" className="hero-btn">
-            Explore the Collection
-          </a>
-        </div>
-      </section>
+      <HeroSection
+        src="https://i.pinimg.com/originals/16/fb/da/16fbdad03c89a9c7707c8637d8594769.gif"
+        uppertitle="Haute Couture"
+        title="Fall–Winter"
+        description="2024 / 25"
+        href="/fashion"
+        buttonText="Explore the Collection"
+      />
 
-      {/* In Focus */}
-      <div className="section-label">
-        <h2>In Focus</h2>
-      </div>
-      <div className="split-block">
-        <div className="block-image">
-          <img
-            src="https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg"
-            alt="Chanel in focus"
-          />
-        </div>
-        <div className="block-text">
-          <span className="eyebrow-label">The Venue</span>
-          <h2>The Grand Palais Éphémère</h2>
-          <p>
-            The Grand Palais Éphémère was completely done up in tweed for
-            today&apos;s Chanel show: an earthy light brown for the seats, black
+      <EditorialCart
+        src="https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg"
+        type="The Venue"
+        title="The Grand Palais Éphémère"
+        description="The Grand Palais Éphémère was completely done up in tweed for
+            today's Chanel show: an earthy light brown for the seats, black
             with shots of pop colors on the walls, and a pale green for the
-            runway — designed to represent Scotland&apos;s River Tweed.
-          </p>
-          <p style={{ marginTop: "1.25rem" }}>
+            runway — designed to represent Scotland's River Tweed.
             The region was ground well-trod by Gabrielle Chanel; on her walks in
             the local countryside she gathered flowers and greenery as
             references for the colors she wanted from the fabric makers there.
-          </p>
-          <p style={{ marginTop: "1.25rem" }}>
+        
             Tweed, a fabric born of Scottish landscapes, became one of
-            Chanel&apos;s most beloved materials — reimagined season after
+            Chanel's most beloved materials — reimagined season after
             season into something at once rooted in tradition and boldly
-            contemporary.
-          </p>
-        </div>
-      </div>
+            contemporary."
+      />
 
       <EyewearHighlights />
 
@@ -244,17 +117,16 @@ export default function Fashion() {
           tweeds and sophisticated embellishment.
         </p>
       </div>
+
       <LookGrid items={looks1} />
       <LookGrid items={looks2} noPaddingTop />
-
-        
 
       {/* Details */}
       <div className="section-label">
         <h2>Details</h2>
       </div>
       <div className="details-grid">
-        {details.map((src, i) => (
+        {fashionDetails.map((src, i) => (
           <div className="look-card" key={i}>
             <img src={src} alt={`Detail ${i + 1}`} />
             <div className="look-caption">
@@ -269,41 +141,12 @@ export default function Fashion() {
         <h2>Shop the Collection</h2>
       </div>
       <div className="shop-grid">
-        {shopItems.map((item, i) => (
+        {fashionShopItems.map((item, i) => (
           <ShopCard item={item} key={i} />
         ))}
       </div>
 
-    
-
-      <section className="bg-[#F9F9F9]">
-        <div className="mx-auto flex min-h-[500px] max-w-7xl items-center justify-between px-10 lg:px-20">
-          {/* Left Side */}
-          <div className="max-w-xl">
-            <h2 className="mb-6 text-3xl font-semibold uppercase tracking-wide text-black">
-              Discover More in Chanel Boutiques
-            </h2>
-
-            <p className="mb-10 text-md leading-relaxed text-gray-700">
-              Our creations are thoughtfully curated by each of our boutiques.
-              To discover more, we invite you to find the boutique nearest you.
-            </p>
-
-            <button className="border-b border-black pb-1 text-xs font-semibold uppercase tracking-wide transition-all hover:opacity-60">
-              Find a Boutique
-            </button>
-          </div>
-
-          {/* Right Side */}
-          <div className="flex justify-center">
-            <img
-              src={chanelBuilding}
-              alt="Chanel Boutique Illustration"
-              className="w-[550px] max-w-full object-contain mb-4 mt-4"
-            />
-          </div>
-        </div>
-      </section>
+      <ChanelBoutiques />
 
       <Footer />
     </>
