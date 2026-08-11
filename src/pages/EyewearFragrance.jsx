@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
 import EyewearHighlights from "../components/Highlights";
 import fragranceProducts from "../data/fragrance-product";
-import eyewearProducts from "../data/eyewear-product";
 import HeroSection from "../components/HeroSection";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ChanelBoutiques from "../components/ChanelBoutiques";
@@ -20,8 +19,8 @@ const data = [
   },
   {
     src: "https://i.pinimg.com/736x/66/97/a1/6697a140fedbebb29969754f1e82f95f.jpg",
-    uppertitle: " Collection 2026",
-    title: " Explore Collection",
+    uppertitle: "Collection 2026",
+    title: "Explore Collection",
     buttonText: "Explore Collection",
     description: "",
     href: "#fragrance-products",
@@ -49,8 +48,6 @@ const editorial = [
   },
 ];
 
-
-
 export default function EyewearFragrance() {
   return (
     <>
@@ -62,10 +59,10 @@ export default function EyewearFragrance() {
 
       <ProductCarousel
         title="Eyewear Selection"
-        products={eyewearProducts}
         sectionId="eyewear-products"
-        backPath="/eyewear-fragrance"
+        backPath="/eyewear-products"
         backLabel="Eyewear & Fragrance"
+        apiUrl="https://dummyjson.com/products/category/sunglasses"
       />
 
       <HeroSection {...data[1]} />
@@ -73,12 +70,13 @@ export default function EyewearFragrance() {
       <EditorialCart {...editorial[0]} />
       <EditorialCart {...editorial[1]} reverse />
 
-      <ProductCarousel
+         <ProductCarousel
         title="Fragrance Selection"
         products={fragranceProducts}
         sectionId="fragrance-products"
-        backPath="/eyewear-fragrance"
+        backPath="/fragrance-products"
         backLabel="Eyewear & Fragrance"
+        apiUrl="https://dummyjson.com/products/search?q=fragrance"
       />
 
       <ChanelBoutiques />

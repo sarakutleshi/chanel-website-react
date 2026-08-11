@@ -9,10 +9,19 @@ export default function ProductCard({
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
+  // Convert API data to the structure used by your app
+  const product = {
+    id: item.id,
+    title: item.title,
+    img:item.images?.[0],
+    price: item.price,
+    desc:item.description,
+  };
+
   const goToDetail = () => {
     navigate("/product", {
       state: {
-        product: item,
+        product,
         backPath,
         backLabel,
       },
@@ -22,14 +31,7 @@ export default function ProductCard({
   const handleAddToCart = (e) => {
     e.stopPropagation();
 
-    addToCart({
-      id: item.name.toLowerCase().replace(/\s+/g, "-"),
-      name: item.name,
-      img: item.img,
-      price: item.price,
-      category: item.category,
-      desc: item.desc,
-    });
+    addToCart(product);
   };
 
   return (
@@ -41,8 +43,8 @@ export default function ProductCard({
 
       <div className="overflow-hidden bg-gray-100">
         <img
-          src={item.img}
-          alt={item.name}
+          src={item.images?.[0]}
+          alt={item.title}
           className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
@@ -50,16 +52,11 @@ export default function ProductCard({
       {/* Content */}
 
       <div className="flex flex-1 flex-col p-5">
-        <span className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
-          {item.category}
-        </span>
 
-        <h3 className="mb-3 text-xl font-light">
-          {item.name}
-        </h3>
+      
 
         <p className="flex-1 text-sm leading-7 text-gray-600">
-          {item.desc}
+          {item.description}
         </p>
 
         <div className="mt-5 flex items-center justify-between">
