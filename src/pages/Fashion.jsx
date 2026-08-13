@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
-import EyewearHighlights from "../components/Highlights.jsx";
+import Highlights from "../components/Highlights.jsx";
 import fashionShopItems from "../data/fashion-shop-items";
 import fashionLooks from "../data/fashion-looks";
 import fashionDetails from "../data/fashion-details";
@@ -121,7 +121,7 @@ export default function Fashion() {
             contemporary."
       />
 
-      <EyewearHighlights />
+      <Highlights />
 
       {/* Looks */}
       <div className="section-label" id="looks">

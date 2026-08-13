@@ -29,8 +29,8 @@ export default function ProductDetail() {
 
   function handleAddToCart() {
     addToCart({
-      id: product.name.toLowerCase().replace(/\s+/g, '-'),
-      name: product.name,
+      id: product.title.toLowerCase().replace(/\s+/g, '-'),
+      title: product.title,
       img: product.img,
       price: product.price,
       category: product.category,
@@ -64,11 +64,11 @@ export default function ProductDetail() {
         {/* Info */}
         <div className="pd-info-col">
           <span className="pd-category">{product.category}</span>
-          <h1 className="pd-name">{product.name}</h1>
+          <h1 className="pd-name">{product.title}</h1>
 
           <div className="pd-divider" />
 
-          <p className="pd-desc">{product.desc}</p>
+          <p className="pd-desc">{product.description}</p>
 
           <div className="pd-divider" />
 
