@@ -25,6 +25,7 @@ export default function Navbar() {
           <NavLink className="navbar-brand" to="/jewelry-watches">
             Jewelry &amp; Watches
           </NavLink> 
+          
         </div>
 
         {/* Logo */}

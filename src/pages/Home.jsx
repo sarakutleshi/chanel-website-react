@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import HeroPicture from "../assets/jewerly-hero.png";
 
-
 export default function Home() {
   return (
     <>

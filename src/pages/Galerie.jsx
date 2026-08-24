@@ -7,7 +7,6 @@ export default function Galerie() {
     <>
       <Navbar />
 
-      {/* 2 ROW  */}
       <div className="mx-auto max-w-7xl px-8 py-12">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -58,7 +57,6 @@ export default function Galerie() {
         </div>
       </div>
 
-      {/* 3 ROW  */}
       <div className="mx-auto max-w-7xl px-8 py-12">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -103,22 +101,22 @@ export default function Galerie() {
         </div>
       </div>
 
-
-
-      {/* 4 ROW  */}
       <div className="mx-auto max-w-7xl px-8 py-12">
         <div className="grid grid-cols-2 gap-4">
           <div>
             <img
-            src="https://i.pinimg.com/1200x/c4/ea/4f/c4ea4ff3a8f517617105d513933f547b.jpg"
-             
+              src="https://i.pinimg.com/1200x/c4/ea/4f/c4ea4ff3a8f517617105d513933f547b.jpg"
               alt="Dress Front"
               className="w-full aspect-[3/4] object-cover"
             />
 
             <div className="mt-6 space-y-2 text-sm">
               <p className="font-medium">CHANEL</p>
-              <p> Christy Turlington for Chanel spring 1992 haute couture collection</p>
+              <p>
+                {" "}
+                Christy Turlington for Chanel spring 1992 haute couture
+                collection
+              </p>
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
@@ -131,14 +129,18 @@ export default function Galerie() {
 
           <div>
             <img
-               src="https://i.pinimg.com/vwebp/736x/d5/5b/16/d55b167415f548b264b54dd59c6fc574.webp"
+              src="https://i.pinimg.com/vwebp/736x/d5/5b/16/d55b167415f548b264b54dd59c6fc574.webp"
               alt="Dress Back"
               className="w-full aspect-[3/4] object-cover"
             />
 
             <div className="mt-6 space-y-2 text-sm">
               <p className="font-medium">CHANEL</p>
-             <p> Christy Turlington for Chanel spring 1992 haute couture collection</p>
+              <p>
+                {" "}
+                Christy Turlington for Chanel spring 1992 haute couture
+                collection
+              </p>
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
@@ -151,7 +153,6 @@ export default function Galerie() {
         </div>
       </div>
 
-{/* 1 ROW  */}
       <div className="mx-auto max-w-7xl px-8 py-12">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -195,7 +196,6 @@ export default function Galerie() {
           </div>
         </div>
       </div>
-
 
       <Footer />
     </>

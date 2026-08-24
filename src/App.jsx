@@ -26,7 +26,6 @@ export default function App() {
           <Route path="/product" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/galerie" element={<Galerie />} />
-          {/* Catch-all redirect */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </CartProvider>

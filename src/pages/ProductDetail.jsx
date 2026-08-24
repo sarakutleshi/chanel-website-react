@@ -11,7 +11,6 @@ export default function ProductDetail() {
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
 
-  // If someone navigates here directly without state, go home
   if (!state?.product) {
     return (
       <>
@@ -43,7 +42,6 @@ export default function ProductDetail() {
     <>
       <Navbar />
 
-      {/* Breadcrumb */}
       <div className="pd-breadcrumb">
         <button onClick={() => navigate(backPath || -1)} className="pd-back">
           ← {backLabel || 'Back'}
@@ -52,16 +50,14 @@ export default function ProductDetail() {
         <span className="pd-breadcrumb-current">{product.name}</span>
       </div>
 
-      {/* Main content */}
+      
       <section className="pd-layout">
-        {/* Image */}
         <div className="pd-image-col">
           <div className="pd-image-wrap">
             <img src={product.img} alt={product.name} />
           </div>
         </div>
 
-        {/* Info */}
         <div className="pd-info-col">
           <span className="pd-category">{product.category}</span>
           <h1 className="pd-name">{product.title}</h1>
@@ -86,7 +82,6 @@ export default function ProductDetail() {
             </Link>
           </div>
 
-          {/* Features */}
           <div className="pd-features">
             <div className="pd-feature">
               <span className="pd-feature-icon">◇</span>
@@ -104,7 +99,6 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Editorial strip */}
       <div className="pd-editorial">
         <div className="pd-editorial-inner">
           <span className="eyebrow-label">The CHANEL Promise</span>

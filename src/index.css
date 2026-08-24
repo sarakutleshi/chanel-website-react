@@ -32,7 +32,6 @@ img {
 }
 
 
-/* ── Section Label ── */
 .section-label {
   display: flex;
   align-items: center;
@@ -58,7 +57,6 @@ img {
   white-space: nowrap;
 }
 
-/* ── Eyebrow Label ── */
 .eyebrow-label {
   display: block;
   font-size: 0.65rem;
@@ -69,7 +67,6 @@ img {
   margin-bottom: 0.85rem;
 }
 
-/* ── Footer ── */
 .site-footer {
   background: var(--ink);
   color: var(--white);
@@ -139,7 +136,6 @@ img {
   color: rgba(255, 255, 255, 0.3);
 }
 
-/* ── Responsive footer ── */
 @media (max-width: 768px) {
   .footer-inner {
     grid-template-columns: 1fr 1fr;
@@ -162,7 +158,6 @@ img {
   }
 }
 
-/* ── Cart Icon ── */
 .navbar-cart {
   position: relative;
   display: flex;
