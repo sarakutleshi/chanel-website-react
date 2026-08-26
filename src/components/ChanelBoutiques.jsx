@@ -1,4 +1,4 @@
-import chanelBuilding from "../assets/eyewear/chanel-boutique.png";
+import chanelBuilding from "../assets/chanel-boutique.png";
 
 function ChanelBoutiques() {
 return (

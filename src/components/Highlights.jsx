@@ -24,9 +24,17 @@ export default function EyewearHighlights() {
 
   return (
     <section className="w-full pt-13 pb-10 max-[560px]:pt-10 max-[560px]:pb-8">
-     
-     <h2 className="text-2xl font-medium mb-6 text-center mb-10 tracking-[0.2em]">Highlights</h2>
+      <div className="px-6 py-20 md:px-10 md:py-28">
+        <div className="mb-12 text-center">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-gray-500">
+            Discover
+          </p>
 
+          <h2 className="text-3xl font-light md:text-4xl">
+            Highlights
+          </h2>
+        </div>
+      </div>
       <div className="grid grid-cols-3 gap-0">
         {highlights.map((item, index) => (
           <div

@@ -7,7 +7,7 @@ import HeroPicture from "../assets/jewerly-hero.png";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
 import Highlights from "../components/Highlights.jsx";
-
+import ChanelBoutiques from "../components/ChanelBoutiques.jsx"
 function ProductCard({ item }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -15,7 +15,10 @@ function ProductCard({ item }) {
   function goToDetail() {
     navigate("/product", {
       state: {
-        product: { ...item, category: item.category || "Watches" },
+        product: {
+          ...item,
+          category: item.category || "Watches",
+        },
         backPath: "/jewelry-watches",
         backLabel: "Jewelry & Watches",
       },
@@ -24,6 +27,7 @@ function ProductCard({ item }) {
 
   function handleAddToCart(e) {
     e.stopPropagation();
+
     addToCart({
       id: item.name.toLowerCase().replace(/\s+/g, "-"),
       name: item.name,
@@ -41,13 +45,17 @@ function ProductCard({ item }) {
       style={{ cursor: "pointer" }}
     >
       <img src={item.img} alt={item.name} />
+
       <div className="jw-product-info">
         <span className="jw-product-category">
           {item.category || "Watches"}
         </span>
+
         <h3>{item.title}</h3>
         <p>{item.description}</p>
+
         <span className="jw-product-price">{item.price}</span>
+
         <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </article>
@@ -56,38 +64,188 @@ function ProductCard({ item }) {
 
 export default function JewelryWatches() {
   return (
-    <>
+    <div className="bg-white text-black">
       <Navbar />
+      <section className="border-y border-gray-200 bg-white px-6 py-20 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl">
+          {/* Header */}
+          <div className="mb-14 text-center">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-gray-500">
+              The Collection
+            </p>
 
-      <HeroSection src={HeroPicture} />
+            <h2 className="text-3xl font-light tracking-wide md:text-4xl">
+              Jewelry & Watches
+            </h2>
 
-      <div className="m-[20px] font-serif italic text-[1.5rem] leading-[1.4] text-[var(--ink)] mx-auto  text-center mt-[3rem] mb-[3rem] max-w-[var(--max)]">
-        <p>Discover the entire universe of CHANEL Watches</p>
-      </div>
-      <ProductCarousel
-        title="Watches"
-        sectionId="jewelry"
-        backPath="/"
-        backLabel="Back"
-        apiUrl="https://dummyjson.com/products/category/womens-watches"
-      />
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-gray-500">
+              Discover timeless creations inspired by the codes of the House,
+              where craftsmanship and elegance meet.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid gap-6 md:grid-cols-3">
+            {/* Card 2 */}
+            <div className="group">
+              <div className="overflow-hidden bg-gray-100">
+                <img
+                  src="https://i.pinimg.com/736x/71/af/4e/71af4e99ab6561d5dfbf738adc75a756.jpg"
+                  alt="Jewelry craftsmanship"
+                  className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500">
+                  Savoir-Faire
+                </p>
+
+                <h3 className="mt-2 text-xl font-light">
+                  The art of craftsmanship
+                </h3>
+
+                <button className="mt-5 border-b border-black pb-1 text-[10px] uppercase tracking-[0.2em] transition hover:opacity-50">
+                  Explore
+                </button>
+              </div>
+            </div>
+            {/* Card 1 */}
+            <div className="group">
+              <div className="overflow-hidden bg-gray-100">
+                <img
+                  src="https://i.pinimg.com/736x/d6/e2/2c/d6e22c7fbdfb4b3e135e91b7554812f9.jpg"
+                  alt="Jewelry collection"
+                  className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500">
+                  Jewelry
+                </p>
+
+                <h3 className="mt-2 text-xl font-light">Timeless creations</h3>
+
+                <button className="mt-5 border-b border-black pb-1 text-[10px] uppercase tracking-[0.2em] transition hover:opacity-50">
+                  Discover
+                </button>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group">
+              <div className="overflow-hidden bg-gray-100">
+                <img
+                  src="https://i.pinimg.com/736x/3c/81/b0/3c81b0fd00da8b3f178b673047e36dc4.jpg"
+                  alt="CHANEL watches"
+                  className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="pt-6">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gray-500">
+                  Watches
+                </p>
+
+                <h3 className="mt-2 text-xl font-light">The art of time</h3>
+
+                <button className="mt-5 border-b border-black pb-1 text-[10px] uppercase tracking-[0.2em] transition hover:opacity-50">
+                  Discover
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <EditorialCart
         src="https://i.pinimg.com/736x/6e/76/d1/6e76d114ecf0926853bd4e5f2fea9a42.jpg"
-        title="The Craft"
+        title="The Jewelry"
         type="Savoir-Faire"
-        description="Every CHANEL jewelry piece is born in the ateliers of Paris, where a community of artisans jewelers, setters, 
-        polishers carry forward centuries of French craft tradition."
+        description="Every CHANEL jewelry piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
       />
 
-      <ProductCarousel
-        title="Jewelry"
-        sectionId="women-jewelry"
-        backPath="/"
-        backLabel="Back"
-        apiUrl="https://dummyjson.com/products/category/womens-jewellery"
+      <EditorialCart
+        src="https://i.pinimg.com/736x/3c/81/b0/3c81b0fd00da8b3f178b673047e36dc4.jpg"
+        title="The Watch"
+        type="Savoir-Faire"
+        description="Every CHANEL watch piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
+        reverse
       />
+
+
+<section id="watches" className="bg-white py-20 md:py-28">
+  <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+
+    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div>
+        <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
+          Timepieces
+        </p>
+
+        <h2 className="text-3xl font-light tracking-wide md:text-5xl">
+          Watches
+        </h2>
+      </div>
+
+      <p className="max-w-md text-sm leading-6 text-gray-500">
+        Precision, character and timeless elegance come together in
+        creations designed to transcend time.
+      </p>
+    </div>
+
+    <div className="mt-8 h-px w-full bg-gray-200" />
+  </div>
+
+  <ProductCarousel
+    title=""
+    sectionId="jewelry"
+    backPath="/"
+    backLabel="Back"
+    apiUrl="https://dummyjson.com/products/category/womens-watches"
+  />
+</section>
+
+
+<section id="jewelry" className="bg-white py-20 md:py-28">
+
+  <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+
+    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+
+      <div>
+        <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
+          Fine Jewelry
+        </p>
+
+        <h2 className="text-3xl font-light tracking-wide md:text-5xl">
+          Jewelry
+        </h2>
+      </div>
+
+      <p className="max-w-md text-sm leading-6 text-gray-500">
+        Discover refined creations shaped by exceptional craftsmanship,
+        precious details and the timeless codes of the House.
+      </p>
+
+    </div>
+
+    <div className="mt-8 h-px w-full bg-gray-200" />
+  </div>
+
+  <ProductCarousel
+    title=""
+    sectionId="women-jewelry"
+    backPath="/"
+    backLabel="Back"
+    apiUrl="https://dummyjson.com/products/category/womens-jewellery"
+  />
+</section>
+
+<ChanelBoutiques />
+
       <Footer />
-    </>
+    </div>
   );
 }

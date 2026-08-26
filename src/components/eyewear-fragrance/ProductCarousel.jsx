@@ -12,7 +12,6 @@ export default function ProductCarousel({
   const trackRef = useRef(null);
 
   const [products, setProducts] = useState([]);
-  const [wishlist, setWishlist] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,7 +25,7 @@ export default function ProductCarousel({
         return response.json();
       })
       .then((data) => {
-        setProducts(data.products);
+        setProducts(data.products || []);
         setLoading(false);
       })
       .catch((error) => {
@@ -35,150 +34,128 @@ export default function ProductCarousel({
       });
   }, [apiUrl]);
 
+  const openProduct = (item) => {
+    navigate("/product", {
+      state: {
+        product: {
+          ...item,
+          name: item.title,
+          img: item.images?.[0],
+        },
+        backPath,
+        backLabel,
+      },
+    });
+  };
+
   const scroll = () => {
     if (!trackRef.current) return;
 
-    const card = trackRef.current.querySelector(".carousel-card");
-
-    const gap = 24;
-    const step = card ? card.offsetWidth + gap : 340;
-
     trackRef.current.scrollBy({
-      left: step,
+      left: trackRef.current.clientWidth,
       behavior: "smooth",
     });
   };
 
-  const toggleWishlist = (e, id) => {
-    e.stopPropagation();
-
-    setWishlist((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  // Loading state
   if (loading) {
     return (
-      <section
-        id={sectionId}
-        className="flex min-h-[300px] items-center justify-center"
-      >
-        <p className="text-sm uppercase tracking-[0.2em]">
-          Loading sunglasses...
+      <section className="flex h-[500px] items-center justify-center">
+        <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
+          Loading...
         </p>
       </section>
     );
   }
 
-  // Error state
   if (error) {
     return (
-      <section
-        id={sectionId}
-        className="flex min-h-[300px] items-center justify-center"
-      >
-        <p className="text-sm text-red-500">{error}</p>
+      <section className="flex h-[400px] items-center justify-center">
+        <p className="text-sm text-gray-500">
+          Unable to load products.
+        </p>
       </section>
     );
   }
 
   return (
-    <section id={sectionId} className="w-full py-16 pt-12">
-      {/* Title */}
-      <h2 className="family-sans mb-10 h-[26px] text-center text-[1.5rem] font-semibold uppercase tracking-[0.24rem] text-gray">
+    <section
+      id={sectionId}
+      className="relative w-full overflow-hidden bg-white py-20"
+    >
+      {/* TITLE */}
+
+      <h2 className="mb-20 text-center text-[28px] font-medium uppercase tracking-[0.18em]">
         {title}
       </h2>
 
-    
-      <div className="relative flex items-center gap-6 overflow-hidden px-2 max-[560px]:px-0 ">
-        <div
-          ref={trackRef}
-          className="flex flex-1 snap-x snap-mandatory gap-6 overflow-x-auto [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {products.map((item) => {
-            const id = item.id;
+      {/* PRODUCTS */}
 
-            return (
-              <article
-                key={item.id}
-                className="snap-start gap-[3rem] h-[450px] w-full  p-[15px] max-w-[340px] flex-shrink-0 cursor-pointer transition hover:opacity-80  bg-white p-4 shadow-sm"
-                onClick={() =>
-                  navigate("/product", {
-                    state: {
-                      product: {
-                        ...item,
-                        name: item.title,
-                        img: item.images?.[0],
-                      },
-                      backPath,
-                      backLabel,
-                    },
-                  })
-                }
+      <div
+        ref={trackRef}
+        className="flex w-full snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {products.map((item) => (
+          <article
+            key={item.id}
+            onClick={() => openProduct(item)}
+            className="w-full min-w-full flex-shrink-0 cursor-pointer snap-start px-10 text-center sm:w-1/2 sm:min-w-[50%] md:w-1/3 md:min-w-[33.333333%]"
+          >
+            {/* IMAGE */}
+
+            <div className="flex h-[300px] items-center justify-center md:h-[360px]">
+              <img
+                src={item.images?.[0]}
+                alt={item.title}
+                className="h-full w-full object-contain"
+              />
+            </div>
+
+            {/* INFO */}
+
+            <div className="mx-auto mt-10 max-w-[350px]">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.28em] text-gray-500">
+                {item.category?.replaceAll("-", " ") || "Collection"}    
+              </p>
+
+              <h3 className="text-[13px] font-semibold uppercase tracking-[0.1em]">
+                {item.title}
+              </h3>
+
+              <p className="mt-2 line-clamp-1 text-[13px] text-gray-600">
+                {item.description || item.desc}
+              </p>
+
+              <p className="mt-1 text-[12px] text-gray-700">
+                Click &amp; Collect
+              </p>
+
+              <p className="mt-1 text-[13px] font-semibold">
+                ${Number(item.price).toLocaleString()}
+              </p>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openProduct(item);
+                }}
+                className="mt-12 text-[13px] transition-opacity hover:opacity-50"
               >
-              
-                <div className="relative flex overflow-hidden bg-transparent text-center">
-                  <img
-                    src={item.images?.[0]}
-                    alt={item.title}
-                    className="h-[280px] w-full object-contain p-6 transition-transform duration-500 hover:scale-105"
-                  />
-
-                  <button
-                    onClick={(e) => toggleWishlist(e, id)}
-                    className="absolute bottom-[14px] right-[14px] cursor-pointer border-0 bg-transparent p-[4px] text-[1.1rem] leading-none text-[var(--ink)] transition-[color,transform] duration-200 scale-[1.15]"
-                  >
-                    {wishlist[id] ? "★" : "☆"}
-                  </button>
-                </div>
-
-             
-                <div className="flex flex-col gap-[0.35rem] pt-[0.85rem] mb-10">
-                  <h3 className="m-0 font-sans text-xs font-bold uppercase leading-none tracking-[0.15em]">
-                    {item.title}
-                  </h3>
-
-                  <p className="line-clamp-2 text-xs leading-relaxed text-gray-500 mb-3">
-                    {item.description || item.desc}
-                  </p>
-
-                
-                  <button
-                    className="w-fit text-xs font-semibold tracking-[0.15em] underline underline-offset-4 transition hover:opacity-60"
-                    onClick={(e) => {
-                      e.stopPropagation();
-
-                      navigate("/product", {
-                        state: {
-                          product: {
-                            ...item,
-                            name: item.title,
-                            img: item.images?.[0],
-                          },
-                          backPath,
-                          backLabel,
-                        },
-                      });
-                    }}
-                  >
-                    View Details
-                  </button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-      
-        <button
-          onClick={scroll}
-          className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center border border-[var(--rule)] bg-white text-2xl shadow-sm transition hover:bg-gray-100 md:right-4 md:h-10 md:w-10"
-        >
-          ›
-        </button>
+                View details <span className="ml-1">›</span>
+              </button>
+            </div>
+          </article>
+        ))}
       </div>
+
+      {/* ARROW */}
+
+      <button
+        onClick={scroll}
+        aria-label="Next"
+        className="absolute right-8 top-[47%] text-xl font-light hover:opacity-50"
+      >
+        →
+      </button>
     </section>
   );
 }
