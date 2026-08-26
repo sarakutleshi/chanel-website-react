@@ -39,8 +39,7 @@ export default function ProductCard({
       onClick={goToDetail}
       className="group flex cursor-pointer flex-col overflow-hidden border border-gray-200 bg-white transition duration-300 hover:shadow-lg"
     >
-      {/* Image */}
-
+  
       <div className="overflow-hidden bg-gray-100">
         <img
           src={item.images?.[0]}
@@ -49,7 +48,7 @@ export default function ProductCard({
         />
       </div>
 
-      {/* Content */}
+  
 
       <div className="flex flex-1 flex-col p-5">
 

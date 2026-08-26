@@ -5,7 +5,7 @@ return (
 <>
      <section className="bg-[#F9F9F9]">
             <div className="mx-auto flex min-h-[500px] max-w-7xl items-center justify-between px-10 lg:px-20">
-              {/* Left Side */}
+        
               <div className="max-w-xl">
                 <h2 className="mb-6 text-3xl font-semibold uppercase tracking-wide text-black">
                   Discover More in Chanel Boutiques
@@ -21,7 +21,6 @@ return (
                 </button>
               </div>
     
-              {/* Right Side */}
               <div className="flex justify-center">
                 <img
                   src={chanelBuilding}

@@ -82,13 +82,13 @@ export default function ProductCarousel({
       id={sectionId}
       className="relative w-full overflow-hidden bg-white py-20"
     >
-      {/* TITLE */}
+  
 
       <h2 className="mb-20 text-center text-[28px] font-medium uppercase tracking-[0.18em]">
         {title}
       </h2>
 
-      {/* PRODUCTS */}
+ 
 
       <div
         ref={trackRef}
@@ -100,7 +100,6 @@ export default function ProductCarousel({
             onClick={() => openProduct(item)}
             className="w-full min-w-full flex-shrink-0 cursor-pointer snap-start px-10 text-center sm:w-1/2 sm:min-w-[50%] md:w-1/3 md:min-w-[33.333333%]"
           >
-            {/* IMAGE */}
 
             <div className="flex h-[300px] items-center justify-center md:h-[360px]">
               <img
@@ -110,7 +109,7 @@ export default function ProductCarousel({
               />
             </div>
 
-            {/* INFO */}
+        
 
             <div className="mx-auto mt-10 max-w-[350px]">
               <p className="mb-2 text-[10px] uppercase tracking-[0.28em] text-gray-500">
@@ -146,8 +145,6 @@ export default function ProductCarousel({
           </article>
         ))}
       </div>
-
-      {/* ARROW */}
 
       <button
         onClick={scroll}

@@ -7,7 +7,7 @@ import HeroPicture from "../assets/jewerly-hero.png";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
 import Highlights from "../components/Highlights.jsx";
-import ChanelBoutiques from "../components/ChanelBoutiques.jsx"
+import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
 function ProductCard({ item }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -174,76 +174,69 @@ export default function JewelryWatches() {
         reverse
       />
 
+      <section id="watches" className="bg-white py-20 md:py-28">
+        <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
+                Timepieces
+              </p>
 
-<section id="watches" className="bg-white py-20 md:py-28">
-  <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+              <h2 className="text-3xl font-light tracking-wide md:text-5xl">
+                Watches
+              </h2>
+            </div>
 
-    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-      <div>
-        <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
-          Timepieces
-        </p>
+            <p className="max-w-md text-sm leading-6 text-gray-500">
+              Precision, character and timeless elegance come together in
+              creations designed to transcend time.
+            </p>
+          </div>
 
-        <h2 className="text-3xl font-light tracking-wide md:text-5xl">
-          Watches
-        </h2>
-      </div>
+          <div className="mt-8 h-px w-full bg-gray-200" />
+        </div>
 
-      <p className="max-w-md text-sm leading-6 text-gray-500">
-        Precision, character and timeless elegance come together in
-        creations designed to transcend time.
-      </p>
-    </div>
+        <ProductCarousel
+          title=""
+          sectionId="jewelry"
+          backPath="/"
+          backLabel="Back"
+          apiUrl="https://dummyjson.com/products/category/womens-watches"
+        />
+      </section>
 
-    <div className="mt-8 h-px w-full bg-gray-200" />
-  </div>
+      <section id="jewelry" className="bg-white py-20 md:py-28">
+        <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
+                Fine Jewelry
+              </p>
 
-  <ProductCarousel
-    title=""
-    sectionId="jewelry"
-    backPath="/"
-    backLabel="Back"
-    apiUrl="https://dummyjson.com/products/category/womens-watches"
-  />
-</section>
+              <h2 className="text-3xl font-light tracking-wide md:text-5xl">
+                Jewelry
+              </h2>
+            </div>
 
+            <p className="max-w-md text-sm leading-6 text-gray-500">
+              Discover refined creations shaped by exceptional craftsmanship,
+              precious details and the timeless codes of the House.
+            </p>
+          </div>
 
-<section id="jewelry" className="bg-white py-20 md:py-28">
+          <div className="mt-8 h-px w-full bg-gray-200" />
+        </div>
 
-  <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
+        <ProductCarousel
+          title=""
+          sectionId="women-jewelry"
+          backPath="/"
+          backLabel="Back"
+          apiUrl="https://dummyjson.com/products/category/womens-jewellery"
+        />
+      </section>
 
-    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-
-      <div>
-        <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
-          Fine Jewelry
-        </p>
-
-        <h2 className="text-3xl font-light tracking-wide md:text-5xl">
-          Jewelry
-        </h2>
-      </div>
-
-      <p className="max-w-md text-sm leading-6 text-gray-500">
-        Discover refined creations shaped by exceptional craftsmanship,
-        precious details and the timeless codes of the House.
-      </p>
-
-    </div>
-
-    <div className="mt-8 h-px w-full bg-gray-200" />
-  </div>
-
-  <ProductCarousel
-    title=""
-    sectionId="women-jewelry"
-    backPath="/"
-    backLabel="Back"
-    apiUrl="https://dummyjson.com/products/category/womens-jewellery"
-  />
-</section>
-
-<ChanelBoutiques />
+      <ChanelBoutiques />
 
       <Footer />
     </div>
