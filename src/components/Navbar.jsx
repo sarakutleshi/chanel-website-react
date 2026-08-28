@@ -24,8 +24,10 @@ export default function Navbar() {
 
           <NavLink className="navbar-brand" to="/jewelry-watches">
             Jewelry &amp; Watches
-          </NavLink> 
-          
+          </NavLink>
+          <NavLink className="navbar-brand" to="/galerie">
+            Galerie
+          </NavLink>
         </div>
 
         {/* Logo */}
@@ -35,16 +37,16 @@ export default function Navbar() {
 
         {/* Right Links (Desktop) */}
         <div className="hidden items-center gap-8 lg:flex">
-          
-          <NavLink className="navbar-brand" to="/galerie">
-            Galerie
-          </NavLink>
           <NavLink className="navbar-brand" to="/eyewear-fragrance">
             Eyewear &amp; Fragrance
           </NavLink>
 
           <NavLink className="navbar-brand" to="/about">
             About Chanel
+          </NavLink>
+
+          <NavLink className="navbar-brand" to="/contact">
+            Contact Us
           </NavLink>
 
           <NavLink

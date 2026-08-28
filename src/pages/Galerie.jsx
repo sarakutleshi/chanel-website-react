@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 export default function Galerie() {
   return (
@@ -25,9 +26,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -48,9 +52,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -72,9 +79,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -92,9 +102,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -120,9 +133,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -144,9 +160,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -168,9 +187,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -188,9 +210,12 @@ export default function Galerie() {
 
               <div className="pt-8">
                 <p>In partnership with Desert Vintage</p>
-                <button className="mt-3 underline underline-offset-4">
+                <Link
+                  to="/contact"
+                  className="mt-3 inline-block underline underline-offset-4"
+                >
                   Price upon request
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -2,6 +2,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart.jsx";
 import ChanelFounder from "../assets/chanel-founder.png";
+import emailjs from "@emailjs/browser";
+import LocationForm from "../components/LocationForm.jsx";
 
 const history = [
   {
@@ -42,25 +44,7 @@ export default function AboutUs() {
       <EditorialCart {...history[2]} />
       <EditorialCart {...history[1]} reverse />
 
-      <div className="flex justify-center w-full h-full  ">
-        <img src={ChanelFounder} alt="Gabrielle Chanel" />
-      </div>
-      <div className="mx-auto my-16 max-w-[760px] px-6 ">
-        <p className="mt-8 text-[1.1rem] leading-[1.95] text-gray-600 text-start">
-          Gabrielle Chanel lived her life as she alone intended. The trials of a
-          childhood as an orphan and the successes of an accomplished
-          businesswoman gave birth to an extraordinary character: daring, free,
-          and ahead of her time.
-        </p>
-
-        <p className="mt-6 text-[1.1rem] leading-[1.95] text-gray-600 text-start">
-          Faithful friendships and passionate love affairs, as well as a thirst
-          for culture, discovery and travel helped shape her personality. A
-          wardrobe freed from constraints and superfluity, tweaked with
-          masculine accents, created a visionary allure that has become timeless
-          and yet wildly modern.
-        </p>
-      </div>
+      <LocationForm />
 
       <Footer />
     </>

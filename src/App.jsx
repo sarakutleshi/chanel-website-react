@@ -10,6 +10,8 @@ import AboutUs from "./pages/AboutUs";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Galerie from "./pages/Galerie";
+import ContactForm from "./components/ContactForm";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
           <Route path="/product" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/galerie" element={<Galerie />} />
+          <Route path="/contact" element={<Contact />} />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </CartProvider>
