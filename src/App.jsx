@@ -12,14 +12,18 @@ import Cart from "./pages/Cart";
 import Galerie from "./pages/Galerie";
 import ContactForm from "./components/ContactForm";
 import Contact from "./pages/Contact";
-
+import SignIn from "./components/auth/SignIn";
+import Register from "./components/auth/Register";
+import Dashboard from "./pages/Dashboard";
 export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
+
           <Route path="/fashion" element={<Fashion />} />
           <Route path="/makeup-skincare" element={<MakeupSkincare />} />
           <Route path="/jewelry-watches" element={<JewelryWatches />} />
@@ -29,6 +33,8 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/galerie" element={<Galerie />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
