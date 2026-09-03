@@ -80,3 +80,99 @@ img {
 .navbar-brand.active {
   opacity: 0.5;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-slide-active .ss-left-img {
+  filter: sepia(0%);
+}
+.swiper-slide:not(.swiper-slide-active) .ss-left-img {
+  filter: sepia(75%);
+}
+
+.swiper-slide-active .ss-right-img {
+  filter: hue-rotate(0deg);
+}
+.swiper-slide:not(.swiper-slide-active) .ss-right-img {
+  filter: hue-rotate(-60deg);
+}
+
+/* All transitions are 1 s so they catch up with the slide */
+.ss-left-img,
+.ss-right-img {
+  transition: filter 1s linear;
+}
+
+/* ── Text entrance animations ── */
+.ss-eyebrow,
+.ss-headline,
+.ss-footer,
+.ss-body {
+  opacity: 0;
+  transform: translate3d(-18%, 0, 0);
+  transition:
+    opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.ss-eyebrow {
+  transition-delay: 0.9s;
+}
+.ss-headline {
+  transition-delay: 1.05s;
+}
+.ss-footer {
+  transition-delay: 1.2s;
+}
+.ss-body {
+  transition-delay: 1.35s;
+}
+
+.swiper-slide-active .ss-eyebrow,
+.swiper-slide-active .ss-headline,
+.swiper-slide-active .ss-footer,
+.swiper-slide-active .ss-body {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Pagination ── */
+.ss-pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ss-pagination .swiper-pagination-bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 1;
+  margin: 0 !important;
+  transition: all 0.3s;
+}
+.ss-pagination .swiper-pagination-bullet-active {
+  background: #fff;
+  transform: scale(1.5);
+}
+
+/* ── Scroll hint: show when on last slide ── */
+.swiper-slide:last-child.swiper-slide-active ~ * .ss-scroll-hint,
+.ss-scroll-hint-visible {
+  opacity: 1 !important;
+}
+
+/* ── Mobile: hide right panel ── */
+@media (max-width: 640px) {
+  .ss-right {
+    display: none;
+  }
+  .ss-left {
+    width: 100% !important;
+  }
+}

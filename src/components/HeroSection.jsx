@@ -22,11 +22,11 @@ export default function HeroSection({
           {uppertitle}
         </p>
         <h1 className="text-6xl font-light">{title}</h1>
-        <p className="mt-3 text-sm leading-6 text-white/90">{description}</p>
+        <p className="mt-3 text-sm leading-6 text-white/90 mb-3">{description}</p>
         {href && (
           <a
             href={href}
-            className="mt-8 inline-block border border-white px-10 py-3 text-xs uppercase tracking-[0.2em] transition hover:bg-white/10"
+            className="mt-10 bg-white px-8 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition hover:bg-black/90 hover:text-white/90"
           >
             {buttonText}
           </a>
