@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-
+/* ── Design tokens — used by remaining legacy components ── */
 :root {
   --white: #ffffff;
   --off: #f7f5f2;
@@ -31,14 +31,13 @@ img {
   height: auto;
 }
 
-
+/* ── .section-label — still used in Fashion.jsx ── */
 .section-label {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   padding: 3.5rem var(--pad) 2.5rem;
 }
-
 .section-label::before,
 .section-label::after {
   content: "";
@@ -46,7 +45,6 @@ img {
   height: 1px;
   background: var(--rule);
 }
-
 .section-label h2 {
   font-family: var(--serif);
   font-size: clamp(0.7rem, 1.5vw, 0.85rem);
@@ -57,6 +55,7 @@ img {
   white-space: nowrap;
 }
 
+/* ── .eyebrow-label — still used in Cart / legacy pages ── */
 .eyebrow-label {
   display: block;
   font-size: 0.65rem;
@@ -67,126 +66,17 @@ img {
   margin-bottom: 0.85rem;
 }
 
-.site-footer {
-  background: var(--ink);
-  color: var(--white);
-  padding: 4rem var(--pad) 2.5rem;
-}
-
-.footer-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-}
-
-.footer-col h3 {
-  font-family: var(--sans);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+/* ── .navbar-brand — Navbar NavLink styling ── */
+.navbar-brand {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 1.2rem;
-}
-
-.footer-col ul {
-  list-style: none;
-}
-
-.footer-col ul li {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 0.5rem;
-}
-
-.footer-col p {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.7;
-}
-
-.footer-col a {
-  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  transition: color 0.2s;
-}
-
-.footer-col a:hover {
-  color: var(--white);
-}
-
-.footer-bottom {
-  max-width: var(--max);
-  margin: 1.5rem auto 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
-}
-
-@media (max-width: 768px) {
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .nav-links {
-    display: none;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-}
-
-.navbar-cart {
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-  padding: 2px;
-}
-.navbar-cart:hover,
-.navbar-cart.active {
   color: var(--ink);
+  transition: opacity 0.2s;
 }
-
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background: var(--ink);
-  color: var(--white);
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  font-weight: 600;
-  line-height: 1;
-  min-width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 3px;
+.navbar-brand:hover,
+.navbar-brand.active {
+  opacity: 0.5;
 }

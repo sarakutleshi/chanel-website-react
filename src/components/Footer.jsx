@@ -1,32 +1,52 @@
 export default function Footer() {
   return (
-    <footer className="site-footer" aria-label="Site footer">
-      <div className="footer-inner">
+    <footer className="bg-neutral-900 text-white" aria-label="Site footer">
+      {/* Main grid */}
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 border-b border-white/10 px-6 py-16 sm:grid-cols-2 md:grid-cols-3 md:px-10">
+        {/* Brand */}
         <div>
-          <div className="footer-brand">CHANEL</div>
-          <p style={{ marginTop: '1rem', fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', maxWidth: '26ch', lineHeight: 1.7 }}>
+          <p className="font-serif text-2xl font-semibold tracking-[0.2em]">CHANEL</p>
+          <p className="mt-4 max-w-[26ch] text-[13px] leading-7 text-white/45">
             The House of Chanel, founded by Gabrielle Bonheur Chanel.
           </p>
         </div>
-        <div className="footer-col">
-          <h3>Our Boutiques</h3>
-          <ul>
-            <li>Chanel Florence, Italy</li>
-            <li>Chanel Vienna, Austria</li>
-            <li>Chanel Paris, France</li>
-            <li>Chanel Prague, Czechia</li>
-            <li>Chanel Tirana, Albania</li>
+
+        {/* Boutiques */}
+        <div>
+          <h3 className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            Our Boutiques
+          </h3>
+          <ul className="flex flex-col gap-2">
+            {["Chanel Florence, Italy", "Chanel Vienna, Austria", "Chanel Paris, France", "Chanel Prague, Czechia", "Chanel Tirana, Albania"].map(
+              (loc) => (
+                <li key={loc} className="text-[13px] text-white/70">
+                  {loc}
+                </li>
+              )
+            )}
           </ul>
         </div>
-        <div className="footer-col">
-          <h3>Contact</h3>
-          <p>
-            For inquiries, reach us at<br />
-            <a href="tel:+123456789">+1 234 567 89</a>
+
+        {/* Contact */}
+        <div>
+          <h3 className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            Contact
+          </h3>
+          <p className="text-[13px] leading-7 text-white/70">
+            For inquiries, reach us at
+            <br />
+            <a
+              href="tel:+123456789"
+              className="border-b border-white/20 text-white/70 transition-colors hover:text-white"
+            >
+              +1 234 567 89
+            </a>
           </p>
         </div>
       </div>
-      <div className="footer-bottom">
+
+      {/* Bottom bar */}
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-3 px-6 py-5 text-[11px] text-white/30 sm:flex-row md:px-10">
         <span>© 2024 CHANEL. All rights reserved.</span>
         <span>Paris · London · New York · Tokyo</span>
       </div>

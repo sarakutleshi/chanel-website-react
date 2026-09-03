@@ -18,7 +18,7 @@ const looks2 = fashionLooks.slice(4);
 function LookGrid({ items, noPaddingTop = false }) {
   return (
     <div
-      className="grid grid-cols-4 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1 gap-[1.5rem] m-w-[var(--max)] mx-auto my-auto p-[0_var(--pad)_5rem]"
+      className="grid grid-cols-4 max-[1024px]:grid-cols-2 max-[640px]:grid-cols-1 gap-[1.5rem] m-w-[var(--max)] mx-auto my-auto p-[0_var(--pad)_5rem]"
       style={noPaddingTop ? { paddingTop: 0 } : {}}
     >
       {items.map((item, i) => (
@@ -142,7 +142,7 @@ export default function Fashion() {
       <div className="section-label">
         <h2>Details</h2>
       </div>
-      <div className="grid grid-cols-3 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1 gap-[1.5rem] h-full mx-0 my-auto p-[0_var(--pad)_5rem]">
+      <div className="grid grid-cols-3 max-[1024px]:grid-cols-2 max-[640px]:grid-cols-1 gap-[1.5rem] h-full mx-0 my-auto p-[0_var(--pad)_5rem]">
         {fashionDetails.map((src, i) => (
           <div className="look-card" key={i}>
             <img className="w-full" src={src} alt={`Detail ${i + 1}`} />
@@ -157,7 +157,7 @@ export default function Fashion() {
       <div className="section-label">
         <h2>Shop the Collection</h2>
       </div>
-      <div className="grid grid-cols-3 max-[1024pxpx]:grid-cols-2 max-[640pxpx]:grid-cols-1
+      <div className="grid grid-cols-3 max-[1024px]:grid-cols-2 max-[640px]:grid-cols-1
        gap-[2rem] h-full mx-0 my-auto p-[0_var(--pad)_5rem]">
         {fashionShopItems.map((item, i) => (
           <ShopCard item={item} key={i} />

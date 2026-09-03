@@ -7,7 +7,7 @@ export default function HeroSection({
   href,
 }) {
   return (
-    <section className="relative h-[520px] overflow-hidden">
+    <section className="relative h-[520px]  overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -18,11 +18,11 @@ export default function HeroSection({
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
       <div className="absolute bottom-16 left-10 z-10 max-w-xl text-white">
-        <p className="mb-4 text-xs uppercase tracking-[0.25em] text-white/70">
+        <p className="mb-2 text-xs uppercase tracking-[0.25em] text-white/70">
           {uppertitle}
         </p>
         <h1 className="text-6xl font-light">{title}</h1>
-        <p className="mt-5 text-sm leading-7 text-white/90">{description}</p>
+        <p className="mt-3 text-sm leading-6 text-white/90">{description}</p>
         {href && (
           <a
             href={href}
