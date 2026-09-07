@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
+/* ── Tailwind theme — maps font-serif / font-sans utilities ── */
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", ui-sans-serif, sans-serif;
+  --color-chanel-ink: #1a1a1a;
+  --color-chanel-muted: #6b6b6b;
+  --color-chanel-rule: #d8d4cf;
+  --color-chanel-off: #f5f5f5;
+}
+
 /* ── Design tokens — used by remaining legacy components ── */
 :root {
   --white: #ffffff;
-  --off: #f7f5f2;
+  --off: #f5f5f5;
   --ink: #1a1a1a;
   --muted: #6b6b6b;
   --rule: #d8d4cf;
-  --serif: "Playfair Display", Georgia, serif;
-  --sans: "Inter", system-ui, sans-serif;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "DM Sans", ui-sans-serif, sans-serif;
   --max: 1200px;
   --pad: clamp(1.5rem, 5vw, 4rem);
 }
@@ -23,12 +33,30 @@ body {
   line-height: 1.7;
   color: var(--ink);
   background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+/* ── Subtle shared motion ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ── .section-label — still used in Fashion.jsx ── */

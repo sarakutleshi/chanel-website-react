@@ -25,24 +25,24 @@ export default function LocationForm() {
   const [selectedLocation, setSelectedLocation] = useState(locations[0]);
 
   return (
-    <section className="w-full px-6 py-24 md:px-16">
+    <>
+    <section className="w-full px-40 ">
       <div className="mb-16 text-center">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.3em] text-neutral-500">
+        <p className="mb-0 text-[12px] uppercase text-neutral-500">
           Visit Us
         </p>
-
-        <h2 className="text-3xl font-light tracking-[0.08em] md:text-4xl">
+        <h2 className="text-2xl font-light md:text-3xl">
           Our Locations
         </h2>
       </div>
 
-      <div className="mx-auto max-w-7xl">
-        <div className="w-full">
+      <div className="m-0 max-w-5xl">
+        <div className="w-full h-[400px] md:h-[550px]">
           <iframe
             key={selectedLocation.name}
             title={`${selectedLocation.name} Chanel Location`}
             src={selectedLocation.map}
-            className="h-[400px] w-full border-0 md:h-[550px]"
+            className="h-full w-full border-0"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
@@ -78,6 +78,6 @@ export default function LocationForm() {
           ))}
         </div>
       </div>
-    </section>
+    </section></>
   );
 }

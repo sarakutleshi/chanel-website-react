@@ -1,95 +1,76 @@
-import { useRef } from "react";
 import { NavLink } from "react-router-dom";
-
-const FEATURED_IDS = [
-  "tweed-jacket",
-  "rouge-allure-velvet",
-  "coco-crush-ring",
-  "chance-eau-tendre",
-  "j12-watch",
-  "shield-sunglasses",
-];
+import ProductCard from "./ProductCard.jsx";
 
 export default function FeaturedProducts({ featured }) {
-  const scrollRef = useRef(null);
-
-  const scrollLeft = () => {
-    scrollRef.current?.scrollBy({
-      left: -350,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollRight = () => {
-    scrollRef.current?.scrollBy({
-      left: 350,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <section className="px-6 py-16 md:px-16 md:py-20">
-      <div className="mx-auto max-w-7xl">
+    <section className="w-full border-t border-neutral-100 bg-white py-14 md:py-20">
 
-        {/* Header */}
-        <div className="mb-10 flex items-end justify-between">
+      <div className="mx-auto mb-8 max-w-6xl px-6 md:mb-10 md:px-12">
+        <div className="flex items-end justify-between border-b border-neutral-200 pb-5">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.38em] text-neutral-400">
-              Curated Selection
+            <p className="mb-2 text-[10px] uppercase tracking-[0.38em] text-neutral-400">
+              The Edit
             </p>
 
-            <h2 className="mt-2 font-serif text-3xl font-light text-neutral-900 md:text-4xl">
+            <h2 className="font-serif text-3xl font-light tracking-tight text-neutral-900 md:text-4xl">
               Featured Pieces
             </h2>
           </div>
 
           <NavLink
             to="/shop"
-            className="hidden text-[11px] uppercase tracking-[0.18em] text-neutral-400 underline underline-offset-4 transition-colors hover:text-black md:block"
+            className="hidden text-[10px] uppercase tracking-[0.2em] text-neutral-400 transition-opacity hover:opacity-50 sm:block"
           >
             View All →
           </NavLink>
         </div>
-
-        {/* Products + Arrows */}
-        <div className="relative">
-
-          {/* Left Arrow */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 bg-white/90 px-4 py-3 text-xl transition hover:bg-black hover:text-white"
-            aria-label="Previous products"
-          >
-            ←
-          </button>
-
-          {/* Products */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
-          >
-            {featured.map((p) => (
-              <div
-                key={p.id}
-                className="w-[280px] shrink-0 md:w-[320px] lg:w-[350px]"
-              >
-                <ProductCard product={p} />
-              </div>
-            ))}
-          </div>
-
-          {/* Right Arrow */}
-          <button
-            onClick={scrollRight}
-            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 bg-white/90 px-4 py-3 text-xl transition hover:bg-black hover:text-white"
-            aria-label="Next products"
-          >
-            →
-          </button>
-
-        </div>
-
       </div>
+
+      {/* Product Carousel */}
+      <div className="w-full">
+        <div
+          className="
+            flex
+            w-full
+            gap-4
+            overflow-x-auto
+            px-6
+            pb-2
+            md:px-12
+            scrollbar-hide
+            snap-x
+            snap-mandatory
+          "
+        >
+          {featured?.map((p) => (
+            <div
+              key={p.id}
+              className="
+                w-[185px]
+                shrink-0
+                snap-start
+                sm:w-[205px]
+                md:w-[225px]
+                lg:w-[240px]
+              "
+            >
+              <ProductCard product={p} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile View All */}
+      <div className="mt-6 px-6 sm:hidden">
+        <NavLink
+          to="/shop"
+          className="flex items-center justify-between border-b border-neutral-200 pb-3 text-[9px] uppercase tracking-[0.2em] text-neutral-500"
+        >
+          <span>View All Pieces</span>
+          <span>→</span>
+        </NavLink>
+      </div>
+
     </section>
   );
 }

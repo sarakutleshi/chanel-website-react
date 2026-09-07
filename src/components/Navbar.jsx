@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -14,36 +13,35 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
-  /* =========================
-     COLLECTIONS
-  ========================= */
-
   const collections = [
-    {
-      name: "Fashion",
-      path: "/fashion",
-    },
-    {
-      name: "Makeup & Skincare",
-      path: "/makeup-skincare",
-    },
-    {
-      name: "Jewelry & Watches",
-      path: "/jewelry-watches",
-    },
-    {
-      name: "Eyewear & Fragrance",
-      path: "/eyewear-fragrance",
-    },
-    {
-      name: "Galerie",
-      path: "/galerie",
-    },
+    { name: "Fashion", path: "/fashion" },
+    { name: "Makeup & Skincare", path: "/makeup-skincare" },
+    { name: "Jewelry & Watches", path: "/jewelry-watches" },
+    { name: "Eyewear & Fragrance", path: "/eyewear-fragrance" },
+    { name: "Galerie", path: "/galerie" },
   ];
 
-  /* =========================
-     LOGOUT
-  ========================= */
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!event.target.closest("[data-navbar-dropdown]")) {
+        setIsCollectionsOpen(false);
+        setIsProfileOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setIsCollectionsOpen(false);
+      setIsProfileOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -55,15 +53,14 @@ export default function Navbar() {
     navigate("/");
   };
 
-  /* =========================
-     CLOSE MENUS
-  ========================= */
-
   const closeMenus = () => {
     setIsCollectionsOpen(false);
     setIsProfileOpen(false);
     setIsMobileOpen(false);
   };
+
+  const navItem =
+    "text-[10px] font-medium uppercase tracking-[0.2em] transition-opacity duration-200 hover:opacity-50";
 
   return (
     <nav
@@ -71,57 +68,41 @@ export default function Navbar() {
       aria-label="Primary navigation"
     >
       {/* =====================================================
-          MAIN NAVBAR
+          DESKTOP / TOP BAR
       ====================================================== */}
-
-      <div className="mx-auto flex h-20 max-w-[1600px] items-center px-6 md:px-10 lg:px-14">
-
-        {/* =====================================================
-            CHANEL LOGO - LEFT
-        ====================================================== */}
-
+      <div className="mx-auto flex h-[68px] max-w-[1800px] items-center px-5 md:px-8 lg:px-12">
+        {/* LOGO */}
         <NavLink
           to={isLoggedIn ? "/home" : "/"}
           onClick={closeMenus}
-          className="mr-auto no-underline"
+          className="shrink-0"
         >
-          <h1 className="text-2xl font-semibold tracking-[0.3em] md:text-3xl">
+          <h1 className="font-serif text-[22px] font-medium tracking-[0.32em] md:text-[24px]">
             CHANEL
           </h1>
         </NavLink>
 
-        {/* =====================================================
-            DESKTOP NAVIGATION
-        ====================================================== */}
-
-        <div className="hidden items-center gap-8 lg:flex">
-
-          {/* =================================================
-              COLLECTIONS
-              ONLY VISIBLE WHEN LOGGED IN
-          ================================================== */}
-
+        {/* DESKTOP NAV */}
+        <div className="ml-auto hidden items-center lg:flex">
+          {/* COLLECTIONS */}
           {isLoggedIn && (
-            <div className="relative">
-
+            <div className="relative mr-9" data-navbar-dropdown>
               <button
                 onClick={() => {
                   setIsCollectionsOpen(!isCollectionsOpen);
                   setIsProfileOpen(false);
                 }}
-                className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition hover:opacity-60"
+                className={`${navItem} flex items-center gap-2`}
               >
                 Collections
-
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-3 w-3 transition-transform duration-200 ${
+                  className={`h-3 w-3 transition-transform duration-300 ${
                     isCollectionsOpen ? "rotate-180" : ""
                   }`}
-                  fill="none"
                   viewBox="0 0 24 24"
+                  fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="1.3"
                 >
                   <path
                     strokeLinecap="round"
@@ -131,138 +112,111 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              {/* COLLECTIONS DROPDOWN */}
-
               {isCollectionsOpen && (
-                <div className="absolute right-0 top-full mt-6 w-64 border border-neutral-200 bg-white py-3">
-
-                  <div className="px-5 pb-3 pt-2">
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+                <div className="absolute right-0 top-[calc(100%+18px)] w-[260px] border border-neutral-200 bg-white">
+                  <div className="border-b border-neutral-100 px-6 py-5">
+                    <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
                       Explore
                     </p>
                   </div>
 
-                  {collections.map((item) => (
-                    <NavLink
-                      key={item.path}
-                      to={item.path}
-                      onClick={closeMenus}
-                      className="block px-5 py-3 text-sm transition hover:bg-neutral-50"
-                    >
-                      {item.name}
-                    </NavLink>
-                  ))}
+                  <div className="py-2">
+                    {collections.map((item) => (
+                      <NavLink
+                        key={item.path}
+                        to={item.path}
+                        onClick={closeMenus}
+                        className="group flex items-center justify-between px-6 py-3.5 text-[11px] transition-colors hover:bg-neutral-50"
+                      >
+                        <span>{item.name}</span>
 
+                        <span className="translate-x-[-5px] text-neutral-300 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
+                          →
+                        </span>
+                      </NavLink>
+                    ))}
+                  </div>
                 </div>
               )}
-
             </div>
           )}
 
-          {/* =================================================
-              ABOUT
-              VISIBLE TO EVERYONE
-          ================================================== */}
-
+          {/* ABOUT */}
           <NavLink
             to="/about"
             onClick={closeMenus}
-            className="text-xs uppercase tracking-[0.15em] transition hover:opacity-60"
+            className={`${navItem} mr-9`}
           >
             About
           </NavLink>
 
-          {/* =================================================
-              CONTACT
-              VISIBLE TO EVERYONE
-          ================================================== */}
-
+          {/* CONTACT */}
           <NavLink
             to="/contact"
             onClick={closeMenus}
-            className="text-xs uppercase tracking-[0.15em] transition hover:opacity-60"
+            className={`${navItem} mr-9`}
           >
             Contact
           </NavLink>
 
-          {/* =================================================
-              SHOP
-              ONLY VISIBLE WHEN LOGGED IN
-          ================================================== */}
-
+          {/* SHOP */}
           {isLoggedIn && (
             <NavLink
               to="/shop"
               onClick={closeMenus}
-              className="text-xs uppercase tracking-[0.15em] transition hover:opacity-60"
+              className={`${navItem} mr-9`}
             >
               Shop
             </NavLink>
           )}
 
-          {/* =================================================
-              CART
-              ONLY VISIBLE WHEN LOGGED IN
-          ================================================== */}
-
+          {/* CART */}
           {isLoggedIn && (
             <NavLink
               to="/cart"
               onClick={closeMenus}
-              className="relative flex items-center transition hover:opacity-60"
+              className="relative mr-8 flex items-center transition-opacity hover:opacity-50"
               aria-label={`Cart, ${totalCount} items`}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="19"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="1.3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-
                 <line x1="3" y1="6" x2="21" y2="6" />
-
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
 
               {totalCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-black text-[10px] text-white">
+                <span className="absolute -right-2 -top-2 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-black px-1 text-[8px] text-white">
                   {totalCount}
                 </span>
               )}
             </NavLink>
           )}
 
-          {/* =================================================
-              PROFILE
-              VISIBLE TO EVERYONE
-          ================================================== */}
-
-          <div className="relative">
-
+          {/* PROFILE */}
+          <div className="relative" data-navbar-dropdown>
             <button
               onClick={() => {
                 setIsProfileOpen(!isProfileOpen);
                 setIsCollectionsOpen(false);
               }}
-              className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition hover:opacity-60"
+              className="flex items-center gap-2 transition-opacity hover:opacity-50"
             >
-
-              {/* USER ICON */}
-
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="1.3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
@@ -270,19 +224,16 @@ export default function Navbar() {
                 <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
               </svg>
 
-              Profile
-
-              {/* ARROW */}
+              <span className={navItem}>Profile</span>
 
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`h-3 w-3 transition-transform duration-200 ${
+                className={`h-3 w-3 transition-transform duration-300 ${
                   isProfileOpen ? "rotate-180" : ""
                 }`}
-                fill="none"
                 viewBox="0 0 24 24"
+                fill="none"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="1.3"
               >
                 <path
                   strokeLinecap="round"
@@ -290,159 +241,132 @@ export default function Navbar() {
                   d="m6 9 6 6 6-6"
                 />
               </svg>
-
             </button>
 
-            {/* =================================================
-                PROFILE DROPDOWN
-            ================================================== */}
-
             {isProfileOpen && (
-              <div className="absolute right-0 top-full mt-6 w-56 border border-neutral-200 bg-white py-3">
-
-                <div className="px-5 pb-3 pt-2">
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              <div className="absolute right-0 top-[calc(100%+18px)] w-[230px] border border-neutral-200 bg-white">
+                <div className="border-b border-neutral-100 px-6 py-5">
+                  <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
                     My Account
                   </p>
                 </div>
 
-                {/* ===============================
-                    LOGGED OUT
-                ================================ */}
+                <div className="py-2">
+                  {!isLoggedIn && (
+                    <>
+                      <NavLink
+                        to="/signin"
+                        onClick={closeMenus}
+                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
+                      >
+                        Sign In
+                      </NavLink>
 
-                {!isLoggedIn && (
-                  <>
-                    <NavLink
-                      to="/signin"
-                      onClick={closeMenus}
-                      className="block px-5 py-3 text-sm transition hover:bg-neutral-50"
-                    >
-                      Sign In
-                    </NavLink>
+                      <NavLink
+                        to="/register"
+                        onClick={closeMenus}
+                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
+                      >
+                        Create Account
+                      </NavLink>
+                    </>
+                  )}
 
-                    <NavLink
-                      to="/register"
-                      onClick={closeMenus}
-                      className="block px-5 py-3 text-sm transition hover:bg-neutral-50"
-                    >
-                      Create Account
-                    </NavLink>
-                  </>
-                )}
+                  {isLoggedIn && (
+                    <>
+                      <NavLink
+                        to="/profile"
+                        onClick={closeMenus}
+                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
+                      >
+                        My Profile
+                      </NavLink>
 
-                {/* ===============================
-                    LOGGED IN
-                ================================ */}
+                      <NavLink
+                        to="/wishlist"
+                        onClick={closeMenus}
+                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
+                      >
+                        Wishlist
+                      </NavLink>
 
-                {isLoggedIn && (
-                  <>
-                    <NavLink
-                      to="/profile"
-                      onClick={closeMenus}
-                      className="block px-5 py-3 text-sm transition hover:bg-neutral-50"
-                    >
-                      My Profile
-                    </NavLink>
+                      <div className="my-2 border-t border-neutral-100" />
 
-                    <NavLink
-                      to="/wishlist"
-                      onClick={closeMenus}
-                      className="block px-5 py-3 text-sm transition hover:bg-neutral-50"
-                    >
-                      Wishlist
-                    </NavLink>
-
-                    <div className="my-2 border-t border-neutral-100" />
-
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full px-5 py-3 text-left text-sm transition hover:bg-neutral-50"
-                    >
-                      Log Out
-                    </button>
-                  </>
-                )}
-
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full px-6 py-3.5 text-left text-[11px] transition hover:bg-neutral-50"
+                      >
+                        Log Out
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
             )}
-
           </div>
         </div>
 
-        {/* =====================================================
-            MOBILE MENU BUTTON
-        ====================================================== */}
-
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => {
             setIsMobileOpen(!isMobileOpen);
             setIsCollectionsOpen(false);
             setIsProfileOpen(false);
           }}
-          className="ml-6 lg:hidden"
+          className="ml-auto flex h-8 w-8 items-center justify-center lg:hidden"
           aria-label="Toggle menu"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
-          >
-            {isMobileOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
+          {isMobileOpen ? (
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+            >
+              <path d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          )}
         </button>
       </div>
 
       {/* =====================================================
           MOBILE MENU
       ====================================================== */}
-
       <div
-        className={`overflow-hidden border-t border-neutral-200 transition-all duration-300 lg:hidden ${
-          isMobileOpen ? "max-h-[1000px]" : "max-h-0"
+        className={`overflow-hidden border-t border-neutral-200 transition-all duration-500 ease-in-out lg:hidden ${
+          isMobileOpen ? "max-h-[900px]" : "max-h-0"
         }`}
       >
-        <div className="bg-white px-6 py-8">
-
-          {/* =================================================
-              MOBILE COLLECTIONS
-              ONLY LOGGED IN
-          ================================================== */}
-
+        <div className="bg-white px-6 pb-8 pt-4">
+          {/* COLLECTIONS */}
           {isLoggedIn && (
-            <div className="border-b border-neutral-200 pb-5">
-
+            <div className="border-b border-neutral-200 py-3">
               <button
-                onClick={() =>
-                  setIsCollectionsOpen(!isCollectionsOpen)
-                }
-                className="flex w-full items-center justify-between py-3 text-xs uppercase tracking-[0.2em]"
+                onClick={() => setIsCollectionsOpen(!isCollectionsOpen)}
+                className="flex w-full items-center justify-between py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
               >
                 Collections
-
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-4 w-4 transition-transform ${
+                  className={`h-3 w-3 transition-transform duration-300 ${
                     isCollectionsOpen ? "rotate-180" : ""
                   }`}
-                  fill="none"
                   viewBox="0 0 24 24"
+                  fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="1.3"
                 >
                   <path
                     strokeLinecap="round"
@@ -453,104 +377,78 @@ export default function Navbar() {
               </button>
 
               {isCollectionsOpen && (
-                <div className="ml-4 mt-2 flex flex-col">
-
+                <div className="ml-3 pb-3">
                   {collections.map((item) => (
                     <NavLink
                       key={item.path}
                       to={item.path}
                       onClick={closeMenus}
-                      className="py-3 text-sm text-neutral-700"
+                      className="block py-3 text-[11px] text-neutral-600"
                     >
                       {item.name}
                     </NavLink>
                   ))}
-
                 </div>
               )}
-
             </div>
           )}
 
-          {/* =================================================
-              MOBILE GENERAL LINKS
-          ================================================== */}
-
-          <div className="flex flex-col border-b border-neutral-200 py-5">
-
-            {/* ABOUT */}
-
+          {/* MAIN LINKS */}
+          <div className="border-b border-neutral-200 py-3">
             <NavLink
               to="/about"
               onClick={closeMenus}
-              className="py-3 text-xs uppercase tracking-[0.2em]"
+              className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
             >
               About
             </NavLink>
 
-            {/* CONTACT */}
-
             <NavLink
               to="/contact"
               onClick={closeMenus}
-              className="py-3 text-xs uppercase tracking-[0.2em]"
+              className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
             >
               Contact
             </NavLink>
-
-            {/* SHOP - LOGGED IN ONLY */}
 
             {isLoggedIn && (
               <NavLink
                 to="/shop"
                 onClick={closeMenus}
-                className="py-3 text-xs uppercase tracking-[0.2em]"
+                className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
               >
                 Shop
               </NavLink>
             )}
 
-            {/* CART - LOGGED IN ONLY */}
-
             {isLoggedIn && (
               <NavLink
                 to="/cart"
                 onClick={closeMenus}
-                className="flex items-center gap-3 py-3 text-xs uppercase tracking-[0.2em]"
+                className="flex items-center gap-3 py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
               >
                 Cart
-
                 {totalCount > 0 && (
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-black text-[10px] text-white">
+                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[8px] text-white">
                     {totalCount}
                   </span>
                 )}
               </NavLink>
             )}
-
           </div>
 
-          {/* =================================================
-              MOBILE ACCOUNT
-          ================================================== */}
-
-          <div className="pt-5">
-
-            <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+          {/* ACCOUNT */}
+          <div className="pt-6">
+            <p className="mb-3 text-[9px] uppercase tracking-[0.25em] text-neutral-400">
               My Account
             </p>
 
-            {/* ===============================
-                LOGGED OUT
-            ================================ */}
-
             {!isLoggedIn && (
-              <div className="flex flex-col">
-
+              <>
                 <NavLink
                   to="/signin"
                   onClick={closeMenus}
-                  className="py-3 text-xs uppercase tracking-[0.2em]"
+                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
                 >
                   Sign In
                 </NavLink>
@@ -558,25 +456,19 @@ export default function Navbar() {
                 <NavLink
                   to="/register"
                   onClick={closeMenus}
-                  className="py-3 text-xs uppercase tracking-[0.2em]"
+                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
                 >
                   Create Account
                 </NavLink>
-
-              </div>
+              </>
             )}
 
-            {/* ===============================
-                LOGGED IN
-            ================================ */}
-
             {isLoggedIn && (
-              <div className="flex flex-col">
-
+              <>
                 <NavLink
                   to="/profile"
                   onClick={closeMenus}
-                  className="py-3 text-xs uppercase tracking-[0.2em]"
+                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
                 >
                   My Profile
                 </NavLink>
@@ -584,26 +476,22 @@ export default function Navbar() {
                 <NavLink
                   to="/wishlist"
                   onClick={closeMenus}
-                  className="py-3 text-xs uppercase tracking-[0.2em]"
+                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
                 >
                   Wishlist
                 </NavLink>
 
                 <button
                   onClick={handleLogout}
-                  className="py-3 text-left text-xs uppercase tracking-[0.2em]"
+                  className="block py-3 text-left text-[10px] uppercase tracking-[0.22em]"
                 >
                   Log Out
                 </button>
-
-              </div>
+              </>
             )}
-
           </div>
-
         </div>
       </div>
     </nav>
   );
 }
-

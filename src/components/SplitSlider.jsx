@@ -139,7 +139,7 @@ export default function SplitSlider() {
       {/* Full-viewport wrapper — no padding, no centering container */}
       <div
         ref={containerRef}
-        className="relative h-screen w-full overflow-hidden"
+        className="relative h-[580px] w-screen overflow-hidden p-10"
       >
         <div ref={swiperRef} className="swiper h-full w-full">
           <div className="swiper-wrapper">
@@ -218,10 +218,8 @@ export default function SplitSlider() {
           <span className="h-8 w-px bg-white/40" />
         </div>
       </div>
-      <style>{
-    
-       
-      }</style>
     </>
   );
 }
+
+
