@@ -2,25 +2,24 @@ import { useEffect, useRef } from "react";
 
 const images = [
   [
-    "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    "https://i.pinimg.com/736x/4b/f8/a4/4bf8a4698481022fc097df6751c5ea1c.jpg",
-    "https://assets.vogue.com/photos/62274b75921b9eb00286c727/master/w_1920,c_limit/00004-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_768/q_auto:good,f_autoplus,dpr_1/1666769636973-1598436152349hdbhvpnv00603107jpgmaxlglgjpg_2068x3000.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666769979453-15954241665431945americansoldiersdcropjpgmaxmdmdjpg_1128x974.jpg",
+    "https://i.pinimg.com/736x/4e/2e/96/4e2e96d6a9871f3170848140881174e8.jpg",
     "https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg",
-    "https://assets.vogue.com/photos/62274b7cf1c0bf717ac69a97/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    "https://i.pinimg.com/736x/d1/90/34/d19034a6e9e95b37d1aff5d081561df9.jpg",
   ],
   [
-    "https://i.pinimg.com/736x/d6/e2/2c/d6e22c7fbdfb4b3e135e91b7554812f9.jpg",
-    "https://i.pinimg.com/1200x/eb/fe/45/ebfe457d38f58088d8ce5f389101c66b.jpg",
-    "https://i.pinimg.com/736x/71/af/4e/71af4e99ab6561d5dfbf738adc75a756.jpg",
-    "https://i.pinimg.com/736x/62/53/84/62538407aa186cb2820528b20df07d57.jpg",
-    "https://www.therow.com/cdn/shop/files/000568680003_v2_b90ddb36-4cb6-41e1-98ef-07febcdf3cef.jpg?v=1739561831",
+    "https://www.chanel.com/puls-img/c_limit,w_768/q_auto:good,f_autoplus,dpr_1/1666769599758-15954065429011912chaneladeauvillecollectionparticulieredjpgmaxmdmdjpg_1562x974.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666770140873-1598436067925e3017cgarnierphilippeelleginalollobrigidachezchanelen1964goodjpgmaxlglgjpg_2002x3000.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666771629238-1598436390994pa200500211jpgmaxlglgjpg_3000x2271.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666771520614-1595426487361pa198400631djpgmaxmdmdjpg_1363x974.jpg",
+    "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666770394823-1595428087884201801karldjpgmaxmdmdjpg_1272x974.jpg",
   ],
   [
-    "https://assets.vogue.com/photos/62274b83921b9eb00286c729/master/w_1920,c_limit/00009-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    "https://i.pinimg.com/vwebp/1200x/ab/f1/7a/abf17a75d816ea25ce85649b557b46a1.webp",
-    "https://assets.vogue.com/photos/62274b881c9add4585407320/master/w_1920,c_limit/00012-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
-    "https://i.pinimg.com/1200x/cb/0c/03/cb0c03d470708243623c08fced11e87c.jpg",
-    "https://i.pinimg.com/736x/86/81/a8/8681a8244aaffbe534d40e0cb1370db2.jpg",
+    "https://i.pinimg.com/736x/c2/46/d1/c246d1c4a62ad332b401dbf5f70f09bf.jpg",
+    "https://i.pinimg.com/736x/c5/f3/b6/c5f3b6a752e37d54da7619414241f08d.jpg",
+    "https://i.pinimg.com/1200x/5e/a8/a7/5ea8a7c9953cc09bf99bb8c27faaab64.jpg",
+    "https://i.pinimg.com/736x/7c/07/a3/7c07a39b87e5270c63189b1870b0bf79.jpg",
   ],
 ];
 
@@ -36,7 +35,7 @@ function Column({ srcs, reverse, columnRef }) {
             src={src}
             alt=""
             loading="lazy"
-            className="block aspect-[3/4] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            className="block w-full h-auto object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         </div>
       ))}
@@ -91,7 +90,6 @@ export default function ReverseScroll() {
       };
     }
 
-    // Graceful fallback: subtle opposing parallax on scroll
     reverseColumns.forEach((column) => {
       column.style.flexDirection = "column-reverse";
       column.style.willChange = "transform";

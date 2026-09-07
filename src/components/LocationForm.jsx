@@ -25,59 +25,65 @@ export default function LocationForm() {
   const [selectedLocation, setSelectedLocation] = useState(locations[0]);
 
   return (
-    <>
-    <section className="w-full px-40 ">
-      <div className="mb-16 text-center">
-        <p className="mb-0 text-[12px] uppercase text-neutral-500">
-          Visit Us
-        </p>
-        <h2 className="text-2xl font-light md:text-3xl">
-          Our Locations
-        </h2>
-      </div>
+    <section className="w-full bg-black px-6 py-16 text-white md:px-10 lg:px-16">
+      <div className="mx-auto max-w-6xl">
 
-      <div className="m-0 max-w-5xl">
-        <div className="w-full h-[400px] md:h-[550px]">
-          <iframe
-            key={selectedLocation.name}
-            title={`${selectedLocation.name} Chanel Location`}
-            src={selectedLocation.map}
-            className="h-full w-full border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+        {/* HEADER */}
+        <div className="mb-10 text-center">
+          <p className="mb-2 text-[9px] uppercase tracking-[0.3em] text-neutral-500">
+            Visit Us
+          </p>
+
+          <h2 className="text-[28px] font-light tracking-[-0.02em] md:text-[32px]">
+            Our Locations
+          </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-12 md:grid-cols-3">
-          {locations.map((location) => (
-            <div
-              key={location.name}
-              className="text-center"
-            >
-              <h3 className="mb-4 text-sm uppercase tracking-[0.2em]">
-                {location.name}
-              </h3>
+        {/* MAP */}
+        <div className="mx-auto max-w-5xl">
+          <div className="h-[280px] w-full md:h-[360px]">
+            <iframe
+              key={selectedLocation.name}
+              title={`${selectedLocation.name} Chanel Location`}
+              src={selectedLocation.map}
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
 
-              <p className="mb-6 text-sm leading-6 text-neutral-600">
-                {location.address}
-                <br />
-                {location.city}
-              </p>
-
-              <button
-                onClick={() => setSelectedLocation(location)}
-                className={`border-b pb-1 text-[11px] uppercase tracking-[0.2em] transition-all duration-300 ${
-                  selectedLocation.name === location.name
-                    ? "border-black"
-                    : "border-transparent hover:border-black"
-                }`}
+          {/* LOCATIONS */}
+          <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
+            {locations.map((location) => (
+              <div
+                key={location.name}
+                className="text-center"
               >
-                View Location
-              </button>
-            </div>
-          ))}
+                <h3 className="mb-3 text-[11px] uppercase tracking-[0.2em] text-white">
+                  {location.name}
+                </h3>
+
+                <p className="mb-5 text-[11px] leading-5 text-neutral-400">
+                  {location.address}
+                  <br />
+                  {location.city}
+                </p>
+
+                <button
+                  onClick={() => setSelectedLocation(location)}
+                  className={`border-b pb-1 text-[9px] uppercase tracking-[0.2em] transition-all duration-300 ${
+                    selectedLocation.name === location.name
+                      ? "border-white text-white"
+                      : "border-transparent text-neutral-500 hover:border-white hover:text-white"
+                  }`}
+                >
+                  View Location
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </section></>
+    </section>
   );
 }
