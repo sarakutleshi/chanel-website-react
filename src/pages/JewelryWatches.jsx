@@ -66,7 +66,7 @@ export default function JewelryWatches() {
   return (
     <div className="bg-white text-black">
       <Navbar />
-      <section className="border-y border-gray-200 bg-white px-6 py-20 md:px-10 lg:px-16">
+      <section className="border-y border-gray-200 bg-white px-6 py-10 md:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
           <div className="mb-14 text-center">
@@ -159,6 +159,43 @@ export default function JewelryWatches() {
         </div>
       </section>
 
+      <section id="watches" className="bg-white py-2 md:py-10">
+        <EditorialCart
+          src="https://i.pinimg.com/736x/3c/81/b0/3c81b0fd00da8b3f178b673047e36dc4.jpg"
+          title="The Watch"
+          type="Savoir-Faire"
+          description="Every CHANEL watch piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
+          reverse
+        />
+
+        <div className="mx-auto mb-8 max-w-6xl px-4 my-10 md:px-6">
+          <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+            <div>
+              <p className="mb-2 text-[9px] uppercase tracking-[0.3em] text-gray-500">
+                Timepieces
+              </p>
+
+              <h2 className="text-4xl font-light tracking-wide md:text-4xl">
+                Watches
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-xs leading-5 text-gray-500">
+              Precision, character and timeless elegance come together in
+              creations designed to transcend time.
+            </p>
+          </div>
+        </div>
+
+        <ProductCarousel
+          title=""
+          sectionId="women-watches"
+          backPath="/"
+          backLabel="Back"
+          apiUrl="https://dummyjson.com/products/category/womens-watches"
+        />
+      </section>
+
       <EditorialCart
         src="https://i.pinimg.com/736x/6e/76/d1/6e76d114ecf0926853bd4e5f2fea9a42.jpg"
         title="The Jewelry"
@@ -166,68 +203,28 @@ export default function JewelryWatches() {
         description="Every CHANEL jewelry piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
       />
 
-      <EditorialCart
-        src="https://i.pinimg.com/736x/3c/81/b0/3c81b0fd00da8b3f178b673047e36dc4.jpg"
-        title="The Watch"
-        type="Savoir-Faire"
-        description="Every CHANEL watch piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
-        reverse
-      />
-
-      <section id="watches" className="bg-white py-20 md:py-28">
-        <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <section id="jewelry" className="bg-white">
+        <div className="mx-auto mb-8 max-w-6xl px-4 md:px-6">
+          <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
             <div>
-              <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
+              <p className="mb-2 text-[9px] uppercase tracking-[0.3em] text-gray-500">
                 Timepieces
               </p>
 
-              <h2 className="text-3xl font-light tracking-wide md:text-5xl">
-                Watches
-              </h2>
-            </div>
-
-            <p className="max-w-md text-sm leading-6 text-gray-500">
-              Precision, character and timeless elegance come together in
-              creations designed to transcend time.
-            </p>
-          </div>
-
-          <div className="mt-8 h-px w-full bg-gray-200" />
-        </div>
-
-        <ProductCarousel
-          title=""
-          sectionId="jewelry"
-          backPath="/"
-          backLabel="Back"
-          apiUrl="https://dummyjson.com/products/category/womens-watches"
-        />
-      </section>
-
-      <section id="jewelry" className="bg-white py-20 md:py-28">
-        <div className="mx-auto mb-14 max-w-7xl px-6 md:px-10">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-gray-500">
-                Fine Jewelry
-              </p>
-
-              <h2 className="text-3xl font-light tracking-wide md:text-5xl">
+              <h2 className="text-4xl font-light tracking-wide md:text-4xl">
                 Jewelry
               </h2>
             </div>
 
-            <p className="max-w-md text-sm leading-6 text-gray-500">
-              Discover refined creations shaped by exceptional craftsmanship,
-              precious details and the timeless codes of the House.
+            <p className="max-w-sm text-xs leading-5 text-gray-500">
+              Precision, character and timeless elegance come together in
+              creations designed to transcend time.
             </p>
           </div>
-
-          <div className="mt-8 h-px w-full bg-gray-200" />
         </div>
 
         <ProductCarousel
+        className="!mt-0"
           title=""
           sectionId="women-jewelry"
           backPath="/"

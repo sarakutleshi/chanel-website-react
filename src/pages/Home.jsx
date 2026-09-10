@@ -223,9 +223,9 @@ export default function Home() {
         </div>
       </section>
 
-      <SpiritSection />
-
       <GalerieSection />
+
+      <SpiritSection />
 
       <Footer />
     </>

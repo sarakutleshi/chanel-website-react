@@ -59,8 +59,8 @@ export default function ProductCarousel({
 
   if (loading) {
     return (
-      <section className="flex h-[500px] items-center justify-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
+      <section className="flex h-[250px] items-center justify-center">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400">
           Loading...
         </p>
       </section>
@@ -69,10 +69,8 @@ export default function ProductCarousel({
 
   if (error) {
     return (
-      <section className="flex h-[400px] items-center justify-center">
-        <p className="text-sm text-gray-500">
-          Unable to load products.
-        </p>
+      <section className="flex h-[250px] items-center justify-center">
+        <p className="text-xs text-gray-500">Unable to load products.</p>
       </section>
     );
   }
@@ -80,16 +78,14 @@ export default function ProductCarousel({
   return (
     <section
       id={sectionId}
-      className="relative w-full overflow-hidden bg-white py-20"
+      className="relative w-full overflow-hidden bg-white py-2"
     >
-  
-
-      <h2 className="mb-20 text-center text-[28px] font-medium uppercase tracking-[0.18em]">
+      {/* Title */}
+      <h2 className="mb-10 text-center text-[20px] font-medium uppercase tracking-[0.16em]">
         {title}
       </h2>
 
- 
-
+      {/* Products */}
       <div
         ref={trackRef}
         className="flex w-full snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -98,37 +94,36 @@ export default function ProductCarousel({
           <article
             key={item.id}
             onClick={() => openProduct(item)}
-            className="w-full min-w-full flex-shrink-0 cursor-pointer snap-start px-10 text-center sm:w-1/2 sm:min-w-[50%] md:w-1/3 md:min-w-[33.333333%]"
+            className="w-full min-w-full flex-shrink-0 cursor-pointer snap-start px-4 text-center sm:w-1/2 sm:min-w-[50%] md:w-1/3 md:min-w-[33.333333%]"
           >
-
-            <div className="flex h-[300px] items-center justify-center md:h-[360px]">
+            {/* Image */}
+            <div className="flex h-[220px] items-center justify-center md:h-[250px]">
               <img
                 src={item.images?.[0]}
                 alt={item.title}
-                className="h-full w-full object-contain"
+                className="h-[160px] w-[160px] object-contain md:h-[190px] md:w-[190px]"
               />
             </div>
 
-        
-
-            <div className="mx-auto mt-10 max-w-[350px]">
-              <p className="mb-2 text-[10px] uppercase tracking-[0.28em] text-gray-500">
-                {item.category?.replaceAll("-", " ") || "Collection"}    
+            {/* Product Info */}
+            <div className="mx-auto max-w-[280px]">
+              <p className="mb-1 text-[9px] uppercase tracking-[0.22em] text-gray-500">
+                {item.category?.replaceAll("-", " ") || "Collection"}
               </p>
 
-              <h3 className="text-[13px] font-semibold uppercase tracking-[0.1em]">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em]">
                 {item.title}
               </h3>
 
-              <p className="mt-2 line-clamp-1 text-[13px] text-gray-600">
+              <p className="mt-1 line-clamp-1 text-[11px] text-gray-600">
                 {item.description || item.desc}
               </p>
 
-              <p className="mt-1 text-[12px] text-gray-700">
+              <p className="mt-1 text-[10px] text-gray-700">
                 Click &amp; Collect
               </p>
 
-              <p className="mt-1 text-[13px] font-semibold">
+              <p className="mt-1 text-[11px] font-semibold">
                 ${Number(item.price).toLocaleString()}
               </p>
 
@@ -137,7 +132,7 @@ export default function ProductCarousel({
                   e.stopPropagation();
                   openProduct(item);
                 }}
-                className="mt-12 text-[13px] transition-opacity hover:opacity-50"
+                className="mt-5 text-[11px] hover:opacity-50"
               >
                 View details <span className="ml-1">›</span>
               </button>
@@ -146,10 +141,11 @@ export default function ProductCarousel({
         ))}
       </div>
 
+      {/* Next */}
       <button
         onClick={scroll}
         aria-label="Next"
-        className="absolute right-8 top-[47%] text-xl font-light hover:opacity-50"
+        className="absolute right-4 top-[48%] text-lg font-light hover:opacity-50"
       >
         →
       </button>
