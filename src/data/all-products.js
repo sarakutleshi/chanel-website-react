@@ -11,7 +11,7 @@ const allProducts = [
     colors: ["Ivory", "Black", "Beige"],
     sizes: ["XS", "S", "M", "L"],
     tag: "New",
-    img: "https://www.chanel.com/images/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_756/FSH-1695807075141-p74332c67158nq401.jpg",
+    img: "https://i.pinimg.com/736x/a2/7d/0a/a27d0a3621730405652c7da1346b565d.jpg",
     desc: "Iconic bouclé tweed jacket with gilt chain trim and interlocked CC buttons.",
   },
   {
@@ -24,7 +24,7 @@ const allProducts = [
     colors: ["Black", "Camel"],
     sizes: ["XS", "S", "M", "L", "XL"],
     tag: null,
-    img: "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/1200x/ff/df/b0/ffdfb00ae6c3287b0e7b344f7d21c1be.jpg",
     desc: "A structured silhouette in double-faced wool with signature Chanel chain lining.",
   },
   {
@@ -37,7 +37,7 @@ const allProducts = [
     colors: ["Ivory", "Blush", "Black"],
     sizes: ["XS", "S", "M", "L"],
     tag: null,
-    img: "https://assets.vogue.com/photos/62274b75921b9eb00286c727/master/w_1920,c_limit/00004-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/1200x/08/3a/4a/083a4a5a1f8716f76e2afa81232dd275.jpg",
     desc: "Fluid pleated skirt in lightweight crepe — effortlessly elegant in motion.",
   },
   {
@@ -50,7 +50,7 @@ const allProducts = [
     colors: ["Ivory", "Black"],
     sizes: ["XS", "S", "M"],
     tag: "Exclusive",
-    img: "https://assets.vogue.com/photos/62274b7cf1c0bf717ac69a97/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/1200x/e5/fd/62/e5fd6211333a93af3e9982a0faef7d6e.jpg",
     desc: "Hand-embroidered silk gown with thousands of individually placed crystals.",
   },
   {
@@ -63,7 +63,7 @@ const allProducts = [
     colors: ["Black", "Ivory", "Navy"],
     sizes: ["XS", "S", "M", "L", "XL"],
     tag: null,
-    img: "https://assets.vogue.com/photos/62274b83921b9eb00286c729/master/w_1920,c_limit/00009-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/736x/56/14/1d/56141df11a6c11dbd67af8f3194a9b76.jpg",
     desc: "A column silhouette in fine merino ribbed knit, minimalist and endlessly wearable.",
   },
   {
@@ -76,7 +76,7 @@ const allProducts = [
     colors: ["Ivory", "Black", "Beige"],
     sizes: ["XS", "S", "M", "L"],
     tag: null,
-    img: "https://assets.vogue.com/photos/62274b881c9add4585407320/master/w_1920,c_limit/00012-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/1200x/79/03/5d/79035d42d2b4cfaf549ed3455565a3f3.jpg",
     desc: "Matching jacket and trousers in a graphic houndstooth tweed with contrast trim.",
   },
 

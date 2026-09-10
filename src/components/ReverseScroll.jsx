@@ -12,11 +12,11 @@ const images = [
     "https://www.chanel.com/puls-img/c_limit,w_768/q_auto:good,f_autoplus,dpr_1/1666769599758-15954065429011912chaneladeauvillecollectionparticulieredjpgmaxmdmdjpg_1562x974.jpg",
     "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666770140873-1598436067925e3017cgarnierphilippeelleginalollobrigidachezchanelen1964goodjpgmaxlglgjpg_2002x3000.jpg",
     "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666771629238-1598436390994pa200500211jpgmaxlglgjpg_3000x2271.jpg",
-    "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666771520614-1595426487361pa198400631djpgmaxmdmdjpg_1363x974.jpg",
+    "https://i.pinimg.com/1200x/58/7c/09/587c0974b033c422681d25d1764f717f.jpg",
     "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666770394823-1595428087884201801karldjpgmaxmdmdjpg_1272x974.jpg",
   ],
   [
-    "https://i.pinimg.com/736x/c2/46/d1/c246d1c4a62ad332b401dbf5f70f09bf.jpg",
+    "https://i.pinimg.com/736x/0d/f8/46/0df846658321ede7fde28d52c9907159.jpg",
     "https://i.pinimg.com/736x/c5/f3/b6/c5f3b6a752e37d54da7619414241f08d.jpg",
     "https://i.pinimg.com/1200x/5e/a8/a7/5ea8a7c9953cc09bf99bb8c27faaab64.jpg",
     "https://i.pinimg.com/736x/7c/07/a3/7c07a39b87e5270c63189b1870b0bf79.jpg",

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import allProducts from "../data/all-products";
 import SplitSlider from "../components/SplitSlider";
 import FeaturedProducts from "../components/FeaturedProducts";
-import ReverseScroll from "../components/ReverseScroll";
+import GalerieSection from "../components/GalerieSection";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATIC DATA
@@ -225,7 +225,7 @@ export default function Home() {
 
       <SpiritSection />
 
-      <ReverseScroll />
+      <GalerieSection />
 
       <Footer />
     </>
