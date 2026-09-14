@@ -51,7 +51,7 @@ const carouselItems = [
     title: "Inimitable Mascara",
     sub: "Multi-Dimensional Volume",
     desc: "Structured lashes with volume, length and lasting intensity.",
-  }
+  },
 ];
 
 const skincareProducts = [
@@ -144,10 +144,7 @@ function MakeupCard({ item }) {
 
 function SectionLabel({ id, children }) {
   return (
-    <div
-      id={id}
-      className="flex items-center gap-6 px-6 py-10 md:px-16"
-    >
+    <div id={id} className="flex items-center gap-6 px-6 py-10 md:px-16">
       <div className="h-px flex-1 bg-neutral-200" />
       <h2 className="whitespace-nowrap font-serif text-[14px] font-light uppercase tracking-[0.28em] text-neutral">
         {children}
@@ -207,7 +204,6 @@ export default function MakeupSkincare() {
           </h1>
           <p className="mt-6  text-xl font-light italic leading-relaxed text-neutral-600 md:text-2xl">
             Express. Enhance. Empower.
-          
           </p>
           <p className="mt-5 text-[14px] leading-7 text-neutral-500">
             Unleash your inner artist — from subtle enhancements to bold
@@ -243,8 +239,6 @@ export default function MakeupSkincare() {
           />
         </div>
       </div>
-
-
 
       {/* Skincare ritual — ingredient-style product carousel */}
       <section
@@ -300,6 +294,54 @@ export default function MakeupSkincare() {
         </div>
       </section>
 
+      {/* Heritage & labs */}
+      <section className="px-6 py-6 md:px-10 ">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid gap-14 pb-16 md:grid-cols-2 md:gap-20">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
+                Heritage
+              </p>
+              <h2 className="mt-4 font-serif text-3xl font-light leading-tight md:text-4xl">
+                A century of
+                <br />
+                feminine beauty
+              </h2>
+              <p className="mt-6 text-[14px] leading-8 text-neutral-500">
+                Since Gabrielle Chanel first liberated the modern woman, the
+                House has treated beauty as an extension of style — independent,
+                elegant, never constrained by fashion’s whims.
+              </p>
+              <p className="mt-5 text-[14px] leading-8 text-neutral-500">
+                Today that legacy lives in laboratories and ateliers where
+                chemists and creatives work side by side, turning inspiration
+                into formulas that feel as considered as a tweed jacket.
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
+                Innovation
+              </p>
+              <h2 className="mt-4 font-serif text-3xl font-light leading-tight md:text-4xl">
+                Science in
+                <br />
+                service of skin
+              </h2>
+              <p className="mt-6 text-[14px] leading-8 text-neutral-500">
+                Research at CHANEL is patient and exacting. Active ingredients
+                are studied for efficacy and sensoriality alike — because a
+                cream that works must also feel exquisite to wear.
+              </p>
+              <p className="mt-5 text-[14px] leading-8 text-neutral-500">
+                From the fields of Grasse to the laboratories of Pantin, every
+                step is guided by one question: how can beauty feel more
+                intelligent, more intimate, more lasting?
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Quote */}
       <div className="bg-neutral-900 px-6 py-24 text-center md:px-16">
         <div className="mx-auto max-w-2xl">
@@ -339,20 +381,20 @@ export default function MakeupSkincare() {
             Discover the Beauty Within
           </h2>
           <p className="mt-6 text-[14px] leading-8 text-neutral-500">
-            CHANEL skincare is rooted in the science of the camomille de Grasse —
-            a flower cultivated exclusively for the House since 1987. Its
+            CHANEL skincare is rooted in the science of the camomille de Grasse
+            — a flower cultivated exclusively for the House since 1987. Its
             remarkable properties inspire every formula in the skincare line,
             from targeted serums to deeply nourishing creams.
           </p>
           <p className="mt-5 text-[14px] leading-8 text-neutral-500">
             The LE LIFT range harnesses the anti-aging power of a concentrated
-            active ingredient derived from alfalfa, visibly firming and smoothing
-            the skin with each application.
+            active ingredient derived from alfalfa, visibly firming and
+            smoothing the skin with each application.
           </p>
           <p className="mt-5 text-[14px] leading-8 text-neutral-500">
             Beyond correction, each ritual restores radiance and comfort —
-            morning hydration, evening renewal, and the quiet luxury of skin that
-            feels as refined as it looks.
+            morning hydration, evening renewal, and the quiet luxury of skin
+            that feels as refined as it looks.
           </p>
           <a
             href="#skincare-products"
@@ -416,58 +458,6 @@ export default function MakeupSkincare() {
         </div>
       </section>
 
-
-      {/* Heritage & labs */}
-      <section className="px-6 py-6 md:px-10 bg-neutral-50">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid gap-14 border-b border-neutral-200 pb-16 md:grid-cols-2 md:gap-20">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
-                Heritage
-              </p>
-              <h2 className="mt-4 font-serif text-3xl font-light leading-tight md:text-4xl">
-                A century of
-                <br />
-                feminine beauty
-              </h2>
-              <p className="mt-6 text-[14px] leading-8 text-neutral-500">
-                Since Gabrielle Chanel first liberated the modern woman, the House
-                has treated beauty as an extension of style — independent,
-                elegant, never constrained by fashion’s whims.
-              </p>
-              <p className="mt-5 text-[14px] leading-8 text-neutral-500">
-                Today that legacy lives in laboratories and ateliers where
-                chemists and creatives work side by side, turning inspiration
-                into formulas that feel as considered as a tweed jacket.
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
-                Innovation
-              </p>
-              <h2 className="mt-4 font-serif text-3xl font-light leading-tight md:text-4xl">
-                Science in
-                <br />
-                service of skin
-              </h2>
-              <p className="mt-6 text-[14px] leading-8 text-neutral-500">
-                Research at CHANEL is patient and exacting. Active ingredients
-                are studied for efficacy and sensoriality alike — because a
-                cream that works must also feel exquisite to wear.
-              </p>
-              <p className="mt-5 text-[14px] leading-8 text-neutral-500">
-                From the fields of Grasse to the laboratories of Pantin, every
-                step is guided by one question: how can beauty feel more
-                intelligent, more intimate, more lasting?
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
       {/* Boutique beauty services */}
       <section className="px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-[900px] text-center">
@@ -479,8 +469,8 @@ export default function MakeupSkincare() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-8 text-neutral-500">
             Visit a CHANEL boutique for a private consultation with a beauty
-            advisor. Discover shades matched to your complexion, skincare tailored
-            to your concerns, and techniques you can recreate at home.
+            advisor. Discover shades matched to your complexion, skincare
+            tailored to your concerns, and techniques you can recreate at home.
           </p>
           <p className="mx-auto mt-5 max-w-2xl text-[14px] leading-8 text-neutral-500">
             Appointments include complexion analysis, product sampling and a

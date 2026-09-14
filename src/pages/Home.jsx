@@ -30,20 +30,20 @@ const FEATURED_IDS = [
 
 const SPIRIT_SLIDES = [
   {
-    src: "https://www.therow.com/cdn/shop/files/000568680003_v2_b90ddb36-4cb6-41e1-98ef-07febcdf3cef.jpg?v=1739561831",
-    caption: "Fall Collection",
+    src: "https://i.pinimg.com/1200x/ef/53/6e/ef536e9b698d23c75fe11db05eae2dc7.jpg",
+    caption: "Boutique in Paris",
   },
   {
-    src: "https://i.pinimg.com/1200x/eb/fe/45/ebfe457d38f58088d8ce5f389101c66b.jpg",
-    caption: "Fine Jewelry",
+    src: "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666771629238-1598436390994pa200500211jpgmaxlglgjpg_3000x2271.jpg",
+    caption: "Chanel Haute Couture",
   },
   {
-    src: "https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg",
-    caption: "Haute Couture",
+    src: "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666769979453-15954241665431945americansoldiersdcropjpgmaxmdmdjpg_1128x974.jpg",
+    caption: "Chanel in the U.S.",
   },
   {
-    src: "https://i.pinimg.com/1200x/cb/0c/03/cb0c03d470708243623c08fced11e87c.jpg",
-    caption: "Eyewear 2026",
+    src: "https://i.pinimg.com/736x/0d/f8/46/0df846658321ede7fde28d52c9907159.jpg",
+    caption: "Chanel Art Exhibition",
   },
 ];
 
@@ -79,6 +79,8 @@ function SpiritSection() {
   const [hovering, setHovering] = useState(false);
   const ref = useRef(null);
 
+  const currentSlide = SPIRIT_SLIDES[active] ?? SPIRIT_SLIDES[0];
+
   const onMove = useCallback((e) => {
     if (!ref.current) return;
     const { left, width } = ref.current.getBoundingClientRect();
@@ -112,7 +114,7 @@ function SpiritSection() {
             className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-6 pb-6 pt-14 transition-opacity duration-300 ${hovering ? "opacity-100" : "opacity-0"}`}
           >
             <p className="text-[11px] uppercase tracking-[0.28em] text-white">
-              {SPIRIT_SLIDES[active].caption}
+              {currentSlide.caption}
             </p>
           </div>
         </div>

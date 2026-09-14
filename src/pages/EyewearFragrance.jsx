@@ -68,9 +68,8 @@ export default function EyewearFragrance() {
       <HeroSection {...data[1]} />
 
       <EditorialCart {...editorial[0]} />
-      <EditorialCart {...editorial[1]} reverse />
 
-         <ProductCarousel
+      <ProductCarousel
         title="Fragrance Selection"
         products={fragranceProducts}
         sectionId="fragrance-products"
@@ -78,7 +77,7 @@ export default function EyewearFragrance() {
         backLabel="Eyewear & Fragrance"
         apiUrl="https://dummyjson.com/products/search?q=fragrance"
       />
-
+      <EditorialCart {...editorial[1]} reverse />
       <ChanelBoutiques />
 
       <Footer />

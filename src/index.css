@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* ── Tailwind theme — maps font-serif / font-sans utilities ── */
 @theme {
   --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-sans: "DM Sans", ui-sans-serif, sans-serif;
@@ -10,7 +9,7 @@
   --color-chanel-off: #f5f5f5;
 }
 
-/* ── Design tokens — used by remaining legacy components ── */
+
 :root {
   --white: #ffffff;
   --off: #f5f5f5;
@@ -45,7 +44,6 @@ img {
   height: auto;
 }
 
-/* ── Subtle shared motion ── */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -61,7 +59,6 @@ img {
   animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ── .section-label — still used in Fashion.jsx ── */
 .section-label {
   display: flex;
   align-items: center;
@@ -85,7 +82,6 @@ img {
   white-space: nowrap;
 }
 
-/* ── .eyebrow-label — still used in Cart / legacy pages ── */
 .eyebrow-label {
   display: block;
   font-size: 0.65rem;
@@ -96,7 +92,6 @@ img {
   margin-bottom: 0.85rem;
 }
 
-/* ── .navbar-brand — Navbar NavLink styling ── */
 .navbar-brand {
   font-size: 0.78rem;
   font-weight: 500;
@@ -134,13 +129,12 @@ img {
   filter: hue-rotate(-60deg);
 }
 
-/* All transitions are 1 s so they catch up with the slide */
 .ss-left-img,
 .ss-right-img {
   transition: filter 1s linear;
 }
 
-/* ── Text entrance animations ── */
+
 .ss-eyebrow,
 .ss-headline,
 .ss-footer,

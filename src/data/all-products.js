@@ -1,6 +1,4 @@
-// Master product catalog — used by the Shop page, filters, and search
 const allProducts = [
-  // ── FASHION ───────────────────────────────────────────────────────
   {
     id: "tweed-jacket",
     name: "Tweed Jacket",

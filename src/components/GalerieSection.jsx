@@ -1,16 +1,16 @@
 const gallery = [
+  
   {
-    src: "https://i.pinimg.com/736x/4e/2e/96/4e2e96d6a9871f3170848140881174e8.jpg",
+    src: "https://www.chanel.com/puls-img/c_limit,w_640/q_auto:good,f_autoplus,dpr_1/1666770394823-1595428087884201801karldjpgmaxmdmdjpg_1272x974.jpg",
     alt: "Chanel shopping bag editorial",
     framed: false,
   },
   {
-    src: "https://www.chanel.com/puls-img/c_limit,w_768/q_auto:good,f_autoplus,dpr_1/1666769599758-15954065429011912chaneladeauvillecollectionparticulieredjpgmaxmdmdjpg_1562x974.jpg",
+    src: "https://i.pinimg.com/736x/7c/07/a3/7c07a39b87e5270c63189b1870b0bf79.jpg",
     alt: "Chanel boutique archive",
     framed: true,
-  },
-  {
-    src: "https://i.pinimg.com/736x/7c/ce/9d/7cce9dcebc3bc4361a246fc391f7464d.jpg",
+  },{
+    src: "https://i.pinimg.com/1200x/58/7c/09/587c0974b033c422681d25d1764f717f.jpg",
     alt: "Chanel heritage portrait",
     framed: false,
   },
@@ -35,12 +35,7 @@ export default function GalerieSection() {
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
           {gallery.map((item) => (
-            <div
-              key={item.src}
-              className={`overflow-hidden ${
-                item.framed ? "border-[3px] border-white" : ""
-              }`}
-            >
+            <div key={item.src} className={`overflow-hidden`}>
               <div className="aspect-[3/4] overflow-hidden bg-neutral-900">
                 <img
                   src={item.src}

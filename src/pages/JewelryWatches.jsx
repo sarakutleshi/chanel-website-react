@@ -78,9 +78,11 @@ export default function JewelryWatches() {
               Jewelry & Watches
             </h2>
 
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-gray-500">
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-500">
               Discover timeless creations inspired by the codes of the House,
-              where craftsmanship and elegance meet.
+              where craftsmanship and elegance meet. Each piece reflects a
+              refined balance of heritage, innovation, and contemporary design,
+              created to celebrate the enduring spirit of CHANEL.
             </p>
           </div>
 
@@ -164,7 +166,7 @@ export default function JewelryWatches() {
           src="https://i.pinimg.com/736x/3c/81/b0/3c81b0fd00da8b3f178b673047e36dc4.jpg"
           title="The Watch"
           type="Savoir-Faire"
-          description="Every CHANEL watch piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
+          description="Every CHANEL watch piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition. Each creation is shaped with meticulous attention to detail, combining timeless elegance with contemporary design. From the finest materials to the smallest finishing touches, every element reflects CHANEL’s dedication to precision, artistry, and exceptional craftsmanship."
           reverse
         />
 
@@ -200,7 +202,12 @@ export default function JewelryWatches() {
         src="https://i.pinimg.com/736x/6e/76/d1/6e76d114ecf0926853bd4e5f2fea9a42.jpg"
         title="The Jewelry"
         type="Savoir-Faire"
-        description="Every CHANEL jewelry piece is born in the ateliers of Paris, where a community of artisans, jewelers, setters, and polishers carry forward centuries of French craft tradition."
+        description="
+  Precision, character and timeless elegance come together in creations designed
+  to transcend time. Each piece reflects a commitment to exceptional craftsmanship,
+  refined details and enduring style, created for those who appreciate beauty that
+  never follows trends but defines them.
+"
       />
 
       <section id="jewelry" className="bg-white">
@@ -224,7 +231,7 @@ export default function JewelryWatches() {
         </div>
 
         <ProductCarousel
-        className="!mt-0"
+          className="!mt-0"
           title=""
           sectionId="women-jewelry"
           backPath="/"

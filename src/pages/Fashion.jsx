@@ -64,12 +64,12 @@ function ShopCard({ item }) {
   }
 
   return (
-    <article onClick={goToDetail} className="group flex cursor-pointer flex-col">
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#f4f3f0]">
+    <article onClick={goToDetail} className="group flex cursor-pointer flex-col px-10">
+      <div className="relative aspect-[3.5/4] overflow-hidden bg-[#f4f3f0] ">
         <img
           src={item.img}
           alt={item.name}
-          className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04] "
         />
 
         {item.tag && (
@@ -140,9 +140,9 @@ export default function Fashion() {
       />
 
       {/* Shop */}
-      <section id="shop" className="px-[var(--pad)] py-20 md:py-28">
+      <section id="shop" className="px-[var(--pad)] py-0 md:py-28">
         <div className="mx-auto max-w-[1400px]">
-          <div className="flex flex-col gap-8 border-b border-black/10 pb-8 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-8 border-b border-black/10 pb-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--muted)]">
                 Selection
@@ -152,7 +152,7 @@ export default function Fashion() {
               </h2>
             </div>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 ">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
@@ -170,7 +170,7 @@ export default function Fashion() {
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((item, i) => (
               <ShopCard key={item.id || item.name || i} item={item} />
             ))}
@@ -185,7 +185,7 @@ export default function Fashion() {
       </section>
 
       <section className="grid min-h-[70vh] grid-cols-1 lg:grid-cols-2">
-        <div className="relative min-h-[420px] overflow-hidden">
+        <div className="relative min-h-[520px] overflow-hidden">
           <img
             src="https://i.pinimg.com/1200x/e5/fd/62/e5fd6211333a93af3e9982a0faef7d6e.jpg"
             alt="Haute Couture craftsmanship"
@@ -193,16 +193,16 @@ export default function Fashion() {
           />
         </div>
 
-        <div className="flex flex-col justify-center bg-[#f7f6f4] px-[var(--pad)] py-16 lg:px-16 xl:px-24">
-          <p className="text-[9px] uppercase tracking-[0.28em] text-[var(--muted)]">
+        <div className="flex flex-col justify-center bg-black text-white px-[var(--pad)] py-16 lg:px-16 xl:px-24">
+          <p className="text-[9px] uppercase tracking-[0.28em]">
             Savoir-Faire
           </p>
-          <h2 className="mt-4 font-serif text-4xl font-light leading-tight tracking-wide md:text-5xl">
+          <h2 className=" font-serif text-4xl font-light leading-tight tracking-wide md:text-5xl">
             Crafted in the
             <br />
             ateliers of Paris
           </h2>
-          <p className="mt-6 max-w-md text-sm leading-7 text-[var(--muted)]">
+          <p className="mt-6 max-w-md text-sm leading-7 text-white/90">
             Every silhouette is shaped by the House’s métiers — tweed,
             embroidery, and couture finishing refined over months of meticulous
             work.
@@ -216,12 +216,12 @@ export default function Fashion() {
         </div>
       </section>
 
-      <section
+     <section
         id="services"
-        className="border-y border-black/10 px-[var(--pad)] py-16 md:py-20"
+        className="border-y border-white px-[var(--pad)] py-16 md:py-20  text-black"
       >
         <div className="mx-auto max-w-[1400px]">
-          <p className="mb-10 text-center text-[9px] uppercase tracking-[0.28em] text-[var(--muted)]">
+          <p className="mb-6 text-center text-[10px] uppercase tracking-[0.28em] ">
             Client Services
           </p>
 
@@ -239,7 +239,6 @@ export default function Fashion() {
           </div>
         </div>
       </section>
-
       <ChanelBoutiques />
       <Footer />
     </div>

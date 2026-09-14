@@ -78,7 +78,7 @@ export default function ProductCarousel({
   return (
     <section
       id={sectionId}
-      className="relative w-full overflow-hidden bg-white py-2"
+      className="relative w-full overflow-hidden bg-white py-5"
     >
       {/* Title */}
       <h2 className="mb-10 text-center text-[20px] font-medium uppercase tracking-[0.16em]">
