@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
-import EyewearHighlights from "../components/Highlights";
 import fragranceProducts from "../data/fragrance-product";
 import HeroSection from "../components/HeroSection";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
@@ -55,7 +54,6 @@ export default function EyewearFragrance() {
 
       <HeroSection {...data[0]} />
 
-      <EyewearHighlights />
 
       <ProductCarousel
         title="Eyewear Selection"

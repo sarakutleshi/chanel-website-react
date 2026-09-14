@@ -9,7 +9,6 @@ export default function ProductCard({
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  // Convert API data to the structure used by your app
   const product = {
     id: item.id,
     title: item.title,

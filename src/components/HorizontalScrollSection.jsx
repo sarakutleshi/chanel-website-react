@@ -1,10 +1,6 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Vertical scroll drives a pinned horizontal strip.
- * CSS view-timeline when supported; scroll listener fallback otherwise.
- * Pattern: https://scroll-driven-animations.style/demos/horizontal-section/css/
- */
+
 export default function HorizontalScrollSection({
   items = [],
   eyebrow = "The Collection",

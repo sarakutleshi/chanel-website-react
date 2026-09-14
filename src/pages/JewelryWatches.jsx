@@ -6,7 +6,6 @@ import HeroSection from "../components/HeroSection";
 import HeroPicture from "../assets/jewerly-hero.png";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
-import Highlights from "../components/Highlights.jsx";
 import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
 function ProductCard({ item }) {
   const navigate = useNavigate();
