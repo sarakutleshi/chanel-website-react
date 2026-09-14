@@ -8,6 +8,7 @@ export default function Navbar() {
   const { isLoggedIn, logout } = useAuth();
 
   const [isCollectionsOpen, setIsCollectionsOpen] = useState(false);
+  const [isMobileCollectionsOpen, setIsMobileCollectionsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -22,6 +23,8 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
+    if (!isCollectionsOpen && !isProfileOpen) return;
+
     const handleOutsideClick = (event) => {
       if (!event.target.closest("[data-navbar-dropdown]")) {
         setIsCollectionsOpen(false);
@@ -29,24 +32,25 @@ export default function Navbar() {
       }
     };
 
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [isCollectionsOpen, isProfileOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsCollectionsOpen(false);
       setIsProfileOpen(false);
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLogout = () => {
     logout();
 
     setIsCollectionsOpen(false);
+    setIsMobileCollectionsOpen(false);
     setIsProfileOpen(false);
     setIsMobileOpen(false);
 
@@ -55,6 +59,7 @@ export default function Navbar() {
 
   const closeMenus = () => {
     setIsCollectionsOpen(false);
+    setIsMobileCollectionsOpen(false);
     setIsProfileOpen(false);
     setIsMobileOpen(false);
   };
@@ -88,8 +93,10 @@ export default function Navbar() {
           {isLoggedIn && (
             <div className="relative mr-9" data-navbar-dropdown>
               <button
-                onClick={() => {
-                  setIsCollectionsOpen(!isCollectionsOpen);
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsCollectionsOpen((open) => !open);
                   setIsProfileOpen(false);
                 }}
                 className={`${navItem} flex items-center gap-2`}
@@ -204,8 +211,10 @@ export default function Navbar() {
           {/* PROFILE */}
           <div className="relative" data-navbar-dropdown>
             <button
-              onClick={() => {
-                setIsProfileOpen(!isProfileOpen);
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsProfileOpen((open) => !open);
                 setIsCollectionsOpen(false);
               }}
               className="flex items-center gap-2 transition-opacity hover:opacity-50"
@@ -282,14 +291,6 @@ export default function Navbar() {
                         My Profile
                       </NavLink>
 
-                      <NavLink
-                        to="/wishlist"
-                        onClick={closeMenus}
-                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
-                      >
-                        Wishlist
-                      </NavLink>
-
                       <div className="my-2 border-t border-neutral-100" />
 
                       <button
@@ -309,7 +310,8 @@ export default function Navbar() {
         {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => {
-            setIsMobileOpen(!isMobileOpen);
+            setIsMobileOpen((open) => !open);
+            setIsMobileCollectionsOpen(false);
             setIsCollectionsOpen(false);
             setIsProfileOpen(false);
           }}
@@ -355,13 +357,17 @@ export default function Navbar() {
           {isLoggedIn && (
             <div className="border-b border-neutral-200 py-3">
               <button
-                onClick={() => setIsCollectionsOpen(!isCollectionsOpen)}
+                type="button"
+                onClick={() =>
+                  setIsMobileCollectionsOpen((open) => !open)
+                }
+                aria-expanded={isMobileCollectionsOpen}
                 className="flex w-full items-center justify-between py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
               >
                 Collections
                 <svg
-                  className={`h-3 w-3 transition-transform duration-300 ${
-                    isCollectionsOpen ? "rotate-180" : ""
+                  className={`h-3 w-3 shrink-0 transition-transform duration-300 ${
+                    isMobileCollectionsOpen ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 24 24"
                   fill="none"
@@ -376,8 +382,8 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              {isCollectionsOpen && (
-                <div className="ml-3 pb-3">
+              {isMobileCollectionsOpen && (
+                <div className="ml-3 pb-3 pt-1">
                   {collections.map((item) => (
                     <NavLink
                       key={item.path}
@@ -471,14 +477,6 @@ export default function Navbar() {
                   className="block py-3 text-[10px] uppercase tracking-[0.22em]"
                 >
                   My Profile
-                </NavLink>
-
-                <NavLink
-                  to="/wishlist"
-                  onClick={closeMenus}
-                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
-                >
-                  Wishlist
                 </NavLink>
 
                 <button

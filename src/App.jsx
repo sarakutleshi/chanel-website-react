@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import SignIn from "./components/auth/SignIn";
 import Register from "./components/auth/Register";
 import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
         {/* Auth */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -77,8 +77,7 @@ export default function SignIn() {
                 </h1>
 
                 <p className="mx-auto mt-1 max-w-[270px] text-[11px] leading-5 text-neutral-500">
-                  Sign in to access your account, wishlist and your saved
-                  pieces.
+                  Sign in to access your account and saved pieces.
                 </p>
               </div>
 
