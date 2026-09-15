@@ -6,8 +6,16 @@ import { useCart } from "../context/CartContext";
 
 const STEPS = ["Delivery", "Payment", "Review"];
 
-// ── Reusable form field ───────────────────────────────────────────────────────
-function Field({ label, id, type = "text", placeholder, value, onChange, required, half }) {
+function Field({
+  label,
+  id,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  required,
+  half,
+}) {
   return (
     <div className={half ? "col-span-1" : "col-span-2"}>
       <label
@@ -30,7 +38,6 @@ function Field({ label, id, type = "text", placeholder, value, onChange, require
   );
 }
 
-// ── Step indicator ────────────────────────────────────────────────────────────
 function StepIndicator({ current }) {
   return (
     <div className="flex items-center justify-center gap-0">
@@ -45,8 +52,8 @@ function StepIndicator({ current }) {
                   done
                     ? "bg-black text-white"
                     : active
-                    ? "border-2 border-black bg-white text-black"
-                    : "border border-neutral-300 bg-white text-neutral-400"
+                      ? "border-2 border-black bg-white text-black"
+                      : "border border-neutral-300 bg-white text-neutral-400"
                 }`}
               >
                 {done ? "✓" : i + 1}
@@ -73,7 +80,6 @@ function StepIndicator({ current }) {
   );
 }
 
-// ── Order confirmed screen ────────────────────────────────────────────────────
 function OrderConfirmed({ orderRef }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-24 text-center">
@@ -107,7 +113,6 @@ function OrderConfirmed({ orderRef }) {
   );
 }
 
-// ── Main Checkout ─────────────────────────────────────────────────────────────
 export default function Checkout() {
   const { items, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
@@ -115,10 +120,9 @@ export default function Checkout() {
   const [step, setStep] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
   const [orderRef] = useState(
-    () => "CHN-" + Math.random().toString(36).slice(2, 8).toUpperCase()
+    () => "CHN-" + Math.random().toString(36).slice(2, 8).toUpperCase(),
   );
 
-  // ── Delivery form state ──
   const [delivery, setDelivery] = useState({
     firstName: "",
     lastName: "",
@@ -131,7 +135,6 @@ export default function Checkout() {
     postalCode: "",
   });
 
-  // ── Payment form state ──
   const [payment, setPayment] = useState({
     cardName: "",
     cardNumber: "",
@@ -142,7 +145,6 @@ export default function Checkout() {
   const [deliveryErrors, setDeliveryErrors] = useState({});
   const [paymentErrors, setPaymentErrors] = useState({});
 
-  // ── Redirect to bag if empty ──
   if (items.length === 0 && !confirmed) {
     return (
       <>
@@ -168,21 +170,19 @@ export default function Checkout() {
     return (e) => setPayment((prev) => ({ ...prev, [field]: e.target.value }));
   }
 
-  // ── Format card number with spaces ──
   function handleCardNumber(e) {
     const raw = e.target.value.replace(/\D/g, "").slice(0, 16);
     const formatted = raw.replace(/(.{4})/g, "$1 ").trim();
     setPayment((prev) => ({ ...prev, cardNumber: formatted }));
   }
 
-  // ── Format expiry MM/YY ──
   function handleExpiry(e) {
     const raw = e.target.value.replace(/\D/g, "").slice(0, 4);
-    const formatted = raw.length > 2 ? raw.slice(0, 2) + "/" + raw.slice(2) : raw;
+    const formatted =
+      raw.length > 2 ? raw.slice(0, 2) + "/" + raw.slice(2) : raw;
     setPayment((prev) => ({ ...prev, expiry: formatted }));
   }
 
-  // ── Validate delivery ──
   function validateDelivery() {
     const errs = {};
     if (!delivery.firstName.trim()) errs.firstName = "Required";
@@ -196,12 +196,12 @@ export default function Checkout() {
     return Object.keys(errs).length === 0;
   }
 
-  // ── Validate payment ──
   function validatePayment() {
     const errs = {};
     if (!payment.cardName.trim()) errs.cardName = "Required";
     const digits = payment.cardNumber.replace(/\s/g, "");
-    if (digits.length < 16) errs.cardNumber = "Enter a valid 16-digit card number";
+    if (digits.length < 16)
+      errs.cardNumber = "Enter a valid 16-digit card number";
     if (!payment.expiry || payment.expiry.length < 5) errs.expiry = "Required";
     if (!payment.cvv || payment.cvv.length < 3) errs.cvv = "Required";
     setPaymentErrors(errs);
@@ -233,7 +233,6 @@ export default function Checkout() {
     <>
       <Navbar />
 
-      {/* Header */}
       <div className="border-b border-neutral-200 px-6 py-10 text-center md:px-16">
         <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-neutral-400">
           CHANEL
@@ -246,11 +245,7 @@ export default function Checkout() {
 
       <div className="mx-auto max-w-[1100px] px-6 py-14 md:px-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_380px]">
-
-          {/* ── Left: Form area ── */}
           <div>
-
-            {/* ── STEP 0: Delivery ── */}
             {step === 0 && (
               <section>
                 <h2 className="mb-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
@@ -258,43 +253,73 @@ export default function Checkout() {
                 </h2>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-8">
                   <Field
-                    label="First Name" id="firstName" placeholder="Gabrielle"
-                    value={delivery.firstName} onChange={setDeliveryField("firstName")}
-                    required half
-                  />
-                  <Field
-                    label="Last Name" id="lastName" placeholder="Chanel"
-                    value={delivery.lastName} onChange={setDeliveryField("lastName")}
-                    required half
-                  />
-                  <Field
-                    label="Email" id="email" type="email" placeholder="gabrielle@chanel.com"
-                    value={delivery.email} onChange={setDeliveryField("email")}
+                    label="First Name"
+                    id="firstName"
+                    placeholder="Gabrielle"
+                    value={delivery.firstName}
+                    onChange={setDeliveryField("firstName")}
                     required
-                  />
-                  <Field
-                    label="Phone" id="phone" type="tel" placeholder="+33 1 00 00 00 00"
-                    value={delivery.phone} onChange={setDeliveryField("phone")}
                     half
                   />
                   <Field
-                    label="Address" id="address" placeholder="31 Rue Cambon"
-                    value={delivery.address} onChange={setDeliveryField("address")}
+                    label="Last Name"
+                    id="lastName"
+                    placeholder="Chanel"
+                    value={delivery.lastName}
+                    onChange={setDeliveryField("lastName")}
+                    required
+                    half
+                  />
+                  <Field
+                    label="Email"
+                    id="email"
+                    type="email"
+                    placeholder="gabrielle@chanel.com"
+                    value={delivery.email}
+                    onChange={setDeliveryField("email")}
                     required
                   />
                   <Field
-                    label="Apartment / Suite" id="apartment" placeholder="Optional"
-                    value={delivery.apartment} onChange={setDeliveryField("apartment")}
+                    label="Phone"
+                    id="phone"
+                    type="tel"
+                    placeholder="+33 1 00 00 00 00"
+                    value={delivery.phone}
+                    onChange={setDeliveryField("phone")}
+                    half
                   />
                   <Field
-                    label="City" id="city" placeholder="Paris"
-                    value={delivery.city} onChange={setDeliveryField("city")}
-                    required half
+                    label="Address"
+                    id="address"
+                    placeholder="31 Rue Cambon"
+                    value={delivery.address}
+                    onChange={setDeliveryField("address")}
+                    required
                   />
                   <Field
-                    label="Postal Code" id="postalCode" placeholder="75001"
-                    value={delivery.postalCode} onChange={setDeliveryField("postalCode")}
-                    required half
+                    label="Apartment / Suite"
+                    id="apartment"
+                    placeholder="Optional"
+                    value={delivery.apartment}
+                    onChange={setDeliveryField("apartment")}
+                  />
+                  <Field
+                    label="City"
+                    id="city"
+                    placeholder="Paris"
+                    value={delivery.city}
+                    onChange={setDeliveryField("city")}
+                    required
+                    half
+                  />
+                  <Field
+                    label="Postal Code"
+                    id="postalCode"
+                    placeholder="75001"
+                    value={delivery.postalCode}
+                    onChange={setDeliveryField("postalCode")}
+                    required
+                    half
                   />
                   <div className="col-span-2">
                     <label
@@ -309,14 +334,23 @@ export default function Checkout() {
                       onChange={setDeliveryField("country")}
                       className="w-full border-b border-neutral-300 bg-transparent py-3 text-sm text-neutral-800 outline-none focus:border-black"
                     >
-                      {["France", "United Kingdom", "United States", "Germany", "Italy", "Spain", "Japan", "UAE", "Other"].map(
-                        (c) => <option key={c}>{c}</option>
-                      )}
+                      {[
+                        "France",
+                        "United Kingdom",
+                        "United States",
+                        "Germany",
+                        "Italy",
+                        "Spain",
+                        "Japan",
+                        "UAE",
+                        "Other",
+                      ].map((c) => (
+                        <option key={c}>{c}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
 
-                {/* Delivery errors summary */}
                 {Object.keys(deliveryErrors).length > 0 && (
                   <p className="mt-6 text-[12px] text-red-500">
                     Please fill in all required fields.
@@ -325,14 +359,12 @@ export default function Checkout() {
               </section>
             )}
 
-            {/* ── STEP 1: Payment ── */}
             {step === 1 && (
               <section>
                 <h2 className="mb-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
                   Payment Details
                 </h2>
 
-                {/* Card type icons */}
                 <div className="mb-8 flex items-center gap-3">
                   {["VISA", "MC", "AMEX"].map((brand) => (
                     <span
@@ -342,7 +374,9 @@ export default function Checkout() {
                       {brand}
                     </span>
                   ))}
-                  <span className="text-[11px] text-neutral-400">· Secure 256-bit SSL</span>
+                  <span className="text-[11px] text-neutral-400">
+                    · Secure 256-bit SSL
+                  </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-x-6 gap-y-8">
@@ -358,7 +392,9 @@ export default function Checkout() {
                       className="w-full border-b border-neutral-300 bg-transparent py-3 text-sm text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-black"
                     />
                     {paymentErrors.cardName && (
-                      <p className="mt-1 text-[11px] text-red-500">{paymentErrors.cardName}</p>
+                      <p className="mt-1 text-[11px] text-red-500">
+                        {paymentErrors.cardName}
+                      </p>
                     )}
                   </div>
 
@@ -375,7 +411,9 @@ export default function Checkout() {
                       className="w-full border-b border-neutral-300 bg-transparent py-3 text-sm text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-black"
                     />
                     {paymentErrors.cardNumber && (
-                      <p className="mt-1 text-[11px] text-red-500">{paymentErrors.cardNumber}</p>
+                      <p className="mt-1 text-[11px] text-red-500">
+                        {paymentErrors.cardNumber}
+                      </p>
                     )}
                   </div>
 
@@ -392,7 +430,9 @@ export default function Checkout() {
                       className="w-full border-b border-neutral-300 bg-transparent py-3 text-sm text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-black"
                     />
                     {paymentErrors.expiry && (
-                      <p className="mt-1 text-[11px] text-red-500">{paymentErrors.expiry}</p>
+                      <p className="mt-1 text-[11px] text-red-500">
+                        {paymentErrors.expiry}
+                      </p>
                     )}
                   </div>
 
@@ -414,25 +454,26 @@ export default function Checkout() {
                       className="w-full border-b border-neutral-300 bg-transparent py-3 text-sm text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-black"
                     />
                     {paymentErrors.cvv && (
-                      <p className="mt-1 text-[11px] text-red-500">{paymentErrors.cvv}</p>
+                      <p className="mt-1 text-[11px] text-red-500">
+                        {paymentErrors.cvv}
+                      </p>
                     )}
                   </div>
                 </div>
 
                 <p className="mt-8 text-[11px] leading-5 text-neutral-400">
-                  Your payment information is encrypted and never stored on our servers.
+                  Your payment information is encrypted and never stored on our
+                  servers.
                 </p>
               </section>
             )}
 
-            {/* ── STEP 2: Review ── */}
             {step === 2 && (
               <section>
                 <h2 className="mb-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-700">
                   Review Your Order
                 </h2>
 
-                {/* Delivery summary */}
                 <div className="mb-8 border border-neutral-200 p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-700">
@@ -459,7 +500,6 @@ export default function Checkout() {
                   </p>
                 </div>
 
-                {/* Payment summary */}
                 <div className="mb-8 border border-neutral-200 p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <h3 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-700">
@@ -475,11 +515,11 @@ export default function Checkout() {
                   <p className="text-[13px] text-neutral-600">
                     {payment.cardName}
                     <br />
-                    •••• •••• •••• {payment.cardNumber.replace(/\s/g, "").slice(-4)}
+                    •••• •••• ••••{" "}
+                    {payment.cardNumber.replace(/\s/g, "").slice(-4)}
                   </p>
                 </div>
 
-                {/* Items */}
                 <div className="border border-neutral-200 p-6">
                   <h3 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-700">
                     Items ({items.length})
@@ -498,7 +538,8 @@ export default function Checkout() {
                           </p>
                           {item.color && (
                             <p className="text-[11px] text-neutral-400">
-                              {item.color}{item.size ? ` · ${item.size}` : ""}
+                              {item.color}
+                              {item.size ? ` · ${item.size}` : ""}
                             </p>
                           )}
                           <p className="text-[12px] text-neutral-500">
@@ -514,13 +555,12 @@ export default function Checkout() {
                 </div>
 
                 <p className="mt-6 text-[11px] leading-6 text-neutral-400">
-                  By placing your order, you agree to CHANEL&apos;s terms and conditions
-                  and privacy policy.
+                  By placing your order, you agree to CHANEL&apos;s terms and
+                  conditions and privacy policy.
                 </p>
               </section>
             )}
 
-            {/* ── Navigation buttons ── */}
             <div className="mt-10 flex items-center gap-4">
               {step > 0 && (
                 <button
@@ -539,15 +579,16 @@ export default function Checkout() {
             </div>
           </div>
 
-          {/* ── Right: Order summary ── */}
           <aside className="lg:sticky lg:top-20 lg:self-start">
             <div className="bg-neutral-50 px-7 py-8">
-              <h2 className="mb-6 font-serif text-lg font-light">Order Summary</h2>
+              <h2 className="mb-6 font-serif text-lg font-light">
+                Order Summary
+              </h2>
 
               <ul className="flex flex-col gap-4">
                 {items.map((item) => {
                   const numeric = parseFloat(
-                    String(item.price).replace(/[^0-9.]/g, "")
+                    String(item.price).replace(/[^0-9.]/g, ""),
                   );
                   const line = isNaN(numeric)
                     ? item.price
@@ -575,10 +616,14 @@ export default function Checkout() {
                           {item.name}
                         </p>
                         {item.size && (
-                          <p className="text-[10px] text-neutral-400">{item.size}</p>
+                          <p className="text-[10px] text-neutral-400">
+                            {item.size}
+                          </p>
                         )}
                       </div>
-                      <p className="text-[12px] text-neutral-700 tabular-nums">{line}</p>
+                      <p className="text-[12px] text-neutral-700 tabular-nums">
+                        {line}
+                      </p>
                     </li>
                   );
                 })}
@@ -589,7 +634,11 @@ export default function Checkout() {
               <div className="flex justify-between text-[13px] text-neutral-600">
                 <span>Subtotal</span>
                 <span className="tabular-nums">
-                  ${totalPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  $
+                  {totalPrice.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
                 </span>
               </div>
               <div className="mt-2 flex justify-between text-[12px] text-neutral-400">
@@ -602,7 +651,11 @@ export default function Checkout() {
               <div className="flex justify-between text-[15px] font-semibold text-neutral-900">
                 <span>Total</span>
                 <span className="tabular-nums">
-                  ${totalPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  $
+                  {totalPrice.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
                 </span>
               </div>
             </div>

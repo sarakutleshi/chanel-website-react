@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { useCart } from "../context/CartContext";
-import allProducts from "../data/all-products";
-import fashionLooks from "../data/fashion-looks";
-import HeroSection from "../components/HeroSection";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
+import { useCart } from "../context/CartContext.jsx";
+import allProducts from "../data/all-products.js";
+import fashionLooks from "../data/fashion-looks.js";
+import HeroSection from "../components/HeroSection.jsx";
 import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
 import HorizontalScrollSection from "../components/HorizontalScrollSection.jsx";
 

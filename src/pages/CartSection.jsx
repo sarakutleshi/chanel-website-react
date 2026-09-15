@@ -6,7 +6,6 @@ import { useCart } from "../context/CartContext";
 export default function Cart() {
   const { items, removeFromCart, updateQty, totalPrice } = useCart();
 
-  // ── Empty state ────────────────────────────────────────────────────────────
   if (items.length === 0) {
     return (
       <>
@@ -47,12 +46,10 @@ export default function Cart() {
     );
   }
 
-  // ── Filled cart ────────────────────────────────────────────────────────────
   return (
     <>
       <Navbar />
 
-      {/* Page title */}
       <div className="border-b border-neutral-200 px-6 py-10 text-center md:px-16">
         <p className="mb-2 text-[10px] uppercase tracking-[0.35em] text-neutral-400">
           Shopping
@@ -64,10 +61,7 @@ export default function Cart() {
 
       <div className="mx-auto max-w-[1200px] px-6 py-12 md:px-10">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px]">
-
-          {/* ── Items list ── */}
           <div>
-            {/* Column headers */}
             <div className="mb-4 hidden grid-cols-[1fr_120px_100px_40px] gap-4 border-b border-neutral-200 pb-3 text-[10px] uppercase tracking-[0.18em] text-neutral-400 md:grid">
               <span>Product</span>
               <span className="text-center">Quantity</span>
@@ -78,7 +72,7 @@ export default function Cart() {
             <ul className="flex flex-col divide-y divide-neutral-200">
               {items.map((item) => {
                 const numericPrice = parseFloat(
-                  String(item.price).replace(/[^0-9.]/g, "")
+                  String(item.price).replace(/[^0-9.]/g, ""),
                 );
                 const lineTotal = isNaN(numericPrice)
                   ? item.price
@@ -92,10 +86,13 @@ export default function Cart() {
                     key={item.id}
                     className="grid grid-cols-1 gap-5 py-8 sm:grid-cols-[140px_1fr] md:grid-cols-[160px_1fr_120px_100px_40px] md:gap-6 md:items-center"
                   >
-                    {/* Image */}
                     <Link
                       to="/product"
-                      state={{ product: item, backPath: "/cart", backLabel: "Bag" }}
+                      state={{
+                        product: item,
+                        backPath: "/cart",
+                        backLabel: "Bag",
+                      }}
                       className="block flex-shrink-0"
                     >
                       <div className="overflow-hidden bg-neutral-100">
@@ -106,8 +103,6 @@ export default function Cart() {
                         />
                       </div>
                     </Link>
-
-                    {/* Info */}
                     <div className="flex flex-col gap-1">
                       <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-400">
                         {item.category}
@@ -129,8 +124,6 @@ export default function Cart() {
                         {item.price}
                       </p>
                     </div>
-
-                    {/* Qty stepper */}
                     <div className="flex items-center justify-start md:justify-center">
                       <div className="flex items-center border border-neutral-300">
                         <button
@@ -154,7 +147,6 @@ export default function Cart() {
                       </div>
                     </div>
 
-                    {/* Line total */}
                     <p className="text-right text-[13px] font-light text-neutral-800 tabular-nums">
                       {lineTotal}
                     </p>
@@ -180,7 +172,6 @@ export default function Cart() {
               })}
             </ul>
 
-            {/* Continue shopping */}
             <div className="mt-8 border-t border-neutral-200 pt-6">
               <Link
                 to="/shop"
@@ -191,18 +182,15 @@ export default function Cart() {
             </div>
           </div>
 
-          {/* ── Order summary sidebar ── */}
           <aside className="lg:sticky lg:top-20 lg:self-start">
             <div className="bg-neutral-50 px-7 py-8">
               <h2 className="mb-6 font-serif text-lg font-light tracking-wide">
                 Order Summary
               </h2>
-
-              {/* Line items */}
               <ul className="flex flex-col gap-3 text-[13px] text-neutral-600">
                 {items.map((item) => {
                   const numeric = parseFloat(
-                    String(item.price).replace(/[^0-9.]/g, "")
+                    String(item.price).replace(/[^0-9.]/g, ""),
                   );
                   const line = isNaN(numeric)
                     ? item.price
@@ -212,11 +200,16 @@ export default function Cart() {
                       })}`;
 
                   return (
-                    <li key={item.id} className="flex items-baseline justify-between gap-4">
+                    <li
+                      key={item.id}
+                      className="flex items-baseline justify-between gap-4"
+                    >
                       <span className="flex-1 leading-snug">
                         {item.name}
                         {item.qty > 1 && (
-                          <em className="ml-1 not-italic opacity-60">× {item.qty}</em>
+                          <em className="ml-1 not-italic opacity-60">
+                            × {item.qty}
+                          </em>
                         )}
                       </span>
                       <span className="flex-shrink-0 tabular-nums">{line}</span>
@@ -226,8 +219,6 @@ export default function Cart() {
               </ul>
 
               <div className="my-5 h-px bg-neutral-200" />
-
-              {/* Subtotal */}
               <div className="flex items-baseline justify-between text-[14px] text-neutral-800">
                 <span>Subtotal</span>
                 <span className="tabular-nums">
@@ -245,7 +236,6 @@ export default function Cart() {
 
               <div className="my-5 h-px bg-neutral-200" />
 
-              {/* Total */}
               <div className="flex items-baseline justify-between text-[15px] font-semibold text-neutral-900">
                 <span>Total</span>
                 <span className="tabular-nums">
@@ -262,7 +252,6 @@ export default function Cart() {
                 delivery on all orders.
               </p>
 
-              {/* Checkout CTA */}
               <Link
                 to="/checkout"
                 className="mt-6 block w-full bg-black py-4 text-center text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-neutral-800"
@@ -270,14 +259,16 @@ export default function Cart() {
                 Proceed to Checkout
               </Link>
 
-              {/* Trust badges */}
               <div className="mt-6 flex flex-col gap-2">
                 {[
                   "Secure checkout",
                   "Free returns within 30 days",
                   "Complimentary gift wrapping",
                 ].map((label) => (
-                  <div key={label} className="flex items-center gap-2 text-[11px] text-neutral-500">
+                  <div
+                    key={label}
+                    className="flex items-center gap-2 text-[11px] text-neutral-500"
+                  >
                     <span className="text-black">◇</span>
                     {label}
                   </div>

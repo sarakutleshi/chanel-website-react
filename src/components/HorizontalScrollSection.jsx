@@ -57,7 +57,6 @@ export default function HorizontalScrollSection({
     >
       <div className="fashion-hs__sticky">
         <div ref={trackRef} className="fashion-hs__track">
-          {/* Intro panel */}
           <div className="fashion-hs__panel fashion-hs__panel--intro">
             <p className="text-[9px] uppercase tracking-[0.28em] text-white/60">
               {eyebrow}

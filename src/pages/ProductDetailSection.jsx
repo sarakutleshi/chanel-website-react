@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
 
-// Color → hex mapping (matches Shop page)
 const COLOR_HEX = {
   Black: "#1a1a1a",
   White: "#f5f5f5",
@@ -31,7 +30,6 @@ const COLOR_HEX = {
   Bleu: "#2c5f8a",
 };
 
-// Features shown below the add-to-bag button
 const FEATURES = [
   "Complimentary shipping on all orders",
   "Gift wrapping available at checkout",
@@ -51,7 +49,6 @@ export default function ProductDetail() {
   const [sizeError, setSizeError] = useState(false);
   const [colorError, setColorError] = useState(false);
 
-  // ── Not found ──────────────────────────────────────────────────────────────
   if (!state?.product) {
     return (
       <>
@@ -72,7 +69,6 @@ export default function ProductDetail() {
 
   const { product, backPath, backLabel } = state;
 
-  // Normalise product shape — works for both local data and API products
   const name = product.name || product.title || "";
   const description = product.desc || product.description || "";
   const img = product.img || product.images?.[0] || "";
@@ -88,7 +84,7 @@ export default function ProductDetail() {
       ? "On request"
       : typeof rawPrice === "number"
       ? `$${rawPrice.toLocaleString()}`
-      : rawPrice; // already a string like "$870"
+      : rawPrice;
 
   function handleAddToCart() {
     let valid = true;
@@ -129,7 +125,6 @@ export default function ProductDetail() {
     <>
       <Navbar />
 
-      {/* ── Breadcrumb ── */}
       <nav className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 py-5 text-[11px] text-neutral-400 md:px-10">
         <button
           onClick={() => navigate(backPath || -1)}
@@ -141,9 +136,9 @@ export default function ProductDetail() {
         <span className="max-w-[30ch] truncate text-neutral-700">{name}</span>
       </nav>
 
-      {/* ── Main layout ── */}
+     
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-6 pb-24 pt-2 md:px-10 lg:grid-cols-2 lg:gap-20">
-        {/* ── Left: Image ── */}
+    
         <div className="lg:sticky lg:top-20 lg:self-start">
           <div className="overflow-hidden bg-neutral-100">
             <img
@@ -154,33 +149,27 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* ── Right: Info ── */}
         <div className="flex flex-col pt-2">
-          {/* Category / Collection */}
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-neutral-400">
             {subcategory && <span>{subcategory}</span>}
             {subcategory && collection && <span>·</span>}
             {collection && <span>{collection}</span>}
           </div>
 
-          {/* Name */}
           <h1 className="mt-3 font-serif text-3xl font-light leading-snug text-neutral-900 md:text-4xl">
             {name}
           </h1>
 
-          {/* Price */}
           <p className="mt-4 font-serif text-2xl font-light text-neutral-900">
             {priceDisplay}
           </p>
 
           <div className="my-7 h-px bg-neutral-200" />
 
-          {/* Description */}
           <p className="text-[14px] leading-8 text-neutral-600">{description}</p>
 
           <div className="my-7 h-px bg-neutral-200" />
 
-          {/* ── Color selector ── */}
           {colors.length > 0 && (
             <div className="mb-6">
               <div className="mb-3 flex items-baseline gap-2">
@@ -215,7 +204,6 @@ export default function ProductDetail() {
             </div>
           )}
 
-          {/* ── Size selector ── */}
           {sizes.length > 1 && (
             <div className="mb-6">
               <div className="mb-3 flex items-baseline justify-between">
@@ -247,7 +235,6 @@ export default function ProductDetail() {
             </div>
           )}
 
-          {/* ── Quantity selector ── */}
           <div className="mb-8">
             <span className="mb-3 block text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-700">
               Quantity
@@ -274,7 +261,6 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {/* ── Add to Bag / View Bag ── */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               onClick={handleAddToCart}
@@ -294,7 +280,6 @@ export default function ProductDetail() {
             </Link>
           </div>
 
-          {/* ── Features ── */}
           <div className="mt-8 border-t border-neutral-200 pt-7">
             <ul className="flex flex-col gap-3">
               {FEATURES.map((feat) => (
@@ -308,7 +293,6 @@ export default function ProductDetail() {
         </div>
       </div>
 
-      {/* ── Editorial strip ── */}
       <section className="bg-neutral-50 px-6 py-20 text-center md:px-16">
         <div className="mx-auto max-w-2xl">
           <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-neutral-500">

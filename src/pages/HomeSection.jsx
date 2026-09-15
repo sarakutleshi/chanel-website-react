@@ -7,12 +7,8 @@ import SplitSlider from "../components/SplitSlider";
 import FeaturedProducts from "../components/FeaturedProducts";
 import AtelierSection from "../components/AtelierSection";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STATIC DATA
-// ─────────────────────────────────────────────────────────────────────────────
-
 const TICKER = [
-  "New — Fall–Winter 2024 Collection",
+  "New — Fall–Winter 2026 Collection",
   "Complimentary worldwide shipping",
   "Free returns within 30 days",
   "New — Eyewear 2026",
@@ -69,10 +65,6 @@ const CATEGORIES = [
     img: "https://i.pinimg.com/736x/86/81/a8/8681a8244aaffbe534d40e0cb1370db2.jpg",
   },
 ];
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SPIRIT SECTION  (mouse-tracking slideshow)
-// ─────────────────────────────────────────────────────────────────────────────
 
 function SpiritSection() {
   const [active, setActive] = useState(0);
@@ -161,11 +153,7 @@ function SpiritSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// PAGE
-// ─────────────────────────────────────────────────────────────────────────────
-
-export default function Home() {
+export default function HomeSection() {
   const featured = allProducts.filter((p) => FEATURED_IDS.includes(p.id));
 
   return (

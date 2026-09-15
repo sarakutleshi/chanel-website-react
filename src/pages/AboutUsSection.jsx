@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 import React from "react";
-import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
+import EditorialCart from "../components/eyewear-fragrance/EditorialCart.jsx";
 import LocationForm from "../components/LocationForm.jsx";
-import ReverseScroll from "../components/ReverseScroll";
+import ReverseScroll from "../components/ReverseScroll.jsx";
 
 const images = {
   first:
