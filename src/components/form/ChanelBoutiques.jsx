@@ -1,9 +1,9 @@
-import chanelBuilding from "../assets/chanel-boutique.png";
+import chanelBuilding from "../../assets/chanel-boutique.png";
 
 function ChanelBoutiques() {
 return (
 <>
-     <section className="bg-[#F9F9F9]">
+     <section className="bg-white/20 border-t border-b border-black/20">
             <div className="mx-auto flex min-h-[500px] max-w-7xl items-center justify-between px-10 lg:px-20">
         
               <div className="max-w-xl">

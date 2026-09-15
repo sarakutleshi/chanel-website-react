@@ -16,7 +16,7 @@ const gallery = [
   },
 ];
 
-export default function AtelierSection() {
+export default function AtelierForm() {
   return (
     <section className="bg-black text-white">
       <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-10 md:py-24 lg:px-16">

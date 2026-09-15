@@ -3,9 +3,8 @@ import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import allProducts from "../data/all-products";
-import SplitSlider from "../components/SplitSlider";
-import FeaturedProducts from "../components/FeaturedProducts";
-import AtelierSection from "../components/AtelierSection";
+import SplitSlider from "../components/form/SplitSlider";
+import AtelierForm from "../components/form/AtelierForm";
 
 const TICKER = [
   "New — Fall–Winter 2026 Collection",
@@ -213,7 +212,7 @@ export default function HomeSection() {
         </div>
       </section>
 
-      <AtelierSection />
+      <AtelierForm />
 
       <SpiritSection />
 

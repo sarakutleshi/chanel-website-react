@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../components/form/HeroForm.jsx";
 import HeroPicture from "../assets/jewerly-hero.png";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
-import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
+import ChanelBoutiques from "../components/form/ChanelBoutiques.jsx";
 function ProductCard({ item }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();

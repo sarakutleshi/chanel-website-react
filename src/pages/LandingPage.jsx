@@ -7,7 +7,6 @@ export default function Dashboard() {
     <>
       <Navbar />
 
-      {/* Full-bleed brand hero — one composition */}
       <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-black text-white">
         <img
           src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=2200&q=90"

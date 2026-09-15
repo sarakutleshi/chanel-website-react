@@ -1,4 +1,4 @@
-export default function HeroSection({
+export default function HeroForm({
   src,
   uppertitle,
   title,

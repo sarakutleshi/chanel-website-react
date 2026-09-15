@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // Keep login state after page refresh
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
@@ -13,7 +13,6 @@ export function AuthProvider({ children }) {
   const login = (userData = null) => {
     localStorage.setItem("isLoggedIn", "true");
 
-    // Optional: save user information
     if (userData) {
       localStorage.setItem("user", JSON.stringify(userData));
     }

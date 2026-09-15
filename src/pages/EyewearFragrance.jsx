@@ -2,9 +2,9 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
 import fragranceProducts from "../data/fragrance-product";
-import HeroSection from "../components/HeroSection";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
-import ChanelBoutiques from "../components/ChanelBoutiques";
+import ChanelBoutiques from "../components/form/ChanelBoutiques";
+import HeroForm from "../components/form/HeroForm";
 
 const data = [
   {
@@ -52,8 +52,7 @@ export default function EyewearFragrance() {
     <>
       <Navbar />
 
-      <HeroSection {...data[0]} />
-
+      <HeroForm {...data[0]} />
 
       <ProductCarousel
         title="Eyewear Selection"
@@ -63,7 +62,7 @@ export default function EyewearFragrance() {
         apiUrl="https://dummyjson.com/products/category/sunglasses"
       />
 
-      <HeroSection {...data[1]} />
+      <HeroForm {...data[1]} />
 
       <EditorialCart {...editorial[0]} />
 

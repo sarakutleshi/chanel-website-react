@@ -5,9 +5,9 @@ import Footer from "../components/Footer.jsx";
 import { useCart } from "../context/CartContext.jsx";
 import allProducts from "../data/all-products.js";
 import fashionLooks from "../data/fashion-looks.js";
-import HeroSection from "../components/HeroSection.jsx";
-import ChanelBoutiques from "../components/ChanelBoutiques.jsx";
-import HorizontalScrollSection from "../components/HorizontalScrollSection.jsx";
+import HeroForm from "../components/form/HeroForm.jsx";
+import ChanelBoutiques from "../components/form/ChanelBoutiques.jsx";
+import HorizontalScrollForm from "../components/form/HorizontalScrollForm.jsx";
 
 const fashionProducts = allProducts.filter((p) => p.category === "Fashion");
 const CATEGORIES = ["All", "Ready-to-Wear", "Outerwear", "Haute Couture"];
@@ -122,7 +122,7 @@ export default function Fashion() {
     <div className="min-h-screen overflow-x-clip bg-white text-[var(--ink)]">
       <Navbar />
 
-      <HeroSection
+      <HeroForm
         src="https://i.pinimg.com/1200x/a9/d5/38/a9d53872488eadfeecaf20db80d7adf3.jpg"
         uppertitle="Haute Couture"
         title="Fall–Winter"
@@ -132,7 +132,7 @@ export default function Fashion() {
         fullPage
       />
 
-      <HorizontalScrollSection
+      <HorizontalScrollForm
         items={fashionLooks}
         eyebrow="Fall–Winter 2025/26"
         title="Looks"
