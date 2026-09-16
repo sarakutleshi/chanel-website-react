@@ -28,7 +28,7 @@ function Column({ srcs, reverse, columnRef }) {
     <div
       ref={columnRef}
       className={`flex flex-col gap-3 md:gap-4 ${reverse ? "column-reverse" : ""}`}
-    >
+      > 
       {srcs.map((src, index) => (
         <div key={index} className="group overflow-hidden bg-neutral-200">
           <img
@@ -75,7 +75,7 @@ export default function ReverseScroll() {
             ],
           },
           {
-            fill: "both",
+            fill: "both",  //elementi nuk kthehet menjëherë në pozicionin normal kur animation-i nuk është aktiv.
             timeline,
           },
         );
@@ -87,7 +87,7 @@ export default function ReverseScroll() {
             animation.cancel();
           });
         });
-      };
+      };  //Kur komponenti largohet nga faqja, React ekzekuton cleanup.
     }
 
     reverseColumns.forEach((column) => {
@@ -110,7 +110,7 @@ export default function ReverseScroll() {
       if (rightRef.current) {
         rightRef.current.style.transform = `translateY(${-offset}px)`;
       }
-      ticking = false;
+      ticking = false;  //Ky variable përdoret për të mos ekzekutuar update() shumë herë njëkohësisht.
     };
 
     const onScroll = () => {

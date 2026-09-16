@@ -5,8 +5,8 @@ import "swiper/css";
 
 const SLIDES = [
   {
-    leftImg:  "https://i.pinimg.com/736x/4b/f8/a4/4bf8a4698481022fc097df6751c5ea1c.jpg",
-    rightImg: "https://assets.vogue.com/photos/62274b72c0d4fbe60f143e7e/master/w_1920,c_limit/00001-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    leftImg:  "https://i.pinimg.com/736x/e6/6c/45/e66c454d02c2fe056719f99eec6d96c9.jpg",
+    rightImg: "https://i.pinimg.com/736x/c1/97/30/c19730fa348c88009e85d197612237f9.jpg",
     eyebrow:  "Fall–Winter 2024",
     titleA:   "A New",
     titleB:   "Collection.",
@@ -16,8 +16,8 @@ const SLIDES = [
     href:     "/fashion",
   },
   {
-    leftImg:  "https://i.pinimg.com/736x/d6/e2/2c/d6e22c7fbdfb4b3e135e91b7554812f9.jpg",
-    rightImg: "https://i.pinimg.com/736x/71/af/4e/71af4e99ab6561d5dfbf738adc75a756.jpg",
+    leftImg:  "https://i.pinimg.com/736x/f9/54/29/f95429c05bed0f0c378a9a65ee481684.jpg",
+    rightImg: "https://i.pinimg.com/736x/98/20/10/982010f74d576ca208d5d30b80b4ceb5.jpg",
     eyebrow:  "Fine Jewelry",
     titleA:   "Timeless",
     titleB:   "Creations.",
@@ -27,7 +27,7 @@ const SLIDES = [
     href:     "/jewelry-watches",
   },
   {
-    leftImg:  "https://i.pinimg.com/vwebp/1200x/ab/f1/7a/abf17a75d816ea25ce85649b557b46a1.webp",
+    leftImg:  "https://i.pinimg.com/1200x/75/bd/4f/75bd4f3f581c710af9da0a00cba5fc78.jpg",
     rightImg: "https://i.pinimg.com/736x/62/53/84/62538407aa186cb2820528b20df07d57.jpg",
     eyebrow:  "Beauty",
     titleA:   "The Art",

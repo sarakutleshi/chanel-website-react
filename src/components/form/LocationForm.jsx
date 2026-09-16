@@ -28,7 +28,6 @@ export default function LocationForm() {
     <section className="w-full bg-black px-6 py-16 text-white md:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl">
 
-        {/* HEADER */}
         <div className="mb-10 text-center">
           <p className="mb-2 text-[9px] uppercase tracking-[0.3em] text-neutral-500">
             Visit Us
@@ -39,7 +38,6 @@ export default function LocationForm() {
           </h2>
         </div>
 
-        {/* MAP */}
         <div className="mx-auto max-w-5xl">
           <div className="h-[280px] w-full md:h-[360px]">
             <iframe
@@ -52,7 +50,6 @@ export default function LocationForm() {
             ></iframe>
           </div>
 
-          {/* LOCATIONS */}
           <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
             {locations.map((location) => (
               <div

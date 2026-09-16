@@ -49,7 +49,6 @@ export default function AboutUs() {
   return (
     <main className="bg-[#f7f6f2] text-[#111]">
       <Navbar />
-      {/* HERO */}
       <section className="px-4 pt-4 md:px-6 lg:px-8">
         <div className="mx-auto max-w-[1500px]">
           <div className="mb-7 flex items-center justify-between">
@@ -84,7 +83,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* HERO IMAGE */}
       <section className="px-4 pt-8 md:px-6 lg:px-8">
         <div className="mx-auto max-w-[1500px]">
           <div className="relative h-[55vh] min-h-[400px] overflow-hidden">
@@ -102,8 +100,6 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-
-      {/* INTRODUCTION */}
       <section className="px-4 py-12 md:px-6 md:py-14 lg:px-8">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid items-start gap-8 md:grid-cols-12">
@@ -113,8 +109,6 @@ export default function AboutUs() {
                 Who we are
               </p>
             </div>
-
-            {/* RIGHT */}
             <div className="md:col-span-9">
               <h2 className="text-2xl font-light tracking-[-0.02em] md:text-3xl">
                 We believe in creating a world where design, quality and
@@ -183,10 +177,8 @@ export default function AboutUs() {
 
       <EditorialCart {...history[1]} />
 
-      {/* PHILOSOPHY */}
-      <section className="px-4 py-12 md:px-6 md:py-14 lg:px-8">
 
-        
+      <section className="px-4 py-12 md:px-6 md:py-14 lg:px-8">
         <div className="mx-auto max-w-[1200px] border-y border-neutral-300 py-10">
           <div className="grid items-start gap-8 md:grid-cols-12">
             <div className="md:col-span-3">
@@ -222,7 +214,6 @@ export default function AboutUs() {
 
       <LocationForm />
 
-      {/* FINAL STATEMENT */}
       <section className="px-4 py-16 md:px-6 md:py-20 lg:px-8">
         <div className="mx-auto max-w-[900px] text-center">
           <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-400">

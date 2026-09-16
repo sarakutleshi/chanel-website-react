@@ -46,22 +46,22 @@ const CATEGORIES = [
   {
     to: "/fashion",
     label: "Fashion",
-    img: "https://assets.vogue.com/photos/62274b7cf1c0bf717ac69a97/master/w_1920,c_limit/00006-chanel-fall-2022-ready-to-wear-paris-credit-gorunway.jpg",
+    img: "https://i.pinimg.com/1200x/ce/ff/08/ceff081388f1761e8e0667a271810dbf.jpg",
   },
   {
     to: "/jewelry-watches",
     label: "Jewelry & Watches",
-    img: "https://i.pinimg.com/736x/d6/e2/2c/d6e22c7fbdfb4b3e135e91b7554812f9.jpg",
+    img: "https://i.pinimg.com/1200x/bf/98/1e/bf981e3766c2b709fb5b4cffb7e4067c.jpg",
   },
   {
     to: "/makeup-skincare",
     label: "Makeup & Skincare",
-    img: "https://i.pinimg.com/736x/62/53/84/62538407aa186cb2820528b20df07d57.jpg",
+    img: "https://i.pinimg.com/1200x/59/08/e9/5908e916a0fb7c01ed7794c0bd42d0d7.jpg",
   },
   {
     to: "/eyewear-fragrance",
     label: "Eyewear & Fragrance",
-    img: "https://i.pinimg.com/736x/86/81/a8/8681a8244aaffbe534d40e0cb1370db2.jpg",
+    img: "https://i.pinimg.com/736x/f3/c2/31/f3c23151b4874cbeaa85eda511e5dffb.jpg",
   },
 ];
 
@@ -193,14 +193,15 @@ export default function HomeSection() {
               <NavLink
                 key={c.to}
                 to={c.to}
-                className="group flex flex-col gap-3"
+                className="group flex flex-col gap-3 cursor-pointer transition-opacity duration-300 hover:opacity-70 "
               >
-                <div className="relative aspect-[2/3] overflow-hidden bg-neutral-100">
+                <div className="relative aspect-[5/6] overflow-hidden rounded-2xl bg-neutral-100 h-full w-full">
                   <img
                     src={c.img}
                     alt={c.label}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    className="h-auto w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                   />
+
                   <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/25" />
                 </div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-700 transition-opacity duration-300 group-hover:opacity-50">
