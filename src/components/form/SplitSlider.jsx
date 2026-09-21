@@ -5,82 +5,87 @@ import "swiper/css";
 
 const SLIDES = [
   {
-    leftImg:  "https://i.pinimg.com/736x/e6/6c/45/e66c454d02c2fe056719f99eec6d96c9.jpg",
-    rightImg: "https://i.pinimg.com/736x/c1/97/30/c19730fa348c88009e85d197612237f9.jpg",
-    eyebrow:  "Fall–Winter 2024",
-    titleA:   "A New",
-    titleB:   "Collection.",
-    chapter:  "Chapter I",
-    body:     "The Fall–Winter 2024 collection arrives as a meditation on precision and freedom — structured silhouettes softened by the finest tweeds, reimagined for a woman who moves through the world on her own terms.",
-    cta:      "Explore Fashion",
-    href:     "/fashion",
+    leftImg:
+      "https://i.pinimg.com/736x/e6/6c/45/e66c454d02c2fe056719f99eec6d96c9.jpg",
+    rightImg:
+      "https://i.pinimg.com/736x/c1/97/30/c19730fa348c88009e85d197612237f9.jpg",
+    eyebrow: "Fall–Winter 2024",
+    titleA: "A New",
+    titleB: "Collection.",
+    chapter: "Chapter I",
+    body: "The Fall–Winter 2024 collection arrives as a meditation on precision and freedom — structured silhouettes softened by the finest tweeds, reimagined for a woman who moves through the world on her own terms.",
+    cta: "Explore Fashion",
+    href: "/fashion",
   },
   {
-    leftImg:  "https://i.pinimg.com/736x/f9/54/29/f95429c05bed0f0c378a9a65ee481684.jpg",
-    rightImg: "https://i.pinimg.com/736x/98/20/10/982010f74d576ca208d5d30b80b4ceb5.jpg",
-    eyebrow:  "Fine Jewelry",
-    titleA:   "Timeless",
-    titleB:   "Creations.",
-    chapter:  "Chapter II",
-    body:     "Every CHANEL jewelry piece is born in the ateliers of Paris, where jewelers and setters carry forward centuries of French craft tradition. Each creation is designed to endure — to be worn, loved, and passed on.",
-    cta:      "Discover Jewelry",
-    href:     "/jewelry-watches",
+    leftImg:
+      "https://i.pinimg.com/736x/f9/54/29/f95429c05bed0f0c378a9a65ee481684.jpg",
+    rightImg:
+      "https://i.pinimg.com/736x/98/20/10/982010f74d576ca208d5d30b80b4ceb5.jpg",
+    eyebrow: "Fine Jewelry",
+    titleA: "Timeless",
+    titleB: "Creations.",
+    chapter: "Chapter II",
+    body: "Every CHANEL jewelry piece is born in the ateliers of Paris, where jewelers and setters carry forward centuries of French craft tradition. Each creation is designed to endure — to be worn, loved, and passed on.",
+    cta: "Discover Jewelry",
+    href: "/jewelry-watches",
   },
   {
-    leftImg:  "https://i.pinimg.com/1200x/75/bd/4f/75bd4f3f581c710af9da0a00cba5fc78.jpg",
-    rightImg: "https://i.pinimg.com/736x/62/53/84/62538407aa186cb2820528b20df07d57.jpg",
-    eyebrow:  "Beauty",
-    titleA:   "The Art",
-    titleB:   "Of Beauty.",
-    chapter:  "Chapter III",
-    body:     "From the iconic Rouge Allure to transformative serums cultivated from the camomille de Grasse — CHANEL beauty is rooted in the belief that elegance and science are not opposites, but partners.",
-    cta:      "Discover Beauty",
-    href:     "/makeup-skincare",
+    leftImg:
+      "https://i.pinimg.com/1200x/75/bd/4f/75bd4f3f581c710af9da0a00cba5fc78.jpg",
+    rightImg:
+      "https://i.pinimg.com/736x/62/53/84/62538407aa186cb2820528b20df07d57.jpg",
+    eyebrow: "Beauty",
+    titleA: "The Art",
+    titleB: "Of Beauty.",
+    chapter: "Chapter III",
+    body: "From the iconic Rouge Allure to transformative serums cultivated from the camomille de Grasse — CHANEL beauty is rooted in the belief that elegance and science are not opposites, but partners.",
+    cta: "Discover Beauty",
+    href: "/makeup-skincare",
   },
 ];
 
 export default function SplitSlider() {
-  const containerRef = useRef(null); // outer div for height reference
-  const swiperRef    = useRef(null); // swiper DOM element
-  const instanceRef  = useRef(null); // Swiper instance
+  const containerRef = useRef(null);
+  const swiperRef = useRef(null);
+  const instanceRef = useRef(null);
 
   useEffect(() => {
     if (!swiperRef.current) return;
 
     const swiper = new Swiper(swiperRef.current, {
-      direction:   "vertical",
-      loop:        false,
-      grabCursor:  true,
-      speed:       1000,
-      parallax:    true,
-      pagination:  { el: ".ss-pagination", clickable: true },
-      // built-in mousewheel off — we handle it manually so we can release on last slide
-      mousewheel:  false,
+      direction: "vertical",
+      loop: false,
+      grabCursor: true,
+      speed: 900,
+      parallax: true,
+      pagination: { el: ".ss-pagination", clickable: true },
+      mousewheel: false,
     });
 
     instanceRef.current = swiper;
 
-    // Show "Continue ↓" hint when on last slide
     const hintEl = containerRef.current?.querySelector(".ss-scroll-hint");
     const updateHint = () => {
       if (!hintEl) return;
-      hintEl.style.opacity = swiper.activeIndex === SLIDES.length - 1 ? "1" : "0";
+      hintEl.style.opacity =
+        swiper.activeIndex === SLIDES.length - 1 ? "1" : "0";
     };
     swiper.on("slideChange", updateHint);
 
     let wheelCooldown = false;
-    // How long (ms) the user must dwell on the last slide before scroll releases to page
     const DWELL_MS = 1600;
-    let lastSlideReady = false;      // becomes true after dwell timer fires
-    let dwellTimer     = null;
+    let lastSlideReady = false;
+    let dwellTimer = null;
 
-    // When Swiper lands on the last slide, start the dwell timer
     swiper.on("slideChange", () => {
       const isLast = swiper.activeIndex === SLIDES.length - 1;
       if (isLast) {
         lastSlideReady = false;
         clearTimeout(dwellTimer);
-        dwellTimer = setTimeout(() => { lastSlideReady = true; }, DWELL_MS);
+        dwellTimer = setTimeout(() => {
+          lastSlideReady = true;
+        }, DWELL_MS);
       } else {
         lastSlideReady = false;
         clearTimeout(dwellTimer);
@@ -91,37 +96,37 @@ export default function SplitSlider() {
       const el = containerRef.current;
       if (!el) return;
 
-      // Only intercept when the pointer is inside the slider
       const { left, right, top, bottom } = el.getBoundingClientRect();
       const inside =
-        e.clientX >= left && e.clientX <= right &&
-        e.clientY >= top  && e.clientY <= bottom;
+        e.clientX >= left &&
+        e.clientX <= right &&
+        e.clientY >= top &&
+        e.clientY <= bottom;
 
       if (!inside) return;
 
       const goingDown = e.deltaY > 0;
-      const isFirst   = swiper.activeIndex === 0;
-      const isLast    = swiper.activeIndex === SLIDES.length - 1;
+      const isFirst = swiper.activeIndex === 0;
+      const isLast = swiper.activeIndex === SLIDES.length - 1;
 
-      // Allow page scroll up from first slide
       if (isFirst && !goingDown) return;
 
-      // On the last slide scrolling down: only release after dwell period
       if (isLast && goingDown) {
-        if (lastSlideReady) return; // let the event through → page scrolls
-        // Still in dwell period — eat the event so slide 3 stays visible
+        if (lastSlideReady) return;
+
         e.preventDefault();
         return;
       }
 
-      // Mid-slides: eat event and change slide
       e.preventDefault();
       if (wheelCooldown) return;
 
       goingDown ? swiper.slideNext() : swiper.slidePrev();
 
       wheelCooldown = true;
-      setTimeout(() => { wheelCooldown = false; }, 900);
+      setTimeout(() => {
+        wheelCooldown = false;
+      }, 900);
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -136,10 +141,9 @@ export default function SplitSlider() {
 
   return (
     <>
-      {/* Full-viewport wrapper — no padding, no centering container */}
       <div
         ref={containerRef}
-        className="relative h-[580px] w-screen overflow-hidden p-10"
+        className="relative h-[580px] w-full overflow-hidden p-10"
       >
         <div ref={swiperRef} className="swiper h-full w-full">
           <div className="swiper-wrapper">
@@ -148,7 +152,6 @@ export default function SplitSlider() {
                 key={i}
                 className="swiper-slide flex !h-full overflow-hidden"
               >
-                {/* ── LEFT panel ── */}
                 <div
                   className="ss-left relative w-1/2 overflow-hidden"
                   data-swiper-parallax-y="-20%"
@@ -187,7 +190,6 @@ export default function SplitSlider() {
                   </div>
                 </div>
 
-                {/* ── RIGHT panel ── */}
                 <div
                   className="ss-right relative w-1/2 overflow-hidden"
                   data-swiper-parallax-y="35%"
@@ -208,18 +210,16 @@ export default function SplitSlider() {
             ))}
           </div>
 
-          {/* Pagination dots — right edge, vertically centred */}
           <div className="ss-pagination swiper-pagination !left-auto !right-6 !w-auto" />
         </div>
 
-        {/* Scroll-down hint on last slide */}
         <div className="ss-scroll-hint absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 transition-opacity duration-500">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-white/50">Continue</span>
+          <span className="text-[9px] uppercase tracking-[0.3em] text-white/50">
+            Continue
+          </span>
           <span className="h-8 w-px bg-white/40" />
         </div>
       </div>
     </>
   );
 }
-
-

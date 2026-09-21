@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
@@ -16,6 +16,29 @@ const SORT_OPTIONS = [
   { value: "price-asc", label: "Price: Low to High" },
   { value: "price-desc", label: "Price: High to Low" },
 ];
+
+const CATEGORY_SLUGS = {
+  all: "All",
+  fashion: "Fashion",
+  "makeup-skincare": "Makeup & Skincare",
+  "makeup&skincare": "Makeup & Skincare",
+  "eyewear-fragrance": "Eyewear & Fragrance",
+  "jewelry-watches": "Jewelry & Watches",
+};
+
+function categoryToSlug(category) {
+  if (!category || category === "All") return null;
+  return (
+    Object.entries(CATEGORY_SLUGS).find(
+      ([slug, name]) => name === category && !slug.includes("&"),
+    )?.[0] ?? null
+  );
+}
+
+function slugToCategory(slug) {
+  if (!slug) return "All";
+  return CATEGORY_SLUGS[slug.toLowerCase()] || "All";
+}
 
 const COLOR_HEX = {
   Black: "#1a1a1a",
@@ -43,7 +66,7 @@ const COLOR_HEX = {
   Bleu: "#2c5f8a",
 };
 
-function FilterSection({ title, children, defaultOpen = true }) {
+function FilterSection({ title, children, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="border-b border-neutral-200 py-4 sm:py-5">
@@ -209,7 +232,7 @@ function FilterPanel({
 }) {
   return (
     <div>
-      <FilterSection title="Category">
+      <FilterSection title="Category" defaultOpen>
         <div className="flex flex-col gap-0.5">
           {CATEGORIES.map((cat) => (
             <button
@@ -306,13 +329,27 @@ function FilterPanel({
 }
 
 export default function Shop() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { categorySlug } = useParams();
+  const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState(() =>
+    slugToCategory(categorySlug),
+  );
   const [search, setSearch] = useState("");
   const [selectedCollections, setSelectedCollections] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [sortBy, setSortBy] = useState("featured");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  useEffect(() => {
+    setActiveCategory(slugToCategory(categorySlug));
+  }, [categorySlug]);
+
+  function selectCategory(cat) {
+    setActiveCategory(cat);
+    const slug = categoryToSlug(cat);
+    navigate(slug ? `/shop/${slug}` : "/shop", { replace: true });
+  }
 
   function toggle(list, setList, value) {
     setList((prev) =>
@@ -327,6 +364,7 @@ export default function Shop() {
     setSelectedColors([]);
     setSelectedPriceRanges([]);
     setSortBy("featured");
+    navigate("/shop", { replace: true });
   }
 
   useEffect(() => {
@@ -408,7 +446,7 @@ export default function Shop() {
 
   const filterProps = {
     activeCategory,
-    setActiveCategory,
+    setActiveCategory: selectCategory,
     selectedPriceRanges,
     setSelectedPriceRanges,
     selectedCollections,
@@ -467,7 +505,7 @@ export default function Shop() {
             <select
               id="shop-category"
               value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
+              onChange={(e) => selectCategory(e.target.value)}
               className="w-full appearance-none border border-neutral-200 bg-neutral-50 py-3 pl-4 pr-10 text-[11px] uppercase tracking-[0.14em] text-neutral-800 outline-none focus:border-black"
             >
               {CATEGORIES.map((cat) => (
@@ -495,7 +533,7 @@ export default function Shop() {
                 <button
                   key={cat}
                   type="button"
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => selectCategory(cat)}
                   className={`snap-start shrink-0 border px-4 py-2 text-[10px] uppercase tracking-[0.12em] transition-colors whitespace-nowrap sm:text-[11px] sm:tracking-[0.14em] md:px-5 ${
                     activeCategory === cat
                       ? "border-black bg-black text-white"

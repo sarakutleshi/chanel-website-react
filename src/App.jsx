@@ -27,6 +27,7 @@ export default function App() {
       
         <Route path="/home" element={<HomeSection />} />
         <Route path="/shop" element={<ShopSection />} />
+        <Route path="/shop/:categorySlug" element={<ShopSection />} />
         <Route path="/fashion" element={<FashionSection />} />
         <Route path="/makeup-skincare" element={<MakeupSkincare />} />
         <Route path="/jewelry-watches" element={<JewelryWatches />} />

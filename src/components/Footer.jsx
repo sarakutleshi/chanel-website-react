@@ -1,58 +1,97 @@
+import { NavLink } from "react-router-dom";
+
+const COLLECTIONS = [
+  { name: "Fashion", path: "/fashion" },
+  { name: "Jewelry & Watches", path: "/jewelry-watches" },
+  { name: "Makeup & Skincare", path: "/makeup-skincare" },
+  { name: "Eyewear & Fragrance", path: "/eyewear-fragrance" },
+  { name: "Galerie", path: "/galerie" },
+];
+
+const LINKS = [
+  { name: "About", path: "/about" },
+  { name: "Shop", path: "/shop" },
+  { name: "Contact", path: "/contact" },
+];
+
+const BOUTIQUES = ["Florence", "Vienna", "Paris", "Prague", "Tirana"];
+
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 text-white" aria-label="Site footer">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 border-b border-white/10 px-6 py-16 sm:grid-cols-2 md:grid-cols-3 md:px-10 md:py-20">
-        <div>
-          <p className="font-serif text-2xl font-light tracking-[0.28em]">
-            CHANEL
-          </p>
-          <p className="mt-5 max-w-[28ch] text-[13px] leading-7 text-white/45">
-            The House of Chanel, founded by Gabrielle Bonheur Chanel.
-          </p>
-        </div>
+    <footer className="bg-black text-white" aria-label="Site footer">
+      <div className="mx-auto max-w-[1100px] px-6 py-10 md:px-10 md:py-12">
+        <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-between md:gap-10">
+          <div className="text-center md:max-w-[220px] md:text-left">
+            <p className="font-serif text-xl font-light tracking-[0.36em]">
+              CHANEL
+            </p>
+            <p className="mt-3 text-[11px] leading-5 text-white/40">
+              The House of Chanel, founded by Gabrielle Bonheur Chanel.
+            </p>
+          </div>
 
-        <div>
-          <h3 className="mb-5 text-[10px] font-medium uppercase tracking-[0.22em] text-white/40">
-            Our Boutiques
-          </h3>
-          <ul className="flex flex-col gap-2.5">
-            {[
-              "Chanel Florence, Italy",
-              "Chanel Vienna, Austria",
-              "Chanel Paris, France",
-              "Chanel Prague, Czechia",
-              "Chanel Tirana, Albania",
-            ].map((loc) => (
-              <li
-                key={loc}
-                className="text-[13px] text-white/65 transition-colors hover:text-white"
+          <div className="grid grid-cols-2 gap-8 text-center sm:grid-cols-3 sm:gap-10 md:text-left">
+            <div>
+              <h3 className="text-[9px] font-medium uppercase tracking-[0.24em] text-white/35">
+                Collections
+              </h3>
+              <ul className="mt-3 flex flex-col gap-2">
+                {COLLECTIONS.map((item) => (
+                  <li key={item.path}>
+                    <NavLink
+                      to={item.path}
+                      className="text-[11px] text-white/55 transition-colors duration-300 hover:text-white"
+                    >
+                      {item.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-[9px] font-medium uppercase tracking-[0.24em] text-white/35">
+                The House
+              </h3>
+              <ul className="mt-3 flex flex-col gap-2">
+                {LINKS.map((item) => (
+                  <li key={item.path}>
+                    <NavLink
+                      to={item.path}
+                      className="text-[11px] text-white/55 transition-colors duration-300 hover:text-white"
+                    >
+                      {item.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="col-span-2 sm:col-span-1">
+              <h3 className="text-[9px] font-medium uppercase tracking-[0.24em] text-white/35">
+                Boutiques
+              </h3>
+              <p className="mt-3 text-[11px] leading-5 text-white/55">
+                {BOUTIQUES.join(" · ")}
+              </p>
+              <a
+                href="tel:+123456789"
+                className="mt-3 inline-block border-b border-white/20 pb-0.5 text-[11px] text-white/65 transition-colors hover:border-white hover:text-white"
               >
-                {loc}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-5 text-[10px] font-medium uppercase tracking-[0.22em] text-white/40">
-            Contact
-          </h3>
-          <p className="text-[13px] leading-7 text-white/65">
-            For inquiries, reach us at
-            <br />
-            <a
-              href="tel:+123456789"
-              className="border-b border-white/20 text-white/70 transition-colors hover:text-white"
-            >
-              +1 234 567 89
-            </a>
-          </p>
+                +1 234 567 89
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-3 px-6 py-5 text-[11px] text-white/30 sm:flex-row md:px-10">
-        <span>© 2026 CHANEL. All rights reserved.</span>
-        <span>Paris · London · New York · Tokyo</span>
+      <div className="border-t border-white/[0.08]">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-2 px-6 py-4 text-[9px] uppercase tracking-[0.16em] text-white/25 sm:flex-row md:px-10">
+          <span>© 2026 Chanel. All rights reserved.</span>
+          <span className="tracking-[0.18em]">
+            Paris · London · New York · Tokyo
+          </span>
+        </div>
       </div>
     </footer>
   );

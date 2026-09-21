@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
@@ -83,10 +84,10 @@ function StepIndicator({ current }) {
 function OrderConfirmed({ orderRef }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-24 text-center">
-      <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-black text-2xl text-white">
+      <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-black text-2xl font-bold text-white">
         ✓
       </div>
-      <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-neutral-400">
+      <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-neutral-600">
         Order Confirmed
       </p>
       <h2 className="mb-5 font-serif text-3xl font-light">
@@ -115,10 +116,11 @@ function OrderConfirmed({ orderRef }) {
 
 export default function Checkout() {
   const { items, totalPrice, clearCart } = useCart();
-  const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
+  const [placing, setPlacing] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const [orderRef] = useState(
     () => "CHN-" + Math.random().toString(36).slice(2, 8).toUpperCase(),
   );
@@ -208,12 +210,75 @@ export default function Checkout() {
     return Object.keys(errs).length === 0;
   }
 
-  function handleNextStep() {
+  async function handleNextStep() {
     if (step === 0 && !validateDelivery()) return;
     if (step === 1 && !validatePayment()) return;
     if (step === 2) {
-      clearCart();
-      setConfirmed(true);
+      if (placing) return;
+      setPlacing(true);
+      setEmailError("");
+
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_ORDER_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        setEmailError(
+          "Email is not configured. Please contact support.",
+        );
+        setPlacing(false);
+        return;
+      }
+
+      const formatMoney = (n) =>
+        Number(n).toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+
+      const orders = items.map((item) => {
+        const unit = parseFloat(String(item.price).replace(/[^0-9.]/g, ""));
+        const lineTotal = isNaN(unit) ? 0 : unit * item.qty;
+        const imageUrl = String(item.img || "");
+        return {
+          name: item.name,
+          units: item.qty,
+          price: formatMoney(lineTotal),
+          image_url: imageUrl.startsWith("http") ? imageUrl : "",
+        };
+      });
+
+      try {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            email: delivery.email,
+            to_email: delivery.email,
+            to_name: `${delivery.firstName} ${delivery.lastName}`,
+            order_id: orderRef,
+            orders,
+            cost: {
+              shipping: "0.00",
+              tax: "0.00",
+              total: formatMoney(totalPrice),
+            },
+          },
+          { publicKey },
+        );
+
+        clearCart();
+        setConfirmed(true);
+      } catch (err) {
+        console.error("EmailJS failed:", err);
+        const message =
+          err?.text ||
+          err?.message ||
+          (typeof err === "string" ? err : "Could not send confirmation email.");
+        setEmailError(String(message));
+      } finally {
+        setPlacing(false);
+      }
       return;
     }
     setStep((s) => s + 1);
@@ -336,11 +401,12 @@ export default function Checkout() {
                     >
                       {[
                         "France",
+                        "Albania",
+                        "Kosova",
                         "United Kingdom",
                         "United States",
                         "Germany",
                         "Italy",
-                        "Spain",
                         "Japan",
                         "UAE",
                         "Other",
@@ -561,21 +627,34 @@ export default function Checkout() {
               </section>
             )}
 
-            <div className="mt-10 flex items-center gap-4">
+            <div className="mt-10 flex flex-col gap-4">
+              {emailError && (
+                <p className="text-[12px] leading-5 text-red-600">
+                  Email failed: {emailError}
+                </p>
+              )}
+              <div className="flex items-center gap-4">
               {step > 0 && (
                 <button
                   onClick={() => setStep((s) => s - 1)}
-                  className="border border-neutral-300 px-8 py-4 text-[11px] uppercase tracking-[0.16em] text-neutral-600 transition-colors hover:border-black hover:text-black"
+                  disabled={placing}
+                  className="border border-neutral-300 px-8 py-4 text-[11px] uppercase tracking-[0.16em] text-neutral-600 transition-colors hover:border-black hover:text-black disabled:opacity-50"
                 >
                   ← Back
                 </button>
               )}
               <button
                 onClick={handleNextStep}
-                className="flex-1 bg-black py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-neutral-800"
+                disabled={placing}
+                className="flex-1 bg-black py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {step === 2 ? "Place Order" : "Continue →"}
+                {placing
+                  ? "Placing Order…"
+                  : step === 2
+                    ? "Place Order"
+                    : "Continue →"}
               </button>
+              </div>
             </div>
           </div>
 

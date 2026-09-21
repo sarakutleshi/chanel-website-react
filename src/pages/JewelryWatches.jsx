@@ -191,9 +191,10 @@ export default function JewelryWatches() {
         <ProductCarousel
           title=""
           sectionId="women-watches"
-          backPath="/"
-          backLabel="Back"
+          backPath="/jewelry-watches"
+          backLabel="Jewelry & Watches"
           apiUrl="https://dummyjson.com/products/category/womens-watches"
+           viewMoreTo="/shop/jewelry-watches"
         />
       </section>
 
@@ -233,9 +234,10 @@ export default function JewelryWatches() {
           className="!mt-0"
           title=""
           sectionId="women-jewelry"
-          backPath="/"
-          backLabel="Back"
+          backPath="/jewelry-watches"
+          backLabel="Jewelry & Watches"
           apiUrl="https://dummyjson.com/products/category/womens-jewellery"
+             viewMoreTo="/shop/jewelry-watches"
         />
       </section>
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
@@ -280,12 +280,12 @@ export default function MakeupSkincare() {
                     <p className="mt-1 text-[11px] leading-5 text-white/85">
                       {item.sub}. {item.desc}
                     </p>
-                    <a
-                      href="#skincare-products"
+                    <Link
+                      to="/shop/makeup-skincare"
                       className="mt-3 inline-block text-[10px] font-semibold uppercase tracking-[0.16em] text-white underline underline-offset-4 transition-opacity hover:opacity-70"
                     >
                       Discover
-                    </a>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -444,12 +444,12 @@ export default function MakeupSkincare() {
                     <p className="mt-1 text-[11px] leading-5 text-white/85">
                       {item.sub}. {item.desc}
                     </p>
-                    <a
-                      href="#skincare-products"
+                    <Link
+                      to="/shop/makeup-skincare"
                       className="mt-3 inline-block text-[10px] font-semibold uppercase tracking-[0.16em] text-white underline underline-offset-4 transition-opacity hover:opacity-70"
                     >
                       Discover
-                    </a>
+                    </Link>
                   </div>
                 </article>
               ))}

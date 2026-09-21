@@ -1,10 +1,10 @@
 import { useState, useRef, useCallback } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import allProducts from "../data/all-products";
 import SplitSlider from "../components/form/SplitSlider";
 import AtelierForm from "../components/form/AtelierForm";
+import { useAuth } from "../context/AuthContext";
 
 const TICKER = [
   "New — Fall–Winter 2026 Collection",
@@ -14,31 +14,22 @@ const TICKER = [
   "Complimentary gift wrapping",
 ];
 
-const FEATURED_IDS = [
-  "tweed-jacket",
-  "rouge-allure-velvet",
-  "coco-crush-ring",
-  "chance-eau-tendre",
-  "j12-watch",
-  "shield-sunglasses",
-];
-
 const SPIRIT_SLIDES = [
   {
-    src: "https://i.pinimg.com/1200x/ef/53/6e/ef536e9b698d23c75fe11db05eae2dc7.jpg",
+    src: "https://i.pinimg.com/736x/09/d7/07/09d7077434123f662f591a9b0928ac17.jpg",
+    caption: "Karl Lagerfeld",
+  },
+  {
+    src: "https://i.pinimg.com/1200x/77/0a/d1/770ad167d27485a51ed3721a523d2216.jpg",
     caption: "Boutique in Paris",
   },
   {
-    src: "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666771629238-1598436390994pa200500211jpgmaxlglgjpg_3000x2271.jpg",
-    caption: "Chanel Haute Couture",
+    src: "https://i.pinimg.com/736x/4e/2e/96/4e2e96d6a9871f3170848140881174e8.jpg",
+    caption: "Chanel Billboard",
   },
   {
     src: "https://www.chanel.com/puls-img/c_limit,w_480/q_auto:good,f_autoplus,dpr_1/1666769979453-15954241665431945americansoldiersdcropjpgmaxmdmdjpg_1128x974.jpg",
     caption: "Chanel in the U.S.",
-  },
-  {
-    src: "https://i.pinimg.com/736x/0d/f8/46/0df846658321ede7fde28d52c9907159.jpg",
-    caption: "Chanel Art Exhibition",
   },
 ];
 
@@ -84,7 +75,7 @@ function SpiritSection() {
   }, []);
 
   return (
-    <section className="border-y border-neutral-200 bg-neutral-50 px-6 py-16 md:px-16 md:py-24">
+    <section className="border-y border-neutral-200 bg-F5F9ED px-6 py-16 md:px-16 md:py-24">
       <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2 md:gap-16">
         <div
           ref={ref}
@@ -114,24 +105,22 @@ function SpiritSection() {
           <p className="text-[10px] uppercase tracking-[0.38em] text-neutral-400">
             The House
           </p>
-          <h2 className="mt-3 font-serif text-4xl font-light leading-snug text-neutral-900 md:text-5xl">
-            The spirit
-            <br />
-            of Chanel
+          <h2 className="mt-1 font-serif text-4xl font-light leading-snug text-neutral-900 md:text-5xl">
+            The spirit of Chanel
           </h2>
-          <div className="my-6 h-px w-10 bg-neutral-300" />
-          <p className="text-sm leading-8 text-neutral-500">
+          <div className="my-4  w-10 bg-neutral-300" />
+          <p className="text-sm leading-4 text-neutral-500">
             Founded by Gabrielle Bonheur Chanel in 1910, the House has become
             the embodiment of French elegance — a philosophy rooted in freedom,
             modernity and timeless beauty.
           </p>
-          <p className="mt-4 text-sm leading-8 text-neutral-500">
+          <p className="mt-4 text-sm leading-4 text-neutral-500">
             From the little black dress to the quilted 2.55 bag, every creation
             carries the spirit of a woman who dared to reimagine fashion.
           </p>
           <NavLink
             to="/about"
-            className="mt-8 inline-flex items-center gap-2 border-b border-black pb-0.5 text-[11px] uppercase tracking-[0.22em] transition-opacity duration-300 hover:opacity-50"
+            className="mt-4 inline-flex items-center gap-2 border-b border-black pb-0.5 text-[11px] uppercase tracking-[0.22em] transition-opacity duration-300 hover:opacity-50"
           >
             Discover the House <span aria-hidden>→</span>
           </NavLink>
@@ -152,8 +141,37 @@ function SpiritSection() {
   );
 }
 
+function ContactUsSection() {
+  return (
+    <section className="border-t border-neutral-200 bg-white px-6 py-12 md:px-16 md:py-16">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-[9px] uppercase tracking-[0.38em] text-neutral-400">
+          Contact
+        </p>
+        <h2 className="mt-2 font-serif text-2xl font-medium text-neutral-900 md:text-3xl">
+          Contact Us
+        </h2>
+        <p className="mx-auto mt-4 max-w-[40ch] text-[13px] leading-6 text-neutral-500">
+          A question about a creation, an appointment, or the House — write to
+          us and a client advisor will respond.
+        </p>
+        <NavLink
+          to="/contact"
+          className="mt-7 inline-block border border-black bg-black px-8 py-3 text-[9px] uppercase tracking-[0.24em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
+        >
+          Get in Touch
+        </NavLink>
+      </div>
+    </section>
+  );
+}
+
 export default function HomeSection() {
-  const featured = allProducts.filter((p) => FEATURED_IDS.includes(p.id));
+  const { isLoggedIn } = useAuth();
+
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>
@@ -178,7 +196,7 @@ export default function HomeSection() {
 
       <SplitSlider />
 
-      <section className="bg-white px-6 py-16 md:px-16 md:py-20">
+      <section className="px-6 py-16 md:px-16 md:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center md:mb-12">
             <p className="text-[10px] uppercase tracking-[0.38em] text-neutral-400">
@@ -216,6 +234,8 @@ export default function HomeSection() {
       <AtelierForm />
 
       <SpiritSection />
+
+      <ContactUsSection />
 
       <Footer />
     </>

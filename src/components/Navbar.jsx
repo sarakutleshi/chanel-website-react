@@ -3,6 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 
+const collections = [
+  { name: "Fashion", path: "/fashion" },
+  { name: "Makeup & Skincare", path: "/makeup-skincare" },
+  { name: "Jewelry & Watches", path: "/jewelry-watches" },
+  { name: "Eyewear & Fragrance", path: "/eyewear-fragrance" },
+  { name: "Galerie", path: "/galerie" },
+];
+
 export default function Navbar() {
   const { totalCount } = useCart();
   const { isLoggedIn, logout } = useAuth();
@@ -13,14 +21,6 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigate = useNavigate();
-
-  const collections = [
-    { name: "Fashion", path: "/fashion" },
-    { name: "Makeup & Skincare", path: "/makeup-skincare" },
-    { name: "Jewelry & Watches", path: "/jewelry-watches" },
-    { name: "Eyewear & Fragrance", path: "/eyewear-fragrance" },
-    { name: "Galerie", path: "/galerie" },
-  ];
 
   useEffect(() => {
     if (!isCollectionsOpen && !isProfileOpen) return;
@@ -48,12 +48,10 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-
     setIsCollectionsOpen(false);
     setIsMobileCollectionsOpen(false);
     setIsProfileOpen(false);
     setIsMobileOpen(false);
-
     navigate("/");
   };
 
@@ -64,34 +62,40 @@ export default function Navbar() {
     setIsMobileOpen(false);
   };
 
-  const navItem =
-    "text-[10px] font-medium uppercase tracking-[0.2em] transition-opacity duration-200 hover:opacity-50";
+  const handleLogoClick = () => {
+    closeMenus();
+    navigate(isLoggedIn ? "/home" : "/");
+  };
+
+  const linkClass =
+    "text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-800 transition-opacity duration-200 hover:opacity-45";
+
+  const dropdownPanel =
+    "absolute top-[calc(100%+14px)] z-50 min-w-[220px] border border-neutral-200 bg-white py-2 shadow-none";
+
+  const dropdownItem =
+    "block px-5 py-3 text-[11px] tracking-[0.02em] text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-black";
 
   return (
     <nav
-      className="sticky top-0 z-50 border-b border-neutral-200 bg-white"
+      className="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 backdrop-blur-sm"
       aria-label="Primary navigation"
     >
-      {/* =====================================================
-          DESKTOP / TOP BAR
-      ====================================================== */}
-      <div className="mx-auto flex h-[68px] max-w-[1800px] items-center px-5 md:px-8 lg:px-12">
-        {/* LOGO */}
-        <NavLink
-          to={isLoggedIn ? "/home" : "/"}
-          onClick={closeMenus}
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center px-5 md:h-16 md:px-8 lg:px-10">
+        <button
+          type="button"
+          onClick={handleLogoClick}
           className="shrink-0"
+          aria-label="CHANEL home"
         >
-          <h1 className="font-serif text-[22px] font-medium tracking-[0.32em] md:text-[24px]">
+          <span className="font-serif text-[20px] font-medium tracking-[0.38em] text-neutral-950 md:text-[22px]">
             CHANEL
-          </h1>
-        </NavLink>
+          </span>
+        </button>
 
-        {/* DESKTOP NAV */}
-        <div className="ml-auto hidden items-center lg:flex">
-          {/* COLLECTIONS */}
+        <div className="ml-auto hidden items-center gap-7 lg:flex">
           {isLoggedIn && (
-            <div className="relative mr-9" data-navbar-dropdown>
+            <div className="relative" data-navbar-dropdown>
               <button
                 type="button"
                 onClick={(e) => {
@@ -99,17 +103,17 @@ export default function Navbar() {
                   setIsCollectionsOpen((open) => !open);
                   setIsProfileOpen(false);
                 }}
-                className={`${navItem} flex items-center gap-2`}
+                className={`${linkClass} inline-flex items-center gap-1.5`}
               >
                 Collections
                 <svg
-                  className={`h-3 w-3 transition-transform duration-300 ${
+                  className={`h-2.5 w-2.5 transition-transform duration-300 ${
                     isCollectionsOpen ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.3"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
@@ -120,78 +124,50 @@ export default function Navbar() {
               </button>
 
               {isCollectionsOpen && (
-                <div className="absolute right-0 top-[calc(100%+18px)] w-[260px] border border-neutral-200 bg-white">
-                  <div className="border-b border-neutral-100 px-6 py-5">
-                    <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
-                      Explore
-                    </p>
-                  </div>
-
-                  <div className="py-2">
-                    {collections.map((item) => (
-                      <NavLink
-                        key={item.path}
-                        to={item.path}
-                        onClick={closeMenus}
-                        className="group flex items-center justify-between px-6 py-3.5 text-[11px] transition-colors hover:bg-neutral-50"
-                      >
-                        <span>{item.name}</span>
-
-                        <span className="translate-x-[-5px] text-neutral-300 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
-                          →
-                        </span>
-                      </NavLink>
-                    ))}
-                  </div>
+                <div className={`${dropdownPanel} right-0`}>
+                  {collections.map((item) => (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      onClick={closeMenus}
+                      className={dropdownItem}
+                    >
+                      {item.name}
+                    </NavLink>
+                  ))}
                 </div>
               )}
             </div>
           )}
 
-          {/* ABOUT */}
-          <NavLink
-            to="/about"
-            onClick={closeMenus}
-            className={`${navItem} mr-9`}
-          >
+          <NavLink to="/about" onClick={closeMenus} className={linkClass}>
             About
           </NavLink>
 
-          {/* CONTACT */}
-          <NavLink
-            to="/contact"
-            onClick={closeMenus}
-            className={`${navItem} mr-9`}
-          >
+          <NavLink to="/contact" onClick={closeMenus} className={linkClass}>
             Contact
           </NavLink>
 
-          {/* SHOP */}
           {isLoggedIn && (
-            <NavLink
-              to="/shop"
-              onClick={closeMenus}
-              className={`${navItem} mr-9`}
-            >
+            <NavLink to="/shop" onClick={closeMenus} className={linkClass}>
               Shop
             </NavLink>
           )}
 
-          {/* CART */}
           {isLoggedIn && (
             <NavLink
               to="/cart"
               onClick={closeMenus}
-              className="relative mr-8 flex items-center transition-opacity hover:opacity-50"
+              className="relative text-neutral-800 transition-opacity hover:opacity-45"
               aria-label={`Cart, ${totalCount} items`}
             >
               <svg
-                width="18"
-                height="18"
+                width="17"
+                height="17"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.3"
+                strokeWidth="1.35"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
@@ -199,16 +175,14 @@ export default function Navbar() {
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
-
               {totalCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-black px-1 text-[8px] text-white">
+                <span className="absolute -right-2.5 -top-2 flex h-3.5 min-w-3.5 items-center justify-center bg-black px-1 text-[8px] text-white">
                   {totalCount}
                 </span>
               )}
             </NavLink>
           )}
 
-          {/* PROFILE */}
           <div className="relative" data-navbar-dropdown>
             <button
               type="button"
@@ -217,32 +191,18 @@ export default function Navbar() {
                 setIsProfileOpen((open) => !open);
                 setIsCollectionsOpen(false);
               }}
-              className="flex items-center gap-2 transition-opacity hover:opacity-50"
+              className={`${linkClass} inline-flex items-center gap-1.5`}
+              aria-label="Profile"
             >
+              Profile
               <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
-              </svg>
-
-              <span className={navItem}>Profile</span>
-
-              <svg
-                className={`h-3 w-3 transition-transform duration-300 ${
+                className={`h-2.5 w-2.5 transition-transform duration-300 ${
                   isProfileOpen ? "rotate-180" : ""
                 }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.3"
+                strokeWidth="1.5"
               >
                 <path
                   strokeLinecap="round"
@@ -253,86 +213,75 @@ export default function Navbar() {
             </button>
 
             {isProfileOpen && (
-              <div className="absolute right-0 top-[calc(100%+18px)] w-[230px] border border-neutral-200 bg-white">
-                <div className="border-b border-neutral-100 px-6 py-5">
-                  <p className="text-[9px] uppercase tracking-[0.25em] text-neutral-400">
-                    My Account
-                  </p>
-                </div>
+              <div className={`${dropdownPanel} right-0`}>
+                {!isLoggedIn && (
+                  <>
+                    <NavLink
+                      to="/signin"
+                      onClick={closeMenus}
+                      className={dropdownItem}
+                    >
+                      Sign In
+                    </NavLink>
+                    <NavLink
+                      to="/register"
+                      onClick={closeMenus}
+                      className={dropdownItem}
+                    >
+                      Create Account
+                    </NavLink>
+                  </>
+                )}
 
-                <div className="py-2">
-                  {!isLoggedIn && (
-                    <>
-                      <NavLink
-                        to="/signin"
-                        onClick={closeMenus}
-                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
-                      >
-                        Sign In
-                      </NavLink>
-
-                      <NavLink
-                        to="/register"
-                        onClick={closeMenus}
-                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
-                      >
-                        Create Account
-                      </NavLink>
-                    </>
-                  )}
-
-                  {isLoggedIn && (
-                    <>
-                      <NavLink
-                        to="/profile"
-                        onClick={closeMenus}
-                        className="block px-6 py-3.5 text-[11px] transition hover:bg-neutral-50"
-                      >
-                        My Profile
-                      </NavLink>
-
-                      <div className="my-2 border-t border-neutral-100" />
-
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full px-6 py-3.5 text-left text-[11px] transition hover:bg-neutral-50"
-                      >
-                        Log Out
-                      </button>
-                    </>
-                  )}
-                </div>
+                {isLoggedIn && (
+                  <>
+                    <NavLink
+                      to="/profile"
+                      onClick={closeMenus}
+                      className={dropdownItem}
+                    >
+                      My Profile
+                    </NavLink>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className={`${dropdownItem} w-full text-left`}
+                    >
+                      Log Out
+                    </button>
+                  </>
+                )}
               </div>
             )}
           </div>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
         <button
+          type="button"
           onClick={() => {
             setIsMobileOpen((open) => !open);
             setIsMobileCollectionsOpen(false);
             setIsCollectionsOpen(false);
             setIsProfileOpen(false);
           }}
-          className="ml-auto flex h-8 w-8 items-center justify-center lg:hidden"
+          className="ml-auto flex h-8 w-8 items-center justify-center text-neutral-900 lg:hidden"
           aria-label="Toggle menu"
         >
           {isMobileOpen ? (
             <svg
-              width="21"
-              height="21"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.3"
+              strokeWidth="1.35"
             >
               <path d="M6 18 18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg
-              width="21"
-              height="21"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -344,35 +293,29 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* =====================================================
-          MOBILE MENU
-      ====================================================== */}
       <div
-        className={`overflow-hidden border-t border-neutral-200 transition-all duration-500 ease-in-out lg:hidden ${
-          isMobileOpen ? "max-h-[900px]" : "max-h-0"
+        className={`overflow-hidden border-t border-neutral-200 transition-all duration-300 ease-out lg:hidden ${
+          isMobileOpen ? "max-h-[800px]" : "max-h-0 border-t-0"
         }`}
       >
-        <div className="bg-white px-6 pb-8 pt-4">
-          {/* COLLECTIONS */}
+        <div className="bg-white px-6 pb-8 pt-2">
           {isLoggedIn && (
-            <div className="border-b border-neutral-200 py-3">
+            <div className="border-b border-neutral-100">
               <button
                 type="button"
-                onClick={() =>
-                  setIsMobileCollectionsOpen((open) => !open)
-                }
+                onClick={() => setIsMobileCollectionsOpen((open) => !open)}
                 aria-expanded={isMobileCollectionsOpen}
-                className="flex w-full items-center justify-between py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
+                className="flex w-full items-center justify-between py-3.5 text-[10px] font-medium uppercase tracking-[0.22em]"
               >
                 Collections
                 <svg
-                  className={`h-3 w-3 shrink-0 transition-transform duration-300 ${
+                  className={`h-2.5 w-2.5 transition-transform duration-300 ${
                     isMobileCollectionsOpen ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.3"
+                  strokeWidth="1.5"
                 >
                   <path
                     strokeLinecap="round"
@@ -383,13 +326,13 @@ export default function Navbar() {
               </button>
 
               {isMobileCollectionsOpen && (
-                <div className="ml-3 pb-3 pt-1">
+                <div className="pb-3 pl-3">
                   {collections.map((item) => (
                     <NavLink
                       key={item.path}
                       to={item.path}
                       onClick={closeMenus}
-                      className="block py-3 text-[11px] text-neutral-600"
+                      className="block py-2.5 text-[12px] text-neutral-600"
                     >
                       {item.name}
                     </NavLink>
@@ -399,89 +342,80 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* MAIN LINKS */}
-          <div className="border-b border-neutral-200 py-3">
+          <div className="border-b border-neutral-100 py-1">
             <NavLink
               to="/about"
               onClick={closeMenus}
-              className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
+              className="block py-3.5 text-[10px] font-medium uppercase tracking-[0.22em]"
             >
               About
             </NavLink>
-
             <NavLink
               to="/contact"
               onClick={closeMenus}
-              className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
+              className="block py-3.5 text-[10px] font-medium uppercase tracking-[0.22em]"
             >
               Contact
             </NavLink>
-
             {isLoggedIn && (
-              <NavLink
-                to="/shop"
-                onClick={closeMenus}
-                className="block py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
-              >
-                Shop
-              </NavLink>
-            )}
-
-            {isLoggedIn && (
-              <NavLink
-                to="/cart"
-                onClick={closeMenus}
-                className="flex items-center gap-3 py-4 text-[10px] font-medium uppercase tracking-[0.22em]"
-              >
-                Cart
-                {totalCount > 0 && (
-                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[8px] text-white">
-                    {totalCount}
-                  </span>
-                )}
-              </NavLink>
+              <>
+                <NavLink
+                  to="/shop"
+                  onClick={closeMenus}
+                  className="block py-3.5 text-[10px] font-medium uppercase tracking-[0.22em]"
+                >
+                  Shop
+                </NavLink>
+                <NavLink
+                  to="/cart"
+                  onClick={closeMenus}
+                  className="flex items-center gap-2.5 py-3.5 text-[10px] font-medium uppercase tracking-[0.22em]"
+                >
+                  Cart
+                  {totalCount > 0 && (
+                    <span className="flex h-3.5 min-w-3.5 items-center justify-center bg-black px-1 text-[8px] text-white">
+                      {totalCount}
+                    </span>
+                  )}
+                </NavLink>
+              </>
             )}
           </div>
 
-          {/* ACCOUNT */}
-          <div className="pt-6">
-            <p className="mb-3 text-[9px] uppercase tracking-[0.25em] text-neutral-400">
-              My Account
+          <div className="pt-5">
+            <p className="mb-2 text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+              Account
             </p>
-
-            {!isLoggedIn && (
+            {!isLoggedIn ? (
               <>
                 <NavLink
                   to="/signin"
                   onClick={closeMenus}
-                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
+                  className="block py-2.5 text-[10px] uppercase tracking-[0.2em]"
                 >
                   Sign In
                 </NavLink>
-
                 <NavLink
                   to="/register"
                   onClick={closeMenus}
-                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
+                  className="block py-2.5 text-[10px] uppercase tracking-[0.2em]"
                 >
                   Create Account
                 </NavLink>
               </>
-            )}
-
-            {isLoggedIn && (
+            ) : (
               <>
                 <NavLink
                   to="/profile"
                   onClick={closeMenus}
-                  className="block py-3 text-[10px] uppercase tracking-[0.22em]"
+                  className="block py-2.5 text-[10px] uppercase tracking-[0.2em]"
                 >
                   My Profile
                 </NavLink>
-
                 <button
+                  type="button"
                   onClick={handleLogout}
-                  className="block py-3 text-left text-[10px] uppercase tracking-[0.22em]"
+                  className="block py-2.5 text-left text-[10px] uppercase tracking-[0.2em]"
                 >
                   Log Out
                 </button>

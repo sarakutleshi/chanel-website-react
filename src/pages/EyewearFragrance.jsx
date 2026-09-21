@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCarousel from "../components/eyewear-fragrance/ProductCarousel";
-import fragranceProducts from "../data/fragrance-product";
 import EditorialCart from "../components/eyewear-fragrance/EditorialCart";
 import ChanelBoutiques from "../components/form/ChanelBoutiques";
 import HeroForm from "../components/form/HeroForm";
@@ -45,6 +44,15 @@ const editorial = [
     href: "#fragrance-products",
     linkText: "Discover",
   },
+  {
+    src: "https://i.pinimg.com/736x/45/a1/79/45a179d7dd441a77940f0ee96b971a03.jpg",
+    type: "EYEWEAR",
+    title: "Chance Eau Splendide",
+    description:
+      "A radiant fruity-floral fragrance blending raspberry, rose geranium and cedar white musk.",
+    href: "#fragrance-products",
+    linkText: "Discover",
+  },
 ];
 
 export default function EyewearFragrance() {
@@ -53,13 +61,17 @@ export default function EyewearFragrance() {
       <Navbar />
 
       <HeroForm {...data[0]} />
+      <EditorialCart {...editorial[2]} />
 
       <ProductCarousel
+        eyebrow="Selection"
         title="Eyewear Selection"
         sectionId="eyewear-products"
-        backPath="/eyewear-products"
+        backPath="/eyewear-fragrance"
         backLabel="Eyewear & Fragrance"
         apiUrl="https://dummyjson.com/products/category/sunglasses"
+        viewMoreTo="/shop/eyewear-fragrance"
+        limit={3}
       />
 
       <HeroForm {...data[1]} />
@@ -67,13 +79,16 @@ export default function EyewearFragrance() {
       <EditorialCart {...editorial[0]} />
 
       <ProductCarousel
+        eyebrow="Selection"
         title="Fragrance Selection"
-        products={fragranceProducts}
         sectionId="fragrance-products"
-        backPath="/fragrance-products"
+        backPath="/eyewear-fragrance"
         backLabel="Eyewear & Fragrance"
         apiUrl="https://dummyjson.com/products/search?q=fragrance"
+        viewMoreTo="/shop/eyewear-fragrance"
+        limit={3}
       />
+
       <EditorialCart {...editorial[1]} reverse />
       <ChanelBoutiques />
 

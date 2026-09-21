@@ -1,16 +1,14 @@
-
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
 
   // Login
-  const login = (userData = null) => {
+  const login = useCallback((userData = null) => {
     localStorage.setItem("isLoggedIn", "true");
 
     if (userData) {
@@ -18,15 +16,17 @@ export function AuthProvider({ children }) {
     }
 
     setIsLoggedIn(true);
-  };
+  }, []);
 
   // Logout
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
 
     setIsLoggedIn(false);
-  };
+  }, []);
 
   return (
     <AuthContext.Provider

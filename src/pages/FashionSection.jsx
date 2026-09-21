@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { useCart } from "../context/CartContext.jsx";
@@ -64,7 +64,10 @@ function ShopCard({ item }) {
   }
 
   return (
-    <article onClick={goToDetail} className="group flex cursor-pointer flex-col px-10">
+    <article
+      onClick={goToDetail}
+      className="group flex cursor-pointer flex-col px-10"
+    >
       <div className="relative aspect-[3.5/4] overflow-hidden bg-[#f4f3f0] ">
         <img
           src={item.img}
@@ -114,8 +117,11 @@ export default function Fashion() {
   const [category, setCategory] = useState("All");
 
   const products = useMemo(() => {
-    if (category === "All") return fashionProducts;
-    return fashionProducts.filter((item) => item.subcategory === category);
+    const filtered =
+      category === "All"
+        ? fashionProducts
+        : fashionProducts.filter((item) => item.subcategory === category);
+    return filtered.slice(0, 3);
   }, [category]);
 
   return (
@@ -132,15 +138,11 @@ export default function Fashion() {
         fullPage
       />
 
-      <HorizontalScrollForm
-        items={fashionLooks}
-        eyebrow="Fall–Winter 2025/26"
-        title="Looks"
-        subtitle="Graphic silhouettes, precious tweeds and sophisticated embellishment."
-      />
-
       {/* Shop */}
-      <section id="shop" className="px-[var(--pad)] py-0 md:py-28">
+      <section
+        id="shop"
+        className="px-[var(--pad)] pt-6 pb-10 md:pt-10 md:pb-14"
+      >
         <div className="mx-auto max-w-[1400px]">
           <div className="flex flex-col gap-8 border-b border-black/10 pb-4 md:flex-row md:items-end md:justify-between">
             <div>
@@ -152,7 +154,7 @@ export default function Fashion() {
               </h2>
             </div>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-2 ">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
@@ -170,7 +172,7 @@ export default function Fashion() {
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((item, i) => (
               <ShopCard key={item.id || item.name || i} item={item} />
             ))}
@@ -181,10 +183,26 @@ export default function Fashion() {
               No pieces in this category.
             </p>
           )}
+
+          <div className="mt-10 flex justify-center md:mt-12">
+            <NavLink
+              to="/shop/fashion"
+              className="border-b border-black pb-0.5 text-[10px] uppercase tracking-[0.22em] transition-opacity hover:opacity-50"
+            >
+              View More →
+            </NavLink>
+          </div>
         </div>
       </section>
 
-      <section className="grid min-h-[70vh] grid-cols-1 lg:grid-cols-2">
+      <HorizontalScrollForm
+        items={fashionLooks}
+        eyebrow="Fall–Winter 2025/26"
+        title="Looks"
+        subtitle="Graphic silhouettes, precious tweeds and sophisticated embellishment."
+      />
+
+      <section className="grid  min-h-[70vh] grid-cols-1 lg:grid-cols-2">
         <div className="relative min-h-[520px] overflow-hidden">
           <img
             src="https://i.pinimg.com/1200x/e5/fd/62/e5fd6211333a93af3e9982a0faef7d6e.jpg"
@@ -193,16 +211,14 @@ export default function Fashion() {
           />
         </div>
 
-        <div className="flex flex-col justify-center bg-black text-white px-[var(--pad)] py-16 lg:px-16 xl:px-24">
-          <p className="text-[9px] uppercase tracking-[0.28em]">
-            Savoir-Faire
-          </p>
+        <div className="flex flex-col justify-center  bg-black text-white  px-[var(--pad)] py-16 lg:px-16 xl:px-24">
+          <p className="text-[9px] uppercase tracking-[0.28em]">Savoir-Faire</p>
           <h2 className=" font-serif text-4xl font-light leading-tight tracking-wide md:text-5xl">
             Crafted in the
             <br />
             ateliers of Paris
           </h2>
-          <p className="mt-6 max-w-md text-sm leading-7 text-white/90">
+          <p className="mt-6 max-w-md text-sm leading-7 text-white/70">
             Every silhouette is shaped by the House’s métiers — tweed,
             embroidery, and couture finishing refined over months of meticulous
             work.
@@ -216,29 +232,6 @@ export default function Fashion() {
         </div>
       </section>
 
-     <section
-        id="services"
-        className="border-y border-white px-[var(--pad)] py-16 md:py-20  text-black"
-      >
-        <div className="mx-auto max-w-[1400px]">
-          <p className="mb-6 text-center text-[10px] uppercase tracking-[0.28em] ">
-            Client Services
-          </p>
-
-          <div className="grid gap-10 md:grid-cols-3 md:gap-12">
-            {SERVICES.map((service) => (
-              <div key={service.title} className="text-center md:text-left">
-                <h3 className="text-[13px] font-medium uppercase tracking-[0.12em]">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                  {service.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       <ChanelBoutiques />
       <Footer />
     </div>

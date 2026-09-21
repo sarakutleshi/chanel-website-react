@@ -8,7 +8,7 @@ export default function EditorialCard({
   reverse = false,
 }) {
   return (
-    <section className="mx-auto  grid max-w-5xl grid-cols-1 items-center gap-20 px-10 py-10 lg:grid-cols-2">
+    <section className="mx-auto  grid max-w-5xl grid-cols-1 items-center  gap-20 px-10 py-10 lg:grid-cols-2">
       <img
         src={src}
         alt={title}

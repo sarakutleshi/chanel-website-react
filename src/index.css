@@ -23,7 +23,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; background: var(--white);
 }
 
 body {
@@ -31,7 +31,7 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--ink);
-  background: var(--white);
+ 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -200,7 +200,6 @@ img {
   }
 }
 
-/* ── Fashion horizontal scroll (view-timeline) ── */
 /* https://scroll-driven-animations.style/demos/horizontal-section/css/ */
 
 @keyframes fashion-hs-move {
@@ -210,7 +209,7 @@ img {
 }
 
 .fashion-hs {
-  height: 400vh;
+  height: 200vh;
   overflow: visible;
   view-timeline-name: --fashion-hs-tl;
   view-timeline-axis: block;
@@ -223,7 +222,7 @@ img {
   width: 100vw;
   max-width: 100%;
   overflow: hidden;
-  background: #0a0a0a;
+  background: #F2F1EA;
 }
 
 .fashion-hs__track {

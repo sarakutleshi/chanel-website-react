@@ -58,17 +58,17 @@ export default function HorizontalScrollSection({
       <div className="fashion-hs__sticky">
         <div ref={trackRef} className="fashion-hs__track">
           <div className="fashion-hs__panel fashion-hs__panel--intro">
-            <p className="text-[9px] uppercase tracking-[0.28em] text-white/60">
+            <p className="text-[9px] uppercase tracking-[0.28em] text-black/55">
               {eyebrow}
             </p>
-            <h2 className="mt-4 font-serif text-5xl font-light tracking-wide text-white md:text-7xl">
+            <h2 className="mt-4 font-serif text-5xl font-light tracking-wide text-black md:text-7xl">
               {title}
             </h2>
-            <p className="mt-5 max-w-xs font-serif text-lg italic leading-relaxed text-white/70 md:text-xl">
+            <p className="mt-5 max-w-xs font-serif text-lg italic leading-relaxed text-black/70 md:text-xl">
               {subtitle}
             </p>
-            <div className="mt-10 flex items-center gap-3 text-white/50">
-              <span className="h-px w-10 bg-white/40" />
+            <div className="mt-10 flex items-center gap-3 text-black/50">
+              <span className="h-px w-10 bg-black/40" />
               <span className="text-[8px] uppercase tracking-[0.2em]">
                 Scroll
               </span>
