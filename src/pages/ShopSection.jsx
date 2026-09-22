@@ -476,7 +476,7 @@ export default function Shop() {
             <path d="m21 21-4.35-4.35" strokeLinecap="round" />
           </svg>
           <input
-            type="search"
+            type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search products…"
@@ -496,7 +496,6 @@ export default function Shop() {
 
       {/* Category pills — select on mobile, scrollable pills from sm up */}
       <div className="border-b border-neutral-200 bg-white">
-        {/* Mobile: native select */}
         <div className="px-4 py-3 sm:hidden">
           <label htmlFor="shop-category" className="sr-only">
             Category
@@ -552,7 +551,7 @@ export default function Shop() {
       <div className="min-h-[60vh] px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-10 lg:px-16">
         <div className="mx-auto max-w-[1400px]">
           <div className="flex gap-6 lg:gap-10">
-            <aside className="hidden w-56 shrink-0 xl:w-60 lg:block">
+            <aside className="sticky top-20 hidden max-h-[calc(100vh-5rem)] w-56 shrink-0 self-start overflow-y-auto xl:w-60 lg:block">
               <FilterPanel {...filterProps} />
             </aside>
 

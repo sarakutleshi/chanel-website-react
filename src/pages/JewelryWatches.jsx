@@ -87,7 +87,6 @@ export default function JewelryWatches() {
 
           {/* Cards */}
           <div className="grid gap-6 md:grid-cols-3">
-            {/* Card 2 */}
             <div className="group">
               <div className="overflow-hidden bg-gray-100">
                 <img
@@ -111,7 +110,7 @@ export default function JewelryWatches() {
                 </button>
               </div>
             </div>
-            {/* Card 1 */}
+
             <div className="group">
               <div className="overflow-hidden bg-gray-100">
                 <img
@@ -134,7 +133,6 @@ export default function JewelryWatches() {
               </div>
             </div>
 
-            {/* Card 3 */}
             <div className="group">
               <div className="overflow-hidden bg-gray-100">
                 <img
@@ -194,7 +192,7 @@ export default function JewelryWatches() {
           backPath="/jewelry-watches"
           backLabel="Jewelry & Watches"
           apiUrl="https://dummyjson.com/products/category/womens-watches"
-           viewMoreTo="/shop/jewelry-watches"
+          viewMoreTo="/shop/jewelry-watches"
         />
       </section>
 
@@ -202,12 +200,9 @@ export default function JewelryWatches() {
         src="https://i.pinimg.com/736x/6e/76/d1/6e76d114ecf0926853bd4e5f2fea9a42.jpg"
         title="The Jewelry"
         type="Savoir-Faire"
-        description="
-  Precision, character and timeless elegance come together in creations designed
-  to transcend time. Each piece reflects a commitment to exceptional craftsmanship,
-  refined details and enduring style, created for those who appreciate beauty that
-  never follows trends but defines them.
-"
+        description=" Precision, character and timeless elegance come together in creations designed to transcend time.
+        Each piece reflects a commitment to exceptional craftsmanship, refined details and enduring style,
+        created for those who appreciate beauty that never follows trends but defines them."
       />
 
       <section id="jewelry" className="bg-white">
@@ -237,7 +232,7 @@ export default function JewelryWatches() {
           backPath="/jewelry-watches"
           backLabel="Jewelry & Watches"
           apiUrl="https://dummyjson.com/products/category/womens-jewellery"
-             viewMoreTo="/shop/jewelry-watches"
+          viewMoreTo="/shop/jewelry-watches"
         />
       </section>
 

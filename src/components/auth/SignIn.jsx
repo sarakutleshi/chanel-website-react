@@ -20,7 +20,32 @@ export default function SignIn() {
     setLoading(true);
     setError("");
 
+    const trimmedUsername = username.trim();
+
     try {
+      // Local accounts created via Register
+      try {
+        const raw = localStorage.getItem("registeredUser");
+        const registered = raw ? JSON.parse(raw) : null;
+
+        if (
+          registered &&
+          registered.username?.toLowerCase() === trimmedUsername.toLowerCase() &&
+          registered.password === password
+        ) {
+          login({
+            firstName: registered.firstName,
+            lastName: registered.lastName,
+            email: registered.email,
+            username: registered.username,
+          });
+          navigate("/home");
+          return;
+        }
+      } catch {
+        // ignore bad localStorage and continue to API login
+      }
+
       const response = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
 
@@ -31,15 +56,13 @@ export default function SignIn() {
         credentials: "include",
 
         body: JSON.stringify({
-          username: username.trim(),
+          username: trimmedUsername,
           password: password,
           expiresInMins: 30,
         }),
       });
 
       const data = await response.json();
-
-      console.log("Login response:", data);
 
       if (!response.ok) {
         throw new Error(data.message || `Login failed (${response.status})`);
@@ -53,7 +76,7 @@ export default function SignIn() {
       navigate("/home");
     } catch (error) {
       console.error("LOGIN ERROR:", error);
-      setError(error.message);
+      setError(error.message || "Invalid username or password.");
     } finally {
       setLoading(false);
     }

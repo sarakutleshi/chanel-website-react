@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -38,43 +40,60 @@ export default function Register() {
       return;
     }
 
+    if (form.password.length < 4) {
+      setError("Password must be at least 4 characters.");
+      return;
+    }
+
     setLoading(true);
 
     try {
       const user = {
-        firstName: form.firstName,
-        lastName: form.lastName,
-        email: form.email,
-        username: form.username,
+        firstName: form.firstName.trim(),
+        lastName: form.lastName.trim(),
+        email: form.email.trim(),
+        username: form.username.trim(),
+        password: form.password,
       };
 
       localStorage.setItem("registeredUser", JSON.stringify(user));
 
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          first_name: form.firstName,
-          last_name: form.lastName,
-          email: form.email,
-          username: form.username,
-        },
-        {
-          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        },
-      );
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      setSuccess(
-        "Account created successfully! A welcome email has been sent.",
-      );
+      if (serviceId && templateId && publicKey) {
+        try {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              name: `${user.firstName} ${user.lastName}`,
+              email: user.email,
+              message: `New account registration\nUsername: ${user.username}\nEmail: ${user.email}`,
+            },
+            { publicKey },
+          );
+        } catch (emailErr) {
+          console.error("Welcome email failed:", emailErr);
+        }
+      }
+
+      login({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username,
+      });
+
+      setSuccess("Account created successfully!");
 
       setTimeout(() => {
-        navigate("/signin");
-      }, 1500);
+        navigate("/home");
+      }, 1000);
     } catch (err) {
       console.error(err);
-
-      setError("Registration completed, but the email could not be sent.");
+      setError("Could not create account. Please try again.");
     } finally {
       setLoading(false);
     }

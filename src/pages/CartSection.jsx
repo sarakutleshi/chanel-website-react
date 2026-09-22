@@ -150,8 +150,6 @@ export default function Cart() {
                     <p className="text-right text-[13px] font-light text-neutral-800 tabular-nums">
                       {lineTotal}
                     </p>
-
-                    {/* Remove */}
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="flex h-8 w-8 items-center justify-center self-start text-neutral-300 transition-colors hover:text-black md:self-auto"
